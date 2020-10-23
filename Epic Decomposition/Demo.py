@@ -1,37 +1,54 @@
-# %% Load data
-from jange import ops, stream, vis
+import numpy as np
 
-ds = stream.from_csv(
-    "https://raw.githubusercontent.com/jangedoo/jange/master/dataset/bbc.csv",
-    columns="news",
-    context_column="type",
-)
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.cluster import MeanShift
+from sklearn import metrics
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import FunctionTransformer
 
-# %% Extract clusters
-# Extract clusters
-result_collector = {}
-clusters_ds = ds.apply(
-    ops.text.clean.pos_filter("NOUN", keep_matching_tokens=True),
-    ops.text.encode.tfidf(max_features=5000, name="tfidf"),
-    ops.cluster.minibatch_kmeans(n_clusters=5),
-    result_collector=result_collector,
-)
+with open('epic.txt') as f:
+    documents = f.readlines()
+# you may also want to remove whitespace characters like `\n` at the end of each line
+documents = [x.strip() for x in documents] 
 
-# %% Get features extracted by tfidf
-features_ds = result_collector[clusters_ds.applied_ops.find_by_name("tfidf")]
+model = Pipeline(
+  steps=[
+    ('tfidf', TfidfVectorizer()),
+    ('trans', FunctionTransformer(lambda x: x.todense(), accept_sparse=True)),
+    ('clust', MeanShift())
+  ])
 
-# %% Visualization
-reduced_features = features_ds.apply(ops.dim.tsne(n_dim=2))
-vis.cluster.visualize(reduced_features, clusters_ds)
+model.fit(documents)
 
-# visualization looks good, lets export the operations
-with ops.utils.disable_training(cluster_ds.applied_ops) as cluster_ops:
-    with open("cluster_ops.pkl", "wb") as f:
-        pickle.dump(cluster_ops, f)
+result = [(label,doc) for doc,label in zip(documents, model.named_steps['clust'].labels_)]
 
-# in_another_file.py
-# load the saved operations and apply on a new stream to retrieve the clusters
-with open("cluster_ops.pkl", "rb") as f:
-    cluster_ops = pickle.load(f)
+for label,doc in sorted(result):
+  print(label, doc)
 
-clusters_ds = input_ds.apply(cluster_ops)
+labels = model.labels_
+cluster_centers = model.cluster_centers_
+
+labels_unique = np.unique(labels)
+n_clusters_ = len(labels_unique)
+
+print("number of estimated clusters : %d" % n_clusters_)
+
+order_centroids = model.cluster_centers_.argsort()[:, ::-1]
+terms = vectorizer.get_feature_names()
+for i in range(n_clusters_):
+    print("Cluster %d:" % i),
+    for ind in order_centroids[i, :10]:
+        print(' %s' % terms[ind]),
+    print
+
+Y = vectorizer.transform(["Add a background color to cells that can be any RGB color."])
+prediction = model.predict(Y)
+print(prediction)
+
+output = []
+
+#for x in range(len(X)):
+#
+
+print(X)
