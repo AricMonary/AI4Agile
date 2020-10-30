@@ -1,0 +1,1 @@
+Technical Specifications: https://docs.google.com/document/d/1kSC51qX-Oq9SOGY2Qpk-k7DA5zyeTbdDETFQdPFEBdI/edit?usp=sharing
