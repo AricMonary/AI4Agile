@@ -1,0 +1,91 @@
+{
+    "key": "my-app",
+    "name": "My app",
+    "description": "My very first app",
+    "baseUrl": "{{localBaseUrl}}",
+    "authentication": {
+        "type": "jwt"
+    },
+    "lifecycle": {
+        "installed": "/installed"
+    },
+    "scopes": [
+        "READ"
+    ],
+    "modules": {
+        "generalPages": [
+            {
+                "key": "hello-world-page-jira",
+                "location": "system.top.navigation.bar",
+                "name": {
+                    "value": "Hello World"
+                },
+                "url": "/hello-world",
+                "conditions": [{
+                    "condition": "user_is_logged_in"
+                }]
+            },
+            {
+                "key": "hello-world-page-confluence",
+                "location": "system.header/left",
+                "name": {
+                    "value": "Hello World"
+                },
+                "url": "/hello-world",
+                "conditions": [{
+                    "condition": "user_is_logged_in"
+                }]
+            }
+        ],
+		"webSections": [
+		  {
+			"key": "board-links",
+			"location": "jira.agile.board.tools",
+			"weight": 10,
+			"name": {
+			  "value": "My Addon Dropdown"
+			}
+		  }
+		],
+		"webPanels": [
+      {
+        "key": "my-web-panel",
+        "url": "web-panel?id={board.id}&mode={board.screen}",
+        "name": {
+          "value": "My Web Panel"
+        },
+        "location": "board-links",
+        "layout": {
+          "width": "100px",
+          "height": "100px"
+        }
+      }
+    ],
+	"jiraIssueContents": [
+      {
+        "icon": {
+          "width": 0,
+          "height": 0,
+          "url": "/my_icon.svg"
+        },
+        "target": {
+          "type": "web_panel",
+          "url": "/url_to_panel_content_page.htm"
+        },
+        "tooltip": {
+          "value": "This is a tooltip"
+        },
+        "contentPresentConditions": [
+          {
+            "condition": "user_is_admin",
+            "invert": false
+          }
+        ],
+        "name": {
+          "value": "My Issue Content Panel"
+        },
+        "key": "my-issue-content-panel"
+      }
+    ]
+    }
+}
