@@ -2,6 +2,7 @@
   "name": "my-app",
   "version": "0.0.1",
   "private": true,
+  "type": "module",
   "externals": {
     "react": "React",
     "react-dom": "ReactDOM"

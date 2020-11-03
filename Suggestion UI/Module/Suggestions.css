@@ -1,0 +1,6 @@
+#suggestions {
+    width:200px;
+    height:100px;
+    word-wrap:break-word;
+    overflow: auto;
+}

@@ -5,10 +5,6 @@ export default function routes(app, addon) {
         res.redirect('/atlassian-connect.json');
     });
 	
-	app.get('/web-panel', function(req,res){
-		res.render("dropdown-web-panel", {id : req.query['id'], mode : req.query['mode'] });
-	});
-	
     // This is an example route used by "generalPages" module (see atlassian-connect.json).
     // Verify that the incoming request is authenticated with Atlassian Connect.
     app.get('/hello-world', addon.authenticate(), (req, res) => {
@@ -25,4 +21,7 @@ export default function routes(app, addon) {
     });
 
     // Add additional route handlers here...
+	app.get('/web-panel', function(req,res){
+		res.render("dropdown-web-panel", {id : req.query['id'], mode : req.query['mode'] });
+	});
 }
