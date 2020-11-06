@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Decompose Epic</title>
+</head>
+<body>
+<style>
+.button {
+  background-color:#D3D3D3;
+  border: 1px solid black;
+  color: white;
+  padding-left: 0%;
+  padding-top: 0%;
+  padding-bottom: 0%;
+  padding-right: 0%;
+}  
+.button1 {width: 24px; height: 24px}
+
+.img1 {
+  position: absolute;
+  left: 50px;
+}
+.img:hover {
+  -webkit-transform:  scale(2,2);
+}
+</style>
+<button class="button button1" title="Decompose Epic" onclick="buttonClicked()" id="button"><img src="images.png" width="23px" height="23px"></button> <br>
+<br>
+<input type="checkbox" id="myCheck" onclick="myFunction()" style="display: none;">
+<p id="text" style="display:none" contenteditable="true">Editable text</p> <br>
+<img class="img img1" src="Dependencygraph.png" alt="Dependencygraph" width="50px" height="50px">
+<script>
+var c = 0;
+function buttonClicked() {
+  if(c % 2 == 0)
+  {
+    var x = document.getElementById("myCheck");
+    x.style.display = "block";
+    c +=1;
+  }
+  else
+  {
+    var x = document.getElementById("myCheck");
+    x.style.display = "none";
+    c +=1;
+  }
+  
+
+}
+function myFunction() {
+  // Get the checkbox
+  var checkBox = document.getElementById("myCheck");
+  // Get the output text
+  var text = document.getElementById("text");
+
+  // If the checkbox is checked, display the output text
+  if (checkBox.checked == true){
+    text.style.display = "block";
+  } else {
+    text.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>

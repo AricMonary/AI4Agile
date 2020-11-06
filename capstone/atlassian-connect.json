@@ -1,0 +1,83 @@
+{
+    "key": "my-app",
+    "name": "My app",
+    "description": "My very first app",
+    "baseUrl": "{{localBaseUrl}}",
+    "authentication": {
+        "type": "jwt"
+    },
+    "lifecycle": {
+        "installed": "/installed"
+    },
+    "scopes": [
+        "READ"
+    ],
+    "modules": {
+        "generalPages": [
+            {
+                "key": "hello-world-page-jira",
+                "location": "system.top.navigation.bar",
+                "name": {
+                    "value": "Hello World"
+                },
+                "url": "/hello-world",
+                "conditions": [{
+                    "condition": "user_is_logged_in"
+                }]
+            },
+            {
+                "key": "hello-world-page-confluence",
+                "location": "system.header/left",
+                "name": {
+                    "value": "Hello World"
+                },
+                "url": "/hello-world",
+                "conditions": [{
+                    "condition": "user_is_logged_in"
+                }]
+            }
+        ],
+        "jiraIssueContents": [
+      {
+        "icon": {
+          "width": 24,
+          "height": 24,
+          "url": "images.png"
+        },
+        "target": {
+          "type": "web_panel",
+          "url": "my-epic-panel"
+        },
+        "tooltip": {
+          "value": "Epic Decomposition"
+        },
+        "name": {
+          "value": "Epic Decomposition"
+        },
+        "conditions": [
+          {
+            "condition": "jira_expression",
+            "params": {
+            "expression": "issue.properties['issue.issueType.id']==10001"
+            }
+          }
+        ],
+        "key": "Epic-Decomposition"
+      }
+    ],
+    "webPanels": [
+      {
+        "key": "my-epic-panel",
+        "url": "/helloworld.html",
+        "name": {
+          "value": "My Epic Panel"
+        },
+        "location": "Epic-Decomposition",
+        "layout": {
+          "width": "100px",
+          "height": "100px"
+        }
+      }
+    ]
+   }
+}
