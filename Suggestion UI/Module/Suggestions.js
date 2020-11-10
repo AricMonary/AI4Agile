@@ -3,7 +3,7 @@ var suggestionCount = 0;
 
 function createSuggestions() {
     if (!(document.getElementById('createSuggestions').disabled)) {
-        var suggestions = ["suggestion 1", "suggestion 2", "suggestion 3", "a very very long suggestion", "...", "suggestion x"]; //query script here
+        var suggestions = ["suggestion 1", "suggestion 2", "suggestion 3", "a very very very very very very very very very very very long suggestion", "...", "suggestion x"]; //query script here
         var div = document.getElementById('suggestions');
         for (suggestion of suggestions) {
             var newDiv = document.createElement("div");
@@ -53,8 +53,8 @@ function createSelectedSuggestions() {
     for (i = suggestions.length - 1; i >= 0; i--) {
         //alert("Suggestion: " + suggestions[i].parentElement.childNodes[1].innerHTML);
         if (suggestions[i].checked == true) {
+            addSuggestion(suggestions[i]); // INSERT LINE TO CREATE SUGGESTION
             suggestionDeleted(suggestions[i]);
-            // INSERT LINE TO CREATE SUGGESTION
         }
     }
 
@@ -68,7 +68,7 @@ function createSelectedSuggestions() {
 }
 
 function suggestionDeletedByClearingText(suggestion) {
-    print(suggestion.parentElement.childNodes[1].innerHTML)
+    alert(suggestion.parentElement.childNodes[1].innerHTML)
     if (suggestion.childNodes[i].nodeValue == "") {
         document.getElementsByName('suggestions').removeChild(suggestion);
     }
@@ -76,4 +76,10 @@ function suggestionDeletedByClearingText(suggestion) {
 
 function suggestionDeleted(suggestion) {
     suggestion.parentElement.remove();
+}
+
+function addSuggestion(suggestion) {
+    var issues = document.getElementById("issues");
+    issues.appendChild(document.createTextNode(suggestion.parentElement.childNodes[1].innerHTML));
+    issues.appendChild(document.createElement("br"));
 }
