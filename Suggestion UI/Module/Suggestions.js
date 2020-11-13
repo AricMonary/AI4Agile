@@ -50,10 +50,14 @@ function deselectAll() {
 
 function createSelectedSuggestions() {
     var suggestions = document.getElementsByName('suggestion');
-    for (i = suggestions.length - 1; i >= 0; i--) {
-        //alert("Suggestion: " + suggestions[i].parentElement.childNodes[1].innerHTML);
+    for (i = 0; i < suggestions.length; i++) {
         if (suggestions[i].checked == true) {
             addSuggestion(suggestions[i]); // INSERT LINE TO CREATE SUGGESTION
+        }
+    }
+    
+    for (i = suggestions.length - 1; i >= 0; i--) {
+        if (suggestions[i].checked == true) {
             suggestionDeleted(suggestions[i]);
         }
     }
