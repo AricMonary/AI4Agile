@@ -46,7 +46,7 @@
         },
         "target": {
           "type": "web_panel",
-          "url": "my-epic-panel"
+          "url": "/helloworld.html"
         },
         "tooltip": {
           "value": "Epic Decomposition"
@@ -54,29 +54,7 @@
         "name": {
           "value": "Epic Decomposition"
         },
-        "conditions": [
-          {
-            "condition": "jira_expression",
-            "params": {
-            "expression": "issue.properties['issue.issueType.id']==10001"
-            }
-          }
-        ],
         "key": "Epic-Decomposition"
-      }
-    ],
-    "webPanels": [
-      {
-        "key": "my-epic-panel",
-        "url": "/helloworld.html",
-        "name": {
-          "value": "My Epic Panel"
-        },
-        "location": "Epic-Decomposition",
-        "layout": {
-          "width": "100px",
-          "height": "100px"
-        }
       }
     ]
    }

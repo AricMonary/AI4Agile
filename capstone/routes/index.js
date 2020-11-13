@@ -23,6 +23,6 @@ export default function routes(app, addon) {
 app.get('/web-panel', function(req,res){
     res.render("dropdown-web-panel", {id : req.query['id'], mode : req.query['mode'] });
 });
-    
+
     // Add additional route handlers here...
 }
