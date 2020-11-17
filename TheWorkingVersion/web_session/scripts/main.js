@@ -14,7 +14,8 @@ $(function() {
     $(n).cytoscape({
         layout: {
             name: "preset",
-            padding: 10 //space on edges when graph loads
+            padding: 10, //space on edges when graph loads
+            fit: true // fits to viewport, in theory
         },
         autolock : true, //make nodes not moveable
         boxSelectionEnabled: !0,
