@@ -1,0 +1,55 @@
+{
+  "key": "my-app",
+  "name": "AI4Agile",
+  "description": "AI4Agile - AI-powered Plugin to Accelerate Agile Development",
+  "baseUrl": "{{localBaseUrl}}",
+  "authentication": {
+    "type": "jwt"
+  },
+  "lifecycle": {
+    "installed": "/installed"
+  },
+  "scopes": [
+    "READ"
+  ],
+  "modules": {
+    "jiraIssueContents": [
+      {
+        "icon": {
+          "width": 24,
+          "height": 24,
+          "url": "/Suggestions/decomposition.png"
+        },
+        "target": {
+          "type": "web_panel",
+          "url": "/Suggestions/suggestions.html"
+        },
+        "tooltip": {
+          "value": "Epic Decomposition"
+        },
+        "name": {
+          "value": "Epic Decomposition"
+        },
+        "key": "Epic-Decomposition"
+      },
+      {
+        "icon": {
+          "width": 24,
+          "height": 24,
+          "url": "/Graph/graph.jpg"
+        },
+        "target": {
+          "type": "web_panel",
+          "url": "/Graph/index.html"
+        },
+        "tooltip": {
+          "value": "Dependency Visualization"
+        },
+        "name": {
+          "value": "Dependency Visualization"
+        },
+        "key": "Dependency-Visualization"
+      }
+    ]
+  }
+}

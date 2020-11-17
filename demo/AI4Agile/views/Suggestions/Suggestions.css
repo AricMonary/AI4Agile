@@ -1,0 +1,11 @@
+#suggestions {
+    word-wrap:break-word;
+}
+
+#buttons {
+    display:inline;
+}
+
+.button_Right {
+    float:right;
+}
