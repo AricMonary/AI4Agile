@@ -26,7 +26,7 @@ var styles = [ {
   }, {
     "selector" : "node[IssueType_A = 'Task']",
     "css" : {
-      "background-color" : "rgb(153,255,153)"
+      "background-color" : "rgb(153,255,144)"
     }
   }, {
     "selector" : "node[IssueType_A = 'Epic']",
@@ -39,9 +39,24 @@ var styles = [ {
       "background-color" : "rgb(14,180,227)"
     }
   }, {
+    "selector" : "node[IssueType_B = 'Task']",
+    "css" : {
+      "background-color" : "rgb(153,255,144)"
+    }
+  }, {
+    "selector" : "node[IssueType_B = 'Epic']",
+    "css" : {
+      "background-color" : "rgb(153,153,255)"
+    }
+  }, {
+    "selector" : "node[IssueType_B = 'Story']",
+    "css" : {
+      "background-color" : "rgb(14,180,227)"
+    }
+  },{
     "selector" : "node:selected",
     "css" : {
-      "background-color" : "rgb(255,255,0)"
+      "background-color" : "rgb(112,112,112)"
     }
   }, {
     "selector" : "edge",
@@ -49,14 +64,14 @@ var styles = [ {
       "font-family" : "Dialog.plain",
       "font-weight" : "normal",
       "line-color" : "rgb(132,132,132)",
-      "target-arrow-color" : "rgb(0,0,0)",
+      "target-arrow-color" : "rgb(132,132,132)",
       "source-arrow-shape" : "none",
-      "line-style" : "dashed",
+      "line-style" : "solid",
       "color" : "rgb(0,0,0)",
       "source-arrow-color" : "rgb(0,0,0)",
       "opacity" : 1.0,
       "content" : "",
-      "target-arrow-shape" : "none",
+      "target-arrow-shape" : "triangle",
       "font-size" : 10,
       "width" : 2.0,
       "text-opacity" : 1.0
@@ -64,7 +79,7 @@ var styles = [ {
   }, {
     "selector" : "edge:selected",
     "css" : {
-      "line-color" : "rgb(255,0,0)"
+      "line-color" : "rgb(0,0,0)"
     }
   } ]
 } ]

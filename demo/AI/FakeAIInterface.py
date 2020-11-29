@@ -1,14 +1,17 @@
-# app.py
+from fakeAI.py
 from flask import Flask, jsonify, request, render_template
 app = Flask(__name__)
 
-@app.route('/hello', methods=['GET', 'POST'])
+suggestions = []
+
+@app.route('/epicDecomposition', methods=['GET', 'POST'])
 def hello():
 
     # POST request
     if request.method == 'POST':
-        print('Incoming..')
-        print(request.get_json())  # parse as JSON
+        #do things to parse the json of results
+
+        suggestions = doThings(request.get_json())
         return 'OK', 200
 
     # GET request

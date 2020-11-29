@@ -15,10 +15,19 @@
   "modules": {
     "jiraIssueContents": [
       {
+        "conditions": [
+          {
+            "condition": "jira_expression",
+            "params": {
+              "expression": "issue.issueType.name == 'Epic'"
+            }
+          }
+        ],
+        "weight": 980,
         "icon": {
           "width": 24,
           "height": 24,
-          "url": "/Suggestions/decomposition.png"
+          "url": "/Suggestions/icons/decomposition.png"
         },
         "target": {
           "type": "web_panel",
@@ -33,6 +42,69 @@
         "key": "Epic-Decomposition"
       },
       {
+        "conditions": [
+          {
+            "condition": "jira_expression",
+            "params": {
+              "expression": "issue.issueType.name == 'Story'"
+            }
+          }
+        ],
+        "weight": 970,
+        "icon": {
+          "width": 24,
+          "height": 24,
+          "url": "/Suggestions/icons/optimization.png"
+        },
+        "target": {
+          "type": "web_panel",
+          "url": "/Suggestions/suggestions.html"
+        },
+        "tooltip": {
+          "value": "Story Optimization"
+        },
+        "name": {
+          "value": "Story Optimization"
+        },
+        "key": "Story-Optimization"
+      },
+      {
+        "conditions": [
+          {
+            "condition": "jira_expression",
+            "params": {
+              "expression": "issue.issueType.name == 'Story'"
+            }
+          }
+        ],
+        "weight": 980,
+        "icon": {
+          "width": 24,
+          "height": 24,
+          "url": "/Suggestions/icons/generation.png"
+        },
+        "target": {
+          "type": "web_panel",
+          "url": "/Suggestions/suggestions.html"
+        },
+        "tooltip": {
+          "value": "Task Generation"
+        },
+        "name": {
+          "value": "Task Generation"
+        },
+        "key": "Task-Generation"
+      },
+      {
+        "conditions": [
+          {
+            "condition": "jira_expression",
+            "params": {
+              "expression": "issue.issueType.name == 'Epic' || issue.issueType.name == 'Story'  || issue.issueType.name == 'Task'"
+            }
+          }
+        ],
+        "weight": 990,
         "icon": {
           "width": 24,
           "height": 24,
