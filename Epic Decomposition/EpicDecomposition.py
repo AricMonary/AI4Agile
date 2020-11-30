@@ -8,12 +8,12 @@ with open('epic.txt') as f:
 # you may also want to remove whitespace characters like `\n` at the end of each line
 documents = [x.strip() for x in documents] 
 
-vectorizer = TfidfVectorizer(stop_words='english')
+vectorizer = TfidfVectorizer()
 X = vectorizer.fit_transform(documents)
 
-print(X)
+print(X.vocabulary_)
 
-model = DBSCAN(eps=0.5, min_samples=1).fit(X)
+model = DBSCAN(eps=0.3, min_samples=2).fit(X)
 clusterCount = model.labels_.size
 labels = model.labels_
 
@@ -30,16 +30,16 @@ print('Estimated number of noise points: %d' % n_noise_)
 #print("Adjusted Mutual Information: %0.3f" % metrics.adjusted_mutual_info_score(X, labels))
 #print("Silhouette Coefficient: %0.3f" % metrics.silhouette_score(X, labels))
 
-print("Clusters:")
-results = model.components_
-terms = vectorizer.get_feature_names()
+#print("Clusters:")
+#results = model.components_
+#terms = vectorizer.get_feature_names()
 
-for i in range(clusterCount):
-    print("Cluster %s:" % (i + 1))
-    for j in range(results.toarray()[i].size):
-        if results.toarray()[i][j] != 0:
-            print(terms[j])
-    print()
+#for i in range(clusterCount):
+#    print("Cluster %s:" % (i + 1))
+#    for j in range(results.toarray()[i].size):
+#        if results.toarray()[i][j] != 0:
+#            print(terms[j])
+#    print()
 
 #print("Prediction")
 
