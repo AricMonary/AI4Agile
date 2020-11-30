@@ -5,10 +5,15 @@
   <title>Decompose Epic</title>
   <link rel="stylesheet" type="text/css" href="https://unpkg.com/@atlassian/aui@9.1/dist/aui/aui-prototyping.css"/>
   <script src="https://unpkg.com/@atlassian/aui@9.1/dist/aui/aui-prototyping.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://connect-cdn.atl-paas.net/all.js"></script>
 </head>
 
 <body>
+  <div id="createIssueDemo">
+    <input type="button" id="createIssue" value="Create Demo Issue" onClick="createIssue()">
+  </div>
+
   <div id="demoButtons">
     <input type="button" id="createSuggestions" value="Create Suggestions" onClick="createSuggestions()">
   </div>

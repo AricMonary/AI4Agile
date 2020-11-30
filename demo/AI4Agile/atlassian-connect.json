@@ -10,7 +10,7 @@
     "installed": "/installed"
   },
   "scopes": [
-    "READ"
+    "WRITE"
   ],
   "modules": {
     "jiraIssueContents": [

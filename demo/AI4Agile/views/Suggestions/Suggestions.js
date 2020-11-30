@@ -55,15 +55,14 @@ function createSelectedSuggestions() {
             //addSuggestion(suggestions[i]); // INSERT LINE TO CREATE SUGGESTION
         }
     }
-    
+
     for (i = suggestions.length - 1; i >= 0; i--) {
         if (suggestions[i].checked == true) {
             suggestionDeleted(suggestions[i]);
         }
     }
 
-    if(document.getElementById('suggestions').childElementCount == 0)
-    {
+    if (document.getElementById('suggestions').childElementCount == 0) {
         document.getElementById('selectAll').disabled = true;
         document.getElementById('deselectAll').disabled = true;
         document.getElementById('createSuggestions').disabled = false;
@@ -86,4 +85,42 @@ function addSuggestion(suggestion) {
     var issues = document.getElementById("issues");
     issues.appendChild(document.createTextNode(suggestion.parentElement.childNodes[1].innerHTML));
     issues.appendChild(document.createElement("br"));
+}
+
+function createIssue() {
+    const bodyData = `{
+  "update": {},
+  "fields": {
+    "summary": "Main order flow broken",
+    "issuetype": {
+      "id": "10000"
+    },
+    "components": [
+      {
+        "id": "10000"
+      }
+    ],
+    "project": {
+      "id": "10000"
+    },
+    "description": "YEET"
+  }
+}`;
+    $.ajax
+        ({
+            type: "POST",
+            url: 'https://playingabout.atlassian.net/rest/api/3/issue',
+            dataType: 'json',
+            headers: {
+                'username': "aric.monary@wsu.edu",
+                'password': "TBxPhOl7kvPN7oT0Ql8n4BB3",
+                'accept': "application/json",
+                'contentType': "application/json"
+            },
+            async: false,
+            data: bodyData,
+            success: function () {
+                alert("Thanks!");
+            }
+        })
 }
