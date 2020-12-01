@@ -1,5 +1,5 @@
 #input is a list of text
-def doThings (input):
+def FakeAI1DoingThings (input):
     suggestions = []
     for i in input:
         suggestion[i] = str(i) + " changed."

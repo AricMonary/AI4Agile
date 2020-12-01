@@ -1,25 +1,39 @@
-from fakeAI.py
-from flask import Flask, jsonify, request, render_template
+#from fakeAI import akeAI1DoingThings
+import json
+from atlassian import Jira
+from flask import Flask, request
+
 app = Flask(__name__)
+jira = Jira(
+    url='https://playingabout.atlassian.net/',
+    username='aric.monary@wsu.edu',
+    password='NCx7f7ZWle5yfwS3DB8JBCEA')
 
-suggestions = []
 
-@app.route('/epicDecomposition', methods=['GET', 'POST'])
-def hello():
+@app.route('/fakeAI1', methods=['POST'])
+def fakeAI1():
+    suggestionsJSON = request.get_json()
+    for suggestion in suggestionsJSON['suggestions']:
+        createStoryFromSuggestion(suggestion)
+    return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
 
-    # POST request
-    if request.method == 'POST':
-        #do things to parse the json of results
 
-        suggestions = doThings(request.get_json())
-        return 'OK', 200
+def createFieldsFromSuggestion(suggestion):
+    fields = {
+        'project': {'key': 'AI4'},
+        'issuetype': {"name": "Story"},
+        'parent': {'key': 'AI4-107'},
+        'summary': suggestion,
+        'description': suggestion,
+    }
 
-    # GET request
-    else:
-        message = {'greeting':'Hello from Flask!'}
-        return jsonify(message)  # serialize and use JSON headers
+    return fields
 
-@app.route('/test')
-def test_page():
-    # look inside `templates` and serve `index.html`
-    return render_template('index.html')
+
+def createStoryFromSuggestion(suggestion):
+    fields = createFieldsFromSuggestion(suggestion)
+    jira.issue_create(fields=fields)
+
+
+if __name__ == '__main__':
+    app.run()
