@@ -57,9 +57,7 @@ function createSelectedSuggestions() {
         }
     }
 
-    var suggestionsToSend = {suggestions: checkedSuggestions};
-
-    alert(JSON.stringify(suggestionsToSend))
+    var suggestionsToSend = {'suggestions': checkedSuggestions};
 
     $.ajax({
         type: "POST", 
@@ -67,6 +65,8 @@ function createSelectedSuggestions() {
         data : JSON.stringify(suggestionsToSend),
         contentType: "application/json",
     });
+
+    AP.jira.refreshIssuePage();
 
     for (i = populatedSuggestions.length - 1; i >= 0; i--) {
         if (populatedSuggestions[i].checked == true) {
