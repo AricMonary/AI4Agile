@@ -49,16 +49,28 @@ function deselectAll() {
 }
 
 function createSelectedSuggestions() {
-    var suggestions = document.getElementsByName('suggestion');
-    for (i = 0; i < suggestions.length; i++) {
-        if (suggestions[i].checked == true) {
-            //addSuggestion(suggestions[i]); // INSERT LINE TO CREATE SUGGESTION
+    var populatedSuggestions = document.getElementsByName('suggestion');
+    var checkedSuggestions= new Array();
+    for (i = 0; i < populatedSuggestions.length; i++) {
+        if (populatedSuggestions[i].checked == true) {
+            checkedSuggestions.push(populatedSuggestions[i].parentElement.childNodes[1].innerHTML);
         }
     }
 
-    for (i = suggestions.length - 1; i >= 0; i--) {
-        if (suggestions[i].checked == true) {
-            suggestionDeleted(suggestions[i]);
+    var suggestionsToSend = {suggestions: checkedSuggestions};
+
+    alert(JSON.stringify(suggestionsToSend))
+
+    $.ajax({
+        type: "POST", 
+        url: "http://127.0.0.1:5000/fakeAI1", //localhost Flask
+        data : JSON.stringify(suggestionsToSend),
+        contentType: "application/json",
+    });
+
+    for (i = populatedSuggestions.length - 1; i >= 0; i--) {
+        if (populatedSuggestions[i].checked == true) {
+            suggestionDeleted(populatedSuggestions[i]);
         }
     }
 
@@ -72,7 +84,7 @@ function createSelectedSuggestions() {
 
 function suggestionDeletedByClearingText(suggestion) {
     alert(suggestion.parentElement.childNodes[1].innerHTML)
-    if (suggestion.childNodes[i].nodeValue == "") {
+    if (suggestion.childNodes[1].nodeValue == "") {
         document.getElementsByName('suggestions').removeChild(suggestion);
     }
 }
@@ -85,42 +97,4 @@ function addSuggestion(suggestion) {
     var issues = document.getElementById("issues");
     issues.appendChild(document.createTextNode(suggestion.parentElement.childNodes[1].innerHTML));
     issues.appendChild(document.createElement("br"));
-}
-
-function createIssue() {
-    const bodyData = `{
-  "update": {},
-  "fields": {
-    "summary": "Main order flow broken",
-    "issuetype": {
-      "id": "10000"
-    },
-    "components": [
-      {
-        "id": "10000"
-      }
-    ],
-    "project": {
-      "id": "10000"
-    },
-    "description": "YEET"
-  }
-}`;
-    $.ajax
-        ({
-            type: "POST",
-            url: 'https://playingabout.atlassian.net/rest/api/3/issue',
-            dataType: 'json',
-            headers: {
-                'username': "aric.monary@wsu.edu",
-                'password': "TBxPhOl7kvPN7oT0Ql8n4BB3",
-                'accept': "application/json",
-                'contentType': "application/json"
-            },
-            async: false,
-            data: bodyData,
-            success: function () {
-                alert("Thanks!");
-            }
-        })
 }
