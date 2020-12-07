@@ -81,11 +81,11 @@ def createTaskFromStory(suggestionsJSON):
     parentIssueKey = suggestionsJSON['parentIssueKey']
     parentEpicKey = (jira.issue_field_value(parentIssueKey, "parent"))['key']
     parentFields = jira.issue(parentIssueKey)['fields']
-    
+
     for suggestion in suggestionsJSON['suggestions']:
         fields = {
             'project': {'key': projectKey},
-            'issuetype': {"name": "Story"},
+            'issuetype': {"name": "Task"},
             'parent': {'key': parentEpicKey},
             'summary': suggestion,
             'description': suggestion,
@@ -93,11 +93,21 @@ def createTaskFromStory(suggestionsJSON):
             'assignee': {'id': parentFields['assignee']['accountId']},
             'customfield_10015': parentFields['customfield_10015'], # Start date
             'duedate': parentFields['duedate'],
-            'labels': list(filter(lambda x: x != 'Optimized', list(parentFields['labels']))),
+            'labels': list(filter(lambda x: x != 'Optimized', list(parentFields['labels']))), # filters out the 'Optimized' label
             'customfield_10020': parentFields['customfield_10020'][0]['id'], # Sprint
         }
 
-        jira.issue_create(fields=fields)
+        newIssue = jira.issue_create(fields=fields)
+        newIssueKey = newIssue['key']
+
+        issueFields = {
+            "type": {"name": "Blocks" },
+            "inwardIssue": { "key": newIssueKey},
+            "outwardIssue": {"key": parentIssueKey},
+            "comment": {}
+        }
+
+        jira.create_issue_link(issueFields)
 
 if __name__ == '__main__':
     app.run()
