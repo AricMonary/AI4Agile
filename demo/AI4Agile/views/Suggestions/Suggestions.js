@@ -57,16 +57,56 @@ function createSelectedSuggestions() {
         }
     }
 
-    var suggestionsToSend = {'suggestions': checkedSuggestions};
+    var paramtersFromURL = getURLParameters();
 
-    $.ajax({
-        type: "POST", 
-        url: "http://127.0.0.1:5000/fakeAI1", //localhost Flask
-        data : JSON.stringify(suggestionsToSend),
-        contentType: "application/json",
-    });
+    var processType = paramtersFromURL['processType'];
 
-    AP.jira.refreshIssuePage();
+    var suggestionsToSend = {'projectKey': paramtersFromURL['projectKey'], 
+        'parentIssueKey': paramtersFromURL['parentIssueKey'], 
+        'suggestions': checkedSuggestions};
+
+    console.log("Process Type: " + processType)
+    
+    switch(processType) {
+        //for the epic decomposition process
+        case 'epicDecomposition':
+
+            console.log("Epic Decomposition: " + JSON.stringify(suggestionsToSend))
+
+            $.ajax({
+                type: "POST", 
+                url: "http://127.0.0.1:5000/epicDecomposition", //localhost Flask
+                data : JSON.stringify(suggestionsToSend),
+                contentType: "application/json",
+            });
+            break;
+
+        //for the story optimization process
+        case 'storyOptimization':
+
+            console.log("Story Optimization: " + JSON.stringify(suggestionsToSend))
+
+            $.ajax({
+                type: "POST", 
+                url: "http://127.0.0.1:5000/storyOptimization",
+                data : JSON.stringify(suggestionsToSend),
+                contentType: "application/json",
+            });
+            break;
+
+        //for the task generation process
+        case 'taskGeneration':
+
+            console.log("Task Generation: " + JSON.stringify(suggestionsToSend))
+
+            $.ajax({
+                type: "POST", 
+                url: "http://127.0.0.1:5000/taskGeneration",
+                data : JSON.stringify(suggestionsToSend),
+                contentType: "application/json",
+            });
+            break;
+    }
 
     for (i = populatedSuggestions.length - 1; i >= 0; i--) {
         if (populatedSuggestions[i].checked == true) {
@@ -97,4 +137,17 @@ function addSuggestion(suggestion) {
     var issues = document.getElementById("issues");
     issues.appendChild(document.createTextNode(suggestion.parentElement.childNodes[1].innerHTML));
     issues.appendChild(document.createElement("br"));
+}
+
+// Get the process type used (Epic Decomposition, Story Optimization, or Task Generation)
+function getURLParameters()
+{
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    var parameterSet = {};
+    parameterSet['projectKey'] = urlParams.get('projectKey');
+    parameterSet['parentIssueKey'] = urlParams.get('parentIssueKey');
+    parameterSet['processType'] = urlParams.get('processType');
+
+    return parameterSet;
 }

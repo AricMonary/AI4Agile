@@ -1,4 +1,3 @@
-#from fakeAI import akeAI1DoingThings
 import json
 from atlassian import Jira
 from flask import Flask, request
@@ -9,31 +8,96 @@ jira = Jira(
     username='aric.monary@wsu.edu',
     password='NCx7f7ZWle5yfwS3DB8JBCEA')
 
-
-@app.route('/fakeAI1', methods=['POST'])
-def fakeAI1():
+# Listener to POST requests for the 
+@app.route('/epicDecomposition', methods=['POST'])
+def epicDecomposition():
     suggestionsJSON = request.get_json()
-    for suggestion in suggestionsJSON['suggestions']:
-        createStoryFromSuggestion(suggestion)
+
+    createStoryFromEpic(suggestionsJSON)
     return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
 
+@app.route('/storyOptimization', methods=['POST'])
+def storyOptimization():
+    suggestionsJSON = request.get_json()
+    createStoryFromStory(suggestionsJSON)
+    return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
 
-def createFieldsFromSuggestion(suggestion):
-    fields = {
-        'project': {'key': 'AI4'},
-        'issuetype': {"name": "Story"},
-        'parent': {'key': 'AI4-107'},
-        'summary': suggestion,
-        'description': suggestion,
-    }
+@app.route('/taskGeneration', methods=['POST'])
+def taskGeneration():
+    suggestionsJSON = request.get_json()
 
-    return fields
+    createTaskFromStory(suggestionsJSON)
+    return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
+
+def createStoryFromEpic(suggestionsJSON):
+    projectKey = suggestionsJSON['projectKey']
+    parentIssueKey = suggestionsJSON['parentIssueKey']
+    for suggestion in suggestionsJSON['suggestions']:
+        fields = {
+            'project': {'key': projectKey},
+            'issuetype': {"name": "Story"},
+            'parent': {'key': parentIssueKey},
+            'summary': suggestion,
+            'description': suggestion,
+        }
+        jira.issue_create(fields=fields)
 
 
-def createStoryFromSuggestion(suggestion):
-    fields = createFieldsFromSuggestion(suggestion)
-    jira.issue_create(fields=fields)
+def createStoryFromStory(suggestionsJSON):
+    projectKey = suggestionsJSON['projectKey']
+    parentIssueKey = suggestionsJSON['parentIssueKey']
+    parentEpicKey = (jira.issue_field_value(parentIssueKey, "parent"))['key']
+    parentFields = jira.issue(parentIssueKey)['fields']
 
+    for suggestion in suggestionsJSON['suggestions']:
+        fields = {
+            'project': {'key': projectKey},
+            'issuetype': {"name": "Story"},
+            'parent': {'key': parentEpicKey},
+            'summary': suggestion,
+            'description': suggestion,
+            'reporter': {'id': parentFields['reporter']['accountId']},
+            'assignee': {'id': parentFields['assignee']['accountId']},
+            'customfield_10015': parentFields['customfield_10015'], # Start date
+            'duedate': parentFields['duedate'],
+            'labels': list(filter(lambda x: x != 'Optimized', list(parentFields['labels']))),
+            'customfield_10020': parentFields['customfield_10020'][0]['id'], # Sprint
+        }
+
+        jira.issue_create(fields=fields)
+    
+    #Add "Opimized" label to existing story that was optimzed
+    labelFields = list((jira.issue_field_value(parentIssueKey, "labels")))
+    labelFields.append('Optimized')
+
+    labelFields = {'labels': labelFields}
+
+    #print(labelFields)
+
+    jira.update_issue_field(parentIssueKey, labelFields)
+
+def createTaskFromStory(suggestionsJSON):
+    projectKey = suggestionsJSON['projectKey']
+    parentIssueKey = suggestionsJSON['parentIssueKey']
+    parentEpicKey = (jira.issue_field_value(parentIssueKey, "parent"))['key']
+    parentFields = jira.issue(parentIssueKey)['fields']
+    
+    for suggestion in suggestionsJSON['suggestions']:
+        fields = {
+            'project': {'key': projectKey},
+            'issuetype': {"name": "Story"},
+            'parent': {'key': parentEpicKey},
+            'summary': suggestion,
+            'description': suggestion,
+            'reporter': {'id': parentFields['reporter']['accountId']},
+            'assignee': {'id': parentFields['assignee']['accountId']},
+            'customfield_10015': parentFields['customfield_10015'], # Start date
+            'duedate': parentFields['duedate'],
+            'labels': list(filter(lambda x: x != 'Optimized', list(parentFields['labels']))),
+            'customfield_10020': parentFields['customfield_10020'][0]['id'], # Sprint
+        }
+
+        jira.issue_create(fields=fields)
 
 if __name__ == '__main__':
     app.run()
