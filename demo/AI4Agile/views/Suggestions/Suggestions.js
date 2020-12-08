@@ -5,7 +5,7 @@ var paramtersFromURL = {}
 
 function loadsuggestions() {
     parametersFromURL = getURLParameters();
-    
+
     processType = parametersFromURL['processType'];
     issueKey = parametersFromURL['parentIssueKey'];
 
@@ -23,48 +23,54 @@ function generateSuggestions(processType, issueKey) {
         //for the epic decomposition process
         case 'epicDecomposition':
 
-            console.log("Epic Decomposition Generate Suggestions: " + jsonOfIssueKey)
+            //console.log("Epic Decomposition Generate Suggestions: " + jsonOfIssueKey)
 
             $.ajax({
                 type: "POST",
                 url: "http://127.0.0.1:5000/epicDecompositionCreateSuggestions", //localhost Flask
+                async: false,
                 data: jsonOfIssueKey,
                 contentType: "application/json",
-                success:function(data) {
-                    suggestions = data['suggestions']; 
-                  }
+                success: function (data) {
+                    replyData = JSON.parse(data);
+                    suggestions = replyData['suggestions'];
+                }
             });
             break;
 
         //for the story optimization process
         case 'storyOptimization':
 
-            console.log("Story Optimization Generate Suggestions: " + jsonOfIssueKey)
+            //console.log("Story Optimization Generate Suggestions: " + jsonOfIssueKey)
 
             $.ajax({
                 type: "POST",
                 url: "http://127.0.0.1:5000/storyOptimizationCreateSuggestions",
                 data: jsonOfIssueKey,
+                async: false,
                 contentType: "application/json",
-                success:function(data) {
-                    suggestions = data; 
-                  }
+                success: function (data) {
+                    replyData = JSON.parse(data);
+                    suggestions = replyData['suggestions'];
+                }
             });
             break;
 
         //for the task generation process
         case 'taskGeneration':
 
-            console.log("Task Generation Generate Suggestions: " + jsonOfIssueKey)
+            //console.log("Task Generation Generate Suggestions: " + jsonOfIssueKey)
 
             $.ajax({
                 type: "POST",
                 url: "http://127.0.0.1:5000/taskGenerationCreateSuggestions",
                 data: jsonOfIssueKey,
+                async: false,
                 contentType: "application/json",
-                success:function(data) {
-                    suggestions = data;  
-                  }
+                success: function (data) {
+                    replyData = JSON.parse(data);
+                    suggestions = replyData['suggestions'];
+                }
             });
             break;
     }
@@ -73,30 +79,27 @@ function generateSuggestions(processType, issueKey) {
 }
 
 function renderSuggestions() {
-    if (!(document.getElementById('createSuggestions').disabled)) {
+    var div = document.getElementById('suggestions');
+    for (suggestion of suggestions) {
+        var newDiv = document.createElement("div");
+        newDiv.setAttribute("class", "suggestion")
+        // create the necessary elements
+        var label = document.createElement("label");
+        label.setAttribute("contenteditable", "true");
+        label.setAttribute("for", "suggestion");
+        label.setAttribute('onChange', 'suggestionDeleted(this)');
+        label.appendChild(document.createTextNode(suggestion));
 
-        var div = document.getElementById('suggestions');
-        for (suggestion of suggestions) {
-            var newDiv = document.createElement("div");
-            newDiv.setAttribute("class", "suggestion")
-            // create the necessary elements
-            var label = document.createElement("label");
-            label.setAttribute("contenteditable", "true");
-            label.setAttribute("for", "suggestion");
-            label.setAttribute('onChange', 'suggestionDeleted(this)');
-            label.appendChild(document.createTextNode(suggestion));
+        var checkbox = document.createElement("input");
+        checkbox.setAttribute('type', 'checkbox');
+        checkbox.setAttribute('name', 'suggestion');
+        //checkbox.setAttribute('checked', 'true');
 
-            var checkbox = document.createElement("input");
-            checkbox.setAttribute('type', 'checkbox');
-            checkbox.setAttribute('name', 'suggestion');
-            //checkbox.setAttribute('checked', 'true');
-
-            // add the label element to your div
-            newDiv.appendChild(checkbox);
-            newDiv.appendChild(label);
-            newDiv.appendChild(document.createElement("br"));
-            div.appendChild(newDiv);
-        }
+        // add the label element to your div
+        newDiv.appendChild(checkbox);
+        newDiv.appendChild(label);
+        newDiv.appendChild(document.createElement("br"));
+        div.appendChild(newDiv);
     }
 
     document.getElementById('selectAll').disabled = false;
@@ -229,13 +232,6 @@ function createSelectedSuggestions() {
     //CLOSE FIELD
 }
 
-function suggestionDeletedByClearingText(suggestion) {
-    alert(suggestion.parentElement.childNodes[1].innerHTML)
-    if (suggestion.childNodes[1].nodeValue == "") {
-        document.getElementsByName('suggestions').removeChild(suggestion);
-    }
-}
-
 function suggestionDeleted(suggestion) {
     suggestion.parentElement.remove();
 }
@@ -257,10 +253,6 @@ function getURLParameters() {
 
     return parameterSet;
 }
-
-range.addEventListener("input", () => {
-    bubble.innerHTML = rangel.value;
-});
 
 function populateRange() {
     processType = getURLParameters()['processType'];
@@ -284,7 +276,7 @@ function populateRange() {
 
         var rangeValueLabel = document.createElement("span");
         rangeValueLabel.setAttribute("class", "slider_label");
-        rangeValueLabel.value = range.value;
+        rangeValueLabel.innerHTML = range.value;
 
         range.oninput = function () {
             rangeValueLabel.innerHTML = this.value;

@@ -18,7 +18,7 @@ jira = Jira(
 def epicDecompositionCreateSuggestions():
     issueJSON = request.get_json()
     inputForAI = getAndProcessDescription(issueJSON['issueKey'])
-
+    
     suggestions = EpicDecomposition(inputForAI)
 
     return json.dumps({'success': True, 'suggestions': suggestions}), 200, {'ContentType': 'application/json'}
@@ -31,7 +31,7 @@ def storyOptimizationCreateSuggestions():
 
     suggestions = StoryOptimization(inputForAI)
 
-    return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
+    return json.dumps({'success': True, 'suggestions': suggestions}), 200, {'ContentType': 'application/json'}
 
 # Listener to generate suggestions for Task Generation
 @app.route('/taskGenerationCreateSuggestions', methods=['POST'])
@@ -41,13 +41,16 @@ def taskGenerationCreateSuggestions():
 
     suggestions = TaskGeneration(inputForAI)
 
-    return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
+    return json.dumps({'success': True, 'suggestions': suggestions}), 200, {'ContentType': 'application/json'}
 
 
 def getAndProcessDescription(issueKey):
     description = jira.issue_field_value(issueKey, 'description')
-    processDescription = [description]
-    return ['the description from processing']
+    initialBrokenDescription = description.split('.')
+
+    processedDescription = [x for x in initialBrokenDescription if x != '']
+
+    return processedDescription
 
 # Listener to create selected suggestions for Epic Decomposition
 @app.route('/epicDecompositionCreateIssues', methods=['POST'])

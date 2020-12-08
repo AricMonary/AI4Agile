@@ -2,5 +2,5 @@
 def EpicDecomposition (input):
     suggestions = []
     for i in range(len(input)):
-        suggestions[i] = str(input[i]) + " changed."
+        suggestions.append(str(input[i]))
     return suggestions
