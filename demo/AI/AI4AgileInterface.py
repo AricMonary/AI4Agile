@@ -47,7 +47,6 @@ def taskGenerationCreateSuggestions():
 def getAndProcessDescription(issueKey):
     description = jira.issue_field_value(issueKey, 'description')
     initialBrokenDescription = description.split('.')
-
     processedDescription = [x for x in initialBrokenDescription if x != '']
 
     return processedDescription
@@ -78,6 +77,8 @@ def taskGenerationCreateIssues():
 def createStoryFromEpic(suggestionsJSON):
     projectKey = suggestionsJSON['projectKey']
     parentIssueKey = suggestionsJSON['parentIssueKey']
+    parentFields = jira.issue(parentIssueKey)['fields']
+
     for suggestion in suggestionsJSON['suggestions']:
         fields = {
             'project': {'key': projectKey},
@@ -85,7 +86,13 @@ def createStoryFromEpic(suggestionsJSON):
             'parent': {'key': parentIssueKey},
             'summary': suggestion,
             'description': suggestion,
+            'reporter': {'id': parentFields['reporter']['accountId']},
+            'assignee': {'id': parentFields['assignee']['accountId']},
+            'customfield_10015': parentFields['customfield_10015'], # Start date
+            'duedate': parentFields['duedate'],
+            'labels': list(parentFields['labels']), 
         }
+
         jira.issue_create(fields=fields)
 
 def createStoryFromStory(suggestionsJSON):
@@ -103,12 +110,10 @@ def createStoryFromStory(suggestionsJSON):
             'description': suggestion,
             'reporter': {'id': parentFields['reporter']['accountId']},
             'assignee': {'id': parentFields['assignee']['accountId']},
-            # Start date
-            'customfield_10015': parentFields['customfield_10015'],
+            'customfield_10015': parentFields['customfield_10015'], # Start date
             'duedate': parentFields['duedate'],
             'labels': list(filter(lambda x: x != 'Optimized', list(parentFields['labels']))),
-            # Sprint
-            'customfield_10020': parentFields['customfield_10020'][0]['id'],
+            'customfield_10020': parentFields['customfield_10020'][0]['id'], # Sprint
         }
 
         jira.issue_create(fields=fields)
@@ -135,14 +140,11 @@ def createTaskFromStory(suggestionsJSON):
             'summary': suggestion,
             'description': suggestion,
             'reporter': {'id': parentFields['reporter']['accountId']},
-            'assignee': {'id': parentFields['assignee']['accountId']},
-            # Start date
-            'customfield_10015': parentFields['customfield_10015'],
+            'assignee': {'id': parentFields['assignee']['accountId']}, 
+            'customfield_10015': parentFields['customfield_10015'], # Start date
             'duedate': parentFields['duedate'],
-            # filters out the 'Optimized' label
-            'labels': list(filter(lambda x: x != 'Optimized', list(parentFields['labels']))),
-            # Sprint
-            'customfield_10020': parentFields['customfield_10020'][0]['id'],
+            'labels': list(filter(lambda x: x != 'Optimized', list(parentFields['labels']))),  # filters out the 'Optimized' label
+            'customfield_10020': parentFields['customfield_10020'][0]['id'], # Sprint
         }
 
         newIssue = jira.issue_create(fields=fields)
@@ -150,8 +152,8 @@ def createTaskFromStory(suggestionsJSON):
 
         issueFields = {
             "type": {"name": "Blocks"},
-            "inwardIssue": {"key": parentIssueKey},
-            "outwardIssue": {"key": newIssueKey},
+            "inwardIssue": {"key": newIssueKey},
+            "outwardIssue": {"key": parentIssueKey},
             "comment": {}
         }
 
