@@ -1,11 +1,7 @@
-import time
-
 #input is a list of text
-def EpicDecomposition (input):
+def EpicDecomposition (input, sliderValue):
     suggestions = []
     for i in range(len(input)):
         suggestions.append(str(input[i]))
-
-    time.sleep(2)
 
     return suggestions

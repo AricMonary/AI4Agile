@@ -18,8 +18,9 @@ jira = Jira(
 def epicDecompositionCreateSuggestions():
     issueJSON = request.get_json()
     inputForAI = getAndProcessDescription(issueJSON['issueKey'])
-    
-    suggestions = EpicDecomposition(inputForAI)
+    sliderValue = issueJSON['sliderValue']
+
+    suggestions = EpicDecomposition(inputForAI, sliderValue)
 
     return json.dumps({'success': True, 'suggestions': suggestions}), 200, {'ContentType': 'application/json'}
 
@@ -28,8 +29,9 @@ def epicDecompositionCreateSuggestions():
 def storyOptimizationCreateSuggestions():
     issueJSON = request.get_json()
     inputForAI = getAndProcessDescription(issueJSON['issueKey'])
+    sliderValue = int(issueJSON['sliderValue'])
 
-    suggestions = StoryOptimization(inputForAI)
+    suggestions = StoryOptimization(inputForAI, sliderValue)
 
     return json.dumps({'success': True, 'suggestions': suggestions}), 200, {'ContentType': 'application/json'}
 
@@ -42,7 +44,6 @@ def taskGenerationCreateSuggestions():
     suggestions = TaskGeneration(inputForAI)
 
     return json.dumps({'success': True, 'suggestions': suggestions}), 200, {'ContentType': 'application/json'}
-
 
 def getAndProcessDescription(issueKey):
     description = jira.issue_field_value(issueKey, 'description')

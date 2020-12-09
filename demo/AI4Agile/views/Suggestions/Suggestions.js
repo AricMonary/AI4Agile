@@ -23,11 +23,13 @@ function getsuggestions() {
     processType = parametersFromURL['processType'];
     issueKey = parametersFromURL['parentIssueKey'];
 
-    generateSuggestions(processType, issueKey);
+    sliderValue =  document.getElementById("slider").value;
+
+    generateSuggestions(processType, issueKey, sliderValue);
 }
 
-function generateSuggestions(processType, issueKey) {
-    var jsonOfIssueKey = JSON.stringify({ 'issueKey': issueKey });
+function generateSuggestions(processType, issueKey, sliderValue) {
+    var jsonOfIssueKey = JSON.stringify({ 'issueKey': issueKey, 'sliderValue': sliderValue});
 
     insertLoader();
 
@@ -273,7 +275,7 @@ function populateRange() {
 
         var range = document.createElement("input");
         range.setAttribute("type", "range");
-        range.setAttribute("id", "range");
+        range.setAttribute("id", "slider");
         range.setAttribute("class", "slider");
         range.setAttribute("name", "range");
         range.setAttribute("min", "1");
@@ -282,7 +284,6 @@ function populateRange() {
 
         var rangeLabel = document.createElement("range");
         rangeLabel.appendChild(document.createTextNode("Number of Stories"));
-
 
         var rangeValueLabel = document.createElement("span");
         rangeValueLabel.setAttribute("class", "slider_label");
@@ -300,7 +301,32 @@ function populateRange() {
 
     // Loads the range for the Story Optimization Process
     else if (processType == 'storyOptimization') {
+        var div = document.getElementById("range");
 
+        var range = document.createElement("input");
+        range.setAttribute("type", "range");
+        range.setAttribute("id", "slider");
+        range.setAttribute("class", "slider");
+        range.setAttribute("name", "range");
+        range.setAttribute("min", "0");
+        range.setAttribute("max", "10");
+        range.setAttribute("value", "5");
+
+        var rangeLabel = document.createElement("range");
+        rangeLabel.appendChild(document.createTextNode("Degree of Connectivity"));
+
+        var rangeValueLabel = document.createElement("span");
+        rangeValueLabel.setAttribute("class", "slider_label");
+        rangeValueLabel.innerHTML = range.value;
+
+        range.oninput = function () {
+            rangeValueLabel.innerHTML = this.value;
+        }
+
+        div.appendChild(rangeLabel);
+        div.appendChild(document.createElement("br"));
+        div.appendChild(range);
+        div.appendChild(rangeValueLabel);
     }
 }
 
