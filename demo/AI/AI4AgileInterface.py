@@ -47,7 +47,12 @@ def taskGenerationCreateSuggestions():
 def getAndProcessDescription(issueKey):
     description = jira.issue_field_value(issueKey, 'description')
     initialBrokenDescription = description.split('.')
-    processedDescription = [x for x in initialBrokenDescription if x != '']
+    processedDescription = [x for x in initialBrokenDescription if x != ''] # Remove empty strings
+    # Remove starting space
+    for i in range(len(processedDescription)):
+        if(processedDescription[i][0] == ' '):
+            processedDescription[i] = processedDescription[i][1:]
+        processedDescription[i] = str(processedDescription[i]) + '.'
 
     return processedDescription
 
@@ -86,12 +91,18 @@ def createStoryFromEpic(suggestionsJSON):
             'parent': {'key': parentIssueKey},
             'summary': suggestion,
             'description': suggestion,
-            'reporter': {'id': parentFields['reporter']['accountId']},
-            'assignee': {'id': parentFields['assignee']['accountId']},
-            'customfield_10015': parentFields['customfield_10015'], # Start date
-            'duedate': parentFields['duedate'],
-            'labels': list(parentFields['labels']), 
         }
+        if parentFields['reporter'] != None:
+            fields['reporter'] = {'id': parentFields['reporter']['accountId']}
+        if parentFields['assignee'] != None:
+            fields['assignee'] = {'id': parentFields['assignee']['accountId']}
+        # start date
+        if parentFields['customfield_10015'] != None:
+            fields['customfield_10015'] = parentFields['customfield_10015']
+        if parentFields['duedate'] != None:
+            fields['duedate'] = parentFields['duedate']
+        if list(parentFields['labels']) != []:
+            fields['labels'] = list(parentFields['labels'])
 
         jira.issue_create(fields=fields)
 
@@ -108,13 +119,20 @@ def createStoryFromStory(suggestionsJSON):
             'parent': {'key': parentEpicKey},
             'summary': suggestion,
             'description': suggestion,
-            'reporter': {'id': parentFields['reporter']['accountId']},
-            'assignee': {'id': parentFields['assignee']['accountId']},
-            'customfield_10015': parentFields['customfield_10015'], # Start date
-            'duedate': parentFields['duedate'],
-            'labels': list(filter(lambda x: x != 'Optimized', list(parentFields['labels']))),
-            'customfield_10020': parentFields['customfield_10020'][0]['id'], # Sprint
         }
+        if parentFields['reporter'] != None:
+            fields['reporter'] = {'id': parentFields['reporter']['accountId']}
+        if parentFields['assignee'] != None:
+            fields['assignee'] = {'id': parentFields['assignee']['accountId']}
+        # start date
+        if parentFields['customfield_10015'] != None:
+            fields['customfield_10015'] = parentFields['customfield_10015']
+        if parentFields['duedate'] != None:
+            fields['duedate'] = parentFields['duedate']
+        if list(parentFields['labels']) != []:
+            fields['labels'] = list(parentFields['labels'])
+        if parentFields['customfield_10020'] != None:
+            fields['customfield_10020'] = parentFields['customfield_10020'][0]['id']
 
         jira.issue_create(fields=fields)
 
@@ -139,13 +157,20 @@ def createTaskFromStory(suggestionsJSON):
             'parent': {'key': parentEpicKey},
             'summary': suggestion,
             'description': suggestion,
-            'reporter': {'id': parentFields['reporter']['accountId']},
-            'assignee': {'id': parentFields['assignee']['accountId']}, 
-            'customfield_10015': parentFields['customfield_10015'], # Start date
-            'duedate': parentFields['duedate'],
-            'labels': list(filter(lambda x: x != 'Optimized', list(parentFields['labels']))),  # filters out the 'Optimized' label
-            'customfield_10020': parentFields['customfield_10020'][0]['id'], # Sprint
         }
+        if parentFields['reporter'] != None:
+            fields['reporter'] = {'id': parentFields['reporter']['accountId']}
+        if parentFields['assignee'] != None:
+            fields['assignee'] = {'id': parentFields['assignee']['accountId']}
+        # start date
+        if parentFields['customfield_10015'] != None:
+            fields['customfield_10015'] = parentFields['customfield_10015']
+        if parentFields['duedate'] != None:
+            fields['duedate'] = parentFields['duedate']
+        if list(parentFields['labels']) != []:
+            fields['labels'] = list(parentFields['labels'])
+        if parentFields['customfield_10020'] != None:
+            fields['customfield_10020'] = parentFields['customfield_10020'][0]['id']
 
         newIssue = jira.issue_create(fields=fields)
         newIssueKey = newIssue['key']

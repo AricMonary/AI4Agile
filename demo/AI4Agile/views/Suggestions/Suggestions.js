@@ -1,23 +1,35 @@
-var suggestionsCreated = false;
-var suggestionCount = 0;
-var suggestions = []
 var paramtersFromURL = {}
 
-function loadsuggestions() {
+var suggestionsCreated = false;
+var suggestionCount = 0;
+var suggestions = {
+    listOfSuggestions: [],
+    get list() {
+        return this.listOfSuggestions;
+    },
+    set list(value) {
+      this.listOfSuggestions = value;
+      renderSuggestions();
+    }
+  }
+
+function getsuggestions() {
+    
+    clearSuggestions();
+    changeButtonState(false);
+    
     parametersFromURL = getURLParameters();
 
     processType = parametersFromURL['processType'];
     issueKey = parametersFromURL['parentIssueKey'];
 
-    suggestions = generateSuggestions(processType, issueKey);
-
-    renderSuggestions();
+    generateSuggestions(processType, issueKey);
 }
 
 function generateSuggestions(processType, issueKey) {
-    var jsonOfIssueKey = JSON.stringify({ 'issueKey': issueKey })
+    var jsonOfIssueKey = JSON.stringify({ 'issueKey': issueKey });
 
-    suggestions = []
+    insertLoader();
 
     switch (processType) {
         //for the epic decomposition process
@@ -28,12 +40,11 @@ function generateSuggestions(processType, issueKey) {
             $.ajax({
                 type: "POST",
                 url: "http://127.0.0.1:5000/epicDecompositionCreateSuggestions", //localhost Flask
-                async: false,
                 data: jsonOfIssueKey,
                 contentType: "application/json",
                 success: function (data) {
                     replyData = JSON.parse(data);
-                    suggestions = replyData['suggestions'];
+                    suggestions.list = replyData['suggestions'];
                 }
             });
             break;
@@ -47,11 +58,10 @@ function generateSuggestions(processType, issueKey) {
                 type: "POST",
                 url: "http://127.0.0.1:5000/storyOptimizationCreateSuggestions",
                 data: jsonOfIssueKey,
-                async: false,
                 contentType: "application/json",
                 success: function (data) {
                     replyData = JSON.parse(data);
-                    suggestions = replyData['suggestions'];
+                    suggestions.list = replyData['suggestions'];
                 }
             });
             break;
@@ -65,22 +75,21 @@ function generateSuggestions(processType, issueKey) {
                 type: "POST",
                 url: "http://127.0.0.1:5000/taskGenerationCreateSuggestions",
                 data: jsonOfIssueKey,
-                async: false,
                 contentType: "application/json",
                 success: function (data) {
                     replyData = JSON.parse(data);
-                    suggestions = replyData['suggestions'];
+                    suggestions.list = replyData['suggestions'];
                 }
             });
             break;
     }
-
-    return suggestions;
 }
 
 function renderSuggestions() {
+    removeLoader();
     var div = document.getElementById('suggestions');
-    for (suggestion of suggestions) {
+    suggestionsToRender = suggestions.list;
+    for (suggestion of suggestionsToRender) {
         var newDiv = document.createElement("div");
         newDiv.setAttribute("class", "suggestion")
         // create the necessary elements
@@ -113,7 +122,8 @@ function createSuggestions() {
         var suggestions = ["suggestion 1", "suggestion 2", "suggestion 3", "a very very very very very very very very very very very long suggestion", "...", "suggestion x"]; //query script here
 
         var div = document.getElementById('suggestions');
-        for (suggestion of suggestions) {
+        suggestionsToRender = suggestions.list;
+        for (suggestion of suggestionsToRender) {
             var newDiv = document.createElement("div");
             newDiv.setAttribute("class", "suggestion")
             // create the necessary elements
@@ -292,4 +302,38 @@ function populateRange() {
     else if (processType == 'storyOptimization') {
 
     }
+}
+
+function insertLoader() {
+    var div = document.getElementById('suggestions');
+    
+    var loading = document.createElement("div");
+    loading.setAttribute('id', 'loading'); 
+    loading.setAttribute('class', 'loading');
+    
+    var loader = document.createElement("div");
+    loader.setAttribute('id', 'loader'); 
+    loader.setAttribute('class', 'loader');
+
+    loading.appendChild(loader);
+
+    div.appendChild(loading);
+}
+
+function removeLoader() {
+    var loading = document.getElementById('loading');
+    loading.parentNode.removeChild(loading);
+}
+
+function clearSuggestions() {
+    var populatedSuggestions = document.getElementsByName('suggestion');
+    for (i = populatedSuggestions.length - 1; i >= 0; i--) {
+        suggestionDeleted(populatedSuggestions[i]);
+    }
+}
+
+function changeButtonState(state) {
+    document.getElementById('selectAll').disabled = state;
+    document.getElementById('deselectAll').disabled = state;
+    document.getElementById('createSuggestions').disabled = state;
 }

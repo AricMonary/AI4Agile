@@ -15,18 +15,20 @@ $(function() {
         layout: {
             name: "preset",
             padding: 10, //space on edges when graph loads
-            fit: true, // fits to viewport, in theory
-            spacingFactor: 1.90
+            avoidOverlap: true,
+            avoidOverlapPadding: 5,
+            //fit: true, // fits to viewport, in theory
+            //spacingFactor: 1.90
         },
+        wheelSensitivity: 0.05,
         autolock : true, //make nodes not moveable
-        boxSelectionEnabled: !0,
+        //boxSelectionEnabled: !0,
         ready: function() {
             window.cy = this, 
                     cy.load(network.elements), console.log(network);
                     console.log(style);
                     var o = e("default", style);
-                    null === o && (o = style), cy.style().fromJson(o.style).update()
-                
+                    null === o && (o = style), cy.style().fromJson(o.style).update()        
         }
     })
 });

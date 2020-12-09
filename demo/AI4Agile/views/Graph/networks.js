@@ -14,9 +14,9 @@ var networks = {"Sheet1_2": {
       "data" : {
         "id" : "244",
         "IssueType_B" : "Epic",
-        "shared_name" : "AI4-105",
         "name" : "AI4-105",
         "SUID" : 244,
+        "href" : "https://playingabout.atlassian.net/browse/AI4-105",
         "selected" : false
       },
       "position" : {
@@ -27,9 +27,9 @@ var networks = {"Sheet1_2": {
     }, {
       "data" : {
         "id" : "242",
-        "shared_name" : "AI4-100",
         "name" : "AI4-100",
         "SUID" : 242,
+        "href" : "https://playingabout.atlassian.net/browse/AI4-100",
         "IssueType_A" : "Task",
         "selected" : false
       },
@@ -41,9 +41,9 @@ var networks = {"Sheet1_2": {
     }, {
       "data" : {
         "id" : "240",
-        "shared_name" : "AI4-99",
         "name" : "AI4-99",
         "SUID" : 240,
+        "href" : "https://playingabout.atlassian.net/browse/AI4-99",
         "IssueType_A" : "Task",
         "selected" : false
       },
@@ -55,9 +55,9 @@ var networks = {"Sheet1_2": {
     }, {
       "data" : {
         "id" : "238",
-        "shared_name" : "AI4-98",
         "name" : "AI4-98",
         "SUID" : 238,
+        "href" : "https://playingabout.atlassian.net/browse/AI4-98",
         "IssueType_A" : "Task",
         "selected" : false
       },
@@ -70,9 +70,9 @@ var networks = {"Sheet1_2": {
       "data" : {
         "id" : "236",
         "IssueType_B" : "Story",
-        "shared_name" : "AI4-97",
         "name" : "AI4-97",
         "SUID" : 236,
+        "href" : "https://playingabout.atlassian.net/browse/AI4-97",
         "IssueType_A" : "Story",
         "selected" : false
       },
@@ -84,9 +84,9 @@ var networks = {"Sheet1_2": {
     }, {
       "data" : {
         "id" : "234",
-        "shared_name" : "AI4-92",
         "name" : "AI4-92",
         "SUID" : 234,
+        "href" : "https://playingabout.atlassian.net/browse/AI4-92",
         "IssueType_A" : "Story",
         "selected" : false
       },
@@ -98,9 +98,9 @@ var networks = {"Sheet1_2": {
     }, {
       "data" : {
         "id" : "232",
-        "shared_name" : "AI4-91",
         "name" : "AI4-91",
         "SUID" : 232,
+        "href" : "https://playingabout.atlassian.net/browse/AI4-91",
         "IssueType_A" : "Story",
         "selected" : false
       },
@@ -112,9 +112,9 @@ var networks = {"Sheet1_2": {
     }, {
       "data" : {
         "id" : "230",
-        "shared_name" : "AI4-90",
         "name" : "AI4-90",
         "SUID" : 230,
+        "href" : "https://playingabout.atlassian.net/browse/AI4-90",
         "IssueType_A" : "Story",
         "selected" : false
       },
@@ -127,9 +127,9 @@ var networks = {"Sheet1_2": {
       "data" : {
         "id" : "228",
         "IssueType_B" : "Epic",
-        "shared_name" : "AI4-88",
         "name" : "AI4-88",
         "SUID" : 228,
+        "href" : "https://playingabout.atlassian.net/browse/AI4-88",
         "IssueType_A" : "Epic",
         "selected" : false
       },
@@ -141,9 +141,9 @@ var networks = {"Sheet1_2": {
     }, {
       "data" : {
         "id" : "227",
-        "shared_name" : "AI4-89",
         "name" : "AI4-89",
         "SUID" : 227,
+        "href" : "https://playingabout.atlassian.net/browse/AI4-89",
         "IssueType_A" : "Story",
         "selected" : false
       },
