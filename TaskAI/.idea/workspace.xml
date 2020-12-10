@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="77547f10-56d1-4351-a60a-c42d97f5d4df" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1iUBVoMR4RVj9MfyCXFh64cZwPG" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="full.screen.before.presentation.mode" value="false" />
+    <property name="last_opened_file_path" value="E:/Nain/CPTS 350 HW/HW7" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings module-name="TaskAI" is-module-sdk="true">
+        <option name="myUseModuleSdk" value="true" />
+        <option name="myModuleName" value="TaskAI" />
+      </console-settings>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.TaskAI">
+    <configuration name="TaskAI" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="TaskAI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TaskAI.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="parseAndInsert_Sample" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="TaskAI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../CPTS 451" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../CPTS 451/parseAndInsert_Sample.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.TaskAI" />
+        <item itemvalue="Python.parseAndInsert_Sample" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="77547f10-56d1-4351-a60a-c42d97f5d4df" name="Default Changelist" comment="" />
+      <created>1601952316817</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1601952316817</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1033" y="179" key="#Notifications" timestamp="1601959711030">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1033" y="179" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1601959711030" />
+    <state width="504" height="466" key="DebuggerActiveHint" timestamp="1607497887449">
+      <screen x="3840" y="0" width="2560" height="1400" />
+    </state>
+    <state width="504" height="466" key="DebuggerActiveHint/0.0.1920.1040/3840.0.2560.1400@3840.0.2560.1400" timestamp="1607497887449" />
+    <state x="686" y="378" key="FileChooserDialogImpl" timestamp="1606885555857">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="686" y="378" key="FileChooserDialogImpl/0.0.1920.1040/3840.0.2560.1400@0.0.1920.1040" timestamp="1606885555857" />
+    <state x="4755" y="509" key="FileChooserDialogImpl/0.0.1920.1040/3840.0.2560.1400@3840.0.2560.1400" timestamp="1605580450857" />
+    <state x="686" y="378" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1603153847125" />
+    <state width="2539" height="509" key="GridCell.Tab.0.bottom" timestamp="1607567388430">
+      <screen x="3840" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1402" height="164" key="GridCell.Tab.0.bottom/0.0.1920.1040/3840.0.2560.1400@0.0.1920.1040" timestamp="1607052840488" />
+    <state width="2539" height="509" key="GridCell.Tab.0.bottom/0.0.1920.1040/3840.0.2560.1400@3840.0.2560.1400" timestamp="1607567388430" />
+    <state width="915" height="346" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607463817808" />
+    <state width="2539" height="509" key="GridCell.Tab.0.center" timestamp="1607567388429">
+      <screen x="3840" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1402" height="164" key="GridCell.Tab.0.center/0.0.1920.1040/3840.0.2560.1400@0.0.1920.1040" timestamp="1607052840487" />
+    <state width="2539" height="509" key="GridCell.Tab.0.center/0.0.1920.1040/3840.0.2560.1400@3840.0.2560.1400" timestamp="1607567388429" />
+    <state width="915" height="346" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607463817808" />
+    <state width="2539" height="509" key="GridCell.Tab.0.left" timestamp="1607567388429">
+      <screen x="3840" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1402" height="164" key="GridCell.Tab.0.left/0.0.1920.1040/3840.0.2560.1400@0.0.1920.1040" timestamp="1607052840487" />
+    <state width="2539" height="509" key="GridCell.Tab.0.left/0.0.1920.1040/3840.0.2560.1400@3840.0.2560.1400" timestamp="1607567388429" />
+    <state width="915" height="346" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607463817808" />
+    <state width="2539" height="509" key="GridCell.Tab.0.right" timestamp="1607567388430">
+      <screen x="3840" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1402" height="164" key="GridCell.Tab.0.right/0.0.1920.1040/3840.0.2560.1400@0.0.1920.1040" timestamp="1607052840487" />
+    <state width="2539" height="509" key="GridCell.Tab.0.right/0.0.1920.1040/3840.0.2560.1400@3840.0.2560.1400" timestamp="1607567388430" />
+    <state width="915" height="346" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607463817808" />
+    <state width="2539" height="342" key="GridCell.Tab.1.bottom" timestamp="1607558753810">
+      <screen x="3840" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1900" height="344" key="GridCell.Tab.1.bottom/0.0.1920.1040/3840.0.2560.1400@0.0.1920.1040" timestamp="1605676710376" />
+    <state width="2539" height="342" key="GridCell.Tab.1.bottom/0.0.1920.1040/3840.0.2560.1400@3840.0.2560.1400" timestamp="1607558753810" />
+    <state width="1878" height="240" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607419401187" />
+    <state width="2539" height="342" key="GridCell.Tab.1.center" timestamp="1607558753810">
+      <screen x="3840" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1900" height="344" key="GridCell.Tab.1.center/0.0.1920.1040/3840.0.2560.1400@0.0.1920.1040" timestamp="1605676710376" />
+    <state width="2539" height="342" key="GridCell.Tab.1.center/0.0.1920.1040/3840.0.2560.1400@3840.0.2560.1400" timestamp="1607558753810" />
+    <state width="1878" height="240" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607419401187" />
+    <state width="2539" height="342" key="GridCell.Tab.1.left" timestamp="1607558753810">
+      <screen x="3840" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1900" height="344" key="GridCell.Tab.1.left/0.0.1920.1040/3840.0.2560.1400@0.0.1920.1040" timestamp="1605676710375" />
+    <state width="2539" height="342" key="GridCell.Tab.1.left/0.0.1920.1040/3840.0.2560.1400@3840.0.2560.1400" timestamp="1607558753810" />
+    <state width="1878" height="240" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607419401187" />
+    <state width="2539" height="342" key="GridCell.Tab.1.right" timestamp="1607558753810">
+      <screen x="3840" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1900" height="344" key="GridCell.Tab.1.right/0.0.1920.1040/3840.0.2560.1400@0.0.1920.1040" timestamp="1605676710376" />
+    <state width="2539" height="342" key="GridCell.Tab.1.right/0.0.1920.1040/3840.0.2560.1400@3840.0.2560.1400" timestamp="1607558753810" />
+    <state width="1878" height="240" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607419401187" />
+    <state x="926" y="163" key="SettingsEditor" timestamp="1607426781993">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="829" y="157" key="SettingsEditor/0.0.1920.1040/3840.0.2560.1400@0.0.1920.1040" timestamp="1605676767838" />
+    <state x="5075" y="219" key="SettingsEditor/0.0.1920.1040/3840.0.2560.1400@3840.0.2560.1400" timestamp="1605844539257" />
+    <state x="926" y="163" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1607426781993" />
+    <state width="647" height="700" key="XDebugger.FullValuePopup" timestamp="1602040364733">
+      <screen x="3840" y="0" width="2560" height="1400" />
+    </state>
+    <state width="647" height="700" key="XDebugger.FullValuePopup/0.0.1920.1040/3840.0.2560.1400@3840.0.2560.1400" timestamp="1602040364733" />
+    <state width="485" height="520" key="XDebugger.FullValuePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1601966699133" />
+    <state x="5355" y="463" width="606" height="352" key="com.intellij.ide.util.TipDialog" timestamp="1607567404586">
+      <screen x="3840" y="0" width="2560" height="1400" />
+    </state>
+    <state x="948" y="386" width="606" height="352" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/3840.0.2560.1400@0.0.1920.1040" timestamp="1605592478832" />
+    <state x="5355" y="463" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/3840.0.2560.1400@3840.0.2560.1400" timestamp="1607567404586" />
+    <state x="1136" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602715820028" />
+    <state x="1042" y="414" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1601963625865">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1042" y="414" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1920.1040@0.0.1920.1040" timestamp="1601963625865" />
+    <state x="5003" y="53" width="822" height="679" maximized="true" key="dock-window-1" timestamp="1606885327730">
+      <screen x="3840" y="0" width="2560" height="1400" />
+    </state>
+    <state x="5003" y="53" width="822" height="679" maximized="true" key="dock-window-1/0.0.1920.1040/3840.0.2560.1400@0.0.1920.1040" timestamp="1606885327730" />
+    <state x="92" y="329" width="715" height="712" maximized="true" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1601964382003" />
+    <state x="0" y="59" width="867" height="648" maximized="true" key="dock-window-2" timestamp="1602035930307">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="0" y="59" width="867" height="648" maximized="true" key="dock-window-2/0.0.1920.1040@0.0.1920.1040" timestamp="1602035930307" />
+    <state x="4751" y="246" width="739" height="909" key="find.popup" timestamp="1605580324762">
+      <screen x="3840" y="0" width="2560" height="1400" />
+    </state>
+    <state x="4751" y="246" width="739" height="909" key="find.popup/0.0.1920.1040/3840.0.2560.1400@3840.0.2560.1400" timestamp="1605580324762" />
+    <state x="4783" y="315" width="672" height="678" key="search.everywhere.popup" timestamp="1607496767793">
+      <screen x="3840" y="0" width="2560" height="1400" />
+    </state>
+    <state x="4783" y="315" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/3840.0.2560.1400@3840.0.2560.1400" timestamp="1607496767793" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../CPTS 451/parseAndInsert_Sample.py</url>
+          <line>14</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/TaskAI.py</url>
+          <line>24</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="list2" language="Python" />
+        <watch expression="list1" language="Python" />
+        <watch expression="list3" language="Python" />
+        <watch expression="counted" language="Python" />
+        <watch expression="list4" language="Python" />
+        <watch expression="splitList()" language="Python" />
+        <watch expression="splitList(list4)" language="Python" />
+        <watch expression="str" language="Python" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>
