@@ -6,8 +6,6 @@ from sklearn.metrics import adjusted_rand_score
 def EpicDecomposition (input, numberOfClusters):
     #input = epic
 
-    print(numberOfClusters)
-
     vectorizer = TfidfVectorizer(stop_words='english')
     X = vectorizer.fit_transform(input)
 
