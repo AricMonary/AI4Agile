@@ -23,9 +23,15 @@ function getsuggestions() {
     processType = parametersFromURL['processType'];
     issueKey = parametersFromURL['parentIssueKey'];
 
-    sliderValue =  document.getElementById("slider").value;
-
-    generateSuggestions(processType, issueKey, sliderValue);
+    if(document.getElementById("slider") != null)
+    {
+        sliderValue = document.getElementById("slider").value;
+        generateSuggestions(processType, issueKey, sliderValue);
+    }
+    else
+    {
+        generateSuggestions(processType, issueKey, 0);
+    }
 }
 
 function generateSuggestions(processType, issueKey, sliderValue) {
@@ -124,7 +130,7 @@ function createSuggestions() {
         var suggestions = ["suggestion 1", "suggestion 2", "suggestion 3", "a very very very very very very very very very very very long suggestion", "...", "suggestion x"]; //query script here
 
         var div = document.getElementById('suggestions');
-        suggestionsToRender = suggestions.list;
+        suggestionsToRender = suggestions;
         for (suggestion of suggestionsToRender) {
             var newDiv = document.createElement("div");
             newDiv.setAttribute("class", "suggestion")
@@ -132,12 +138,12 @@ function createSuggestions() {
             var label = document.createElement("label");
             label.setAttribute("contenteditable", "true");
             label.setAttribute("for", "suggestion");
-            label.setAttribute('onChange', 'suggestionDeleted(this)');
             label.appendChild(document.createTextNode(suggestion));
 
             var checkbox = document.createElement("input");
             checkbox.setAttribute('type', 'checkbox');
             checkbox.setAttribute('name', 'suggestion');
+            checkbox.setAttribute('class', '')
             //checkbox.setAttribute('checked', 'true');
 
             // add the label element to your div

@@ -11,9 +11,9 @@
 </head>
 
 <body>
-  <div id="demoButtons">
-    <input type="button" id="createSuggestions" value="Create Suggestions" onClick="createSuggestions()">
-    <input type="button" id="loadSuggestions" value="Load Suggestions" onClick="getsuggestions()">
+  <div class="aui-buttons button_margin" class="buttons">
+    <button class="aui-button aui-button-compact" id="createSuggestions" onClick="createSuggestions()">Create Demo Suggestions</button>
+    <button class="aui-button aui-button-compact" id="loadSuggestions" onClick="getsuggestions()">Reload Suggestions</button>
   </div>
 
   <div id="range" class='slidecontainer'>
@@ -25,11 +25,11 @@
   </div>
 
   <div style="display:inline; float:right;">
-    <button class="aui-button button_Right aui-button-primary" id="createSelected"
+    <button class="aui-button button_Right aui-button-primary button_margin" id="createSelected"
       onClick="createSelectedSuggestions()">Create Selected</button>
   </div>
 
-  <div class="aui-buttons" id="buttons">
+  <div class="aui-buttons button_margin" class="buttons">
     <button class="aui-button" id="selectAll" onClick="selectAll()" disabled="true">Select All</button>
     <button class="aui-button" id="deselectAll" onClick="deselectAll()" disabled="true">Deselect All</button>
   </div>

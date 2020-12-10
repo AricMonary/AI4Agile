@@ -2,7 +2,7 @@
     word-wrap:break-word;
 }
 
-#buttons {
+.buttons {
     display:inline;
 }
 
@@ -10,10 +10,23 @@
     float:right;
 }
 
+.button_margin {
+  margin: 5px;
+}
+
+.checkbox_margin {
+  margin-left: 5px;
+}
+
+.checkbox_text_margin {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 .slider {
     /*-webkit-appearance: none;  /* Override default CSS styles */
     /*appearance: none;*/
-    width: 80%; /* Full-width */
+    width: 90%; /* Full-width */
     height: 10px; /* Specified height */
     background: #d3d3d3; /* Grey background */
     outline: none; /* Remove outline */
@@ -23,7 +36,7 @@
   }
 
 .slidecontainer {
-    width: 90%; /* Width of the outside container */
+    width: 95%; /* Width of the outside container */
     text-align:center
   }
 
