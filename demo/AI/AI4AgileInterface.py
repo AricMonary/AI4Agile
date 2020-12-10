@@ -18,7 +18,10 @@ jira = Jira(
 def epicDecompositionCreateSuggestions():
     issueJSON = request.get_json()
     inputForAI = getAndProcessDescription(issueJSON['issueKey'])
-    sliderValue = issueJSON['sliderValue']
+    if int(issueJSON['sliderValue']) > len(inputForAI):
+        sliderValue = len(inputForAI)
+    else:
+        sliderValue = int(issueJSON['sliderValue'])
 
     suggestions = EpicDecomposition(inputForAI, sliderValue)
 

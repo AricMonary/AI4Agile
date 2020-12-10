@@ -8,7 +8,8 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 # Split paragraph into an array and eliminate bad sentence
 def pre_process_story(story_input):
-    story_sentences = story_input.split(".")
+    story_sentences = story_input
+    #story_sentences = story_input.split(".")
 
     # Remove bad sentences
     for story_sentence in story_sentences:
@@ -171,7 +172,7 @@ def optimize_story(input_story, threshold, directory='C:\\Users\\aricm\\Document
     return result
 
 def StoryOptimization(input, sliderValue):
-    input = story #overriding for testing
+    #input = story #overriding for testing
     decimalValue = sliderValue/100 + 0.65
     suggestions = optimize_story(input, decimalValue)
     return suggestions
