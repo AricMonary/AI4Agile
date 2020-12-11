@@ -23,7 +23,114 @@ var styles = [ {
       "font-size" : 12,
       "content" : "data(name)"
     }
+  },
+{
+    "selector" : "node[assignee = '']",
+    "css" : {
+      "border-color" : "rgb(255,255,255)"
+    }
   }, {
+    "selector" : "node[assignee = 'no']",
+    "css" : {
+      "border-color" : "rgb(255,255,255)"
+    }
+  }, {
+    "selector" : "node[assignee = 'yes']",
+    "css" : {
+      "border-color" : "rgb(255,255,255)"
+    }
+  }, {
+    "selector" : "node[assignee = '']",
+    "css" : {
+      "height" : 45.0
+    }
+  }, {
+    "selector" : "node[assignee = 'yes']",
+    "css" : {
+      "height" : 60.0
+    }
+  }, {
+    "selector" : "node[assignee = '']",
+    "css" : {
+      "shape" : "roundrectangle"
+    }
+  }, {
+    "selector" : "node[assignee = 'no']",
+    "css" : {
+      "shape" : "roundrectangle"
+    }
+  }, {
+    "selector" : "node[assignee = 'yes']",
+    "css" : {
+      "shape" : "ellipse"
+    }
+  }, {
+    "selector" : "node[assignee = '']",
+    "css" : {
+      "color" : "rgb(0,0,0)"
+    }
+  }, {
+    "selector" : "node[assignee = 'yes']",
+    "css" : {
+      "color" : "rgb(255,255,255)"
+    }
+  }, {
+    "selector" : "node[assignee = '']",
+    "css" : {
+      "width" : 100.0
+    }
+  }, {
+    "selector" : "node[assignee = 'no']",
+    "css" : {
+      "width" : 100.0
+    }
+  }, {
+    "selector" : "node[assignee = 'yes']",
+    "css" : {
+      "width" : 60.0
+    }
+  }, {
+    "selector" : "node[assignee = '']",
+    "css" : {
+      "font-size" : 17
+    }
+  }, {
+    "selector" : "node[assignee = 'no']",
+    "css" : {
+      "font-size" : 15
+    }
+  }, {
+    "selector" : "node[assignee = 'yes']",
+    "css" : {
+      "font-size" : 28
+    }
+  }, {
+    "selector" : "node[assignee = 'yes']",
+    "css" : {
+      "border-width" : 0.0
+    }
+  }, {
+    "selector" : "node[type = 'task']",
+    "css" : {
+      "background-color" : "rgb(43,156,204)"
+    }
+  }, {
+    "selector" : "node[type = 'epic']",
+    "css" : {
+      "background-color" : "rgb(121,70,232)"
+    }
+  }, {
+    "selector" : "node[type = 'assignee']",
+    "css" : {
+      "background-color" : "rgb(0,0,51)"
+    }
+  }, {
+    "selector" : "node[type = 'story']",
+    "css" : {
+      "background-color" : "rgb(91,196,29)"
+    }
+  }, 
+  {
     "selector" : "node[IssueType_A = 'Task']",
     "css" : {
       "background-color" : "rgb(153,255,144)"
