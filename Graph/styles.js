@@ -26,7 +26,7 @@ var styles = [ {
   }, {
     "selector" : "node[IssueType_A = 'Task']",
     "css" : {
-      "background-color" : "rgb(153,255,144)"
+      "background-color" : "rgb(14,180,227)"
     }
   }, {
     "selector" : "node[IssueType_A = 'Epic']",
@@ -36,12 +36,12 @@ var styles = [ {
   }, {
     "selector" : "node[IssueType_A = 'Story']",
     "css" : {
-      "background-color" : "rgb(14,180,227)"
+      "background-color" : "rgb(153,255,144)"
     }
   }, {
     "selector" : "node[IssueType_B = 'Task']",
     "css" : {
-      "background-color" : "rgb(153,255,144)"
+      "background-color" : "rgb(14,180,227)"
     }
   }, {
     "selector" : "node[IssueType_B = 'Epic']",
@@ -51,7 +51,7 @@ var styles = [ {
   }, {
     "selector" : "node[IssueType_B = 'Story']",
     "css" : {
-      "background-color" : "rgb(14,180,227)"
+      "background-color" : "rgb(153,255,144)"
     }
   },{
     "selector" : "node:selected",
