@@ -2,8 +2,6 @@ function getIssueFromURLParameters() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
 
-	alert(urlParams.get('issueKey'));
-
     return urlParams.get('issueKey');
 }
 
