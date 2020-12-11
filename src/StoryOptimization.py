@@ -162,17 +162,17 @@ def optimize_story(input_story, threshold, directory='./GoogleNews-vectors-negat
     return result
 
 
-story = "The spreadsheet should have Columns A to Z and Rows 1 to 50. The cells should be referenceable from their " \
-         "corresponding name (Example: A1, B42, etc.). Cells can reference other cells for expressions or text. Update " \
-         "cells that are referencing other cells when the referenced cell is updated. Cells should be able to evaluate " \
-         "mathematical statements. Arithmetic expressions are represented as trees. Support for addition, subtraction, " \
-         "multiplication, division, and parentheses. Add a background color to cells that can be any RGB color. Be " \
-         "able to change the background color of many cells at once. Allow for color and text changing to be undone. " \
-         "Be able to redo any undone changes. Allow for the contents of the spreadsheet to be saved. Do not preserve " \
-         "the undo/redo system for when the spreadsheet is saved. Select the folder to save the file in. "
-
-example1 = optimize_story(story, 0.69)
-
-print(example1)
+# story = "The spreadsheet should have Columns A to Z and Rows 1 to 50. The cells should be referenceable from their " \
+#          "corresponding name (Example: A1, B42, etc.). Cells can reference other cells for expressions or text. Update " \
+#          "cells that are referencing other cells when the referenced cell is updated. Cells should be able to evaluate " \
+#          "mathematical statements. Arithmetic expressions are represented as trees. Support for addition, subtraction, " \
+#          "multiplication, division, and parentheses. Add a background color to cells that can be any RGB color. Be " \
+#          "able to change the background color of many cells at once. Allow for color and text changing to be undone. " \
+#          "Be able to redo any undone changes. Allow for the contents of the spreadsheet to be saved. Do not preserve " \
+#          "the undo/redo system for when the spreadsheet is saved. Select the folder to save the file in. "
+#
+# example = optimize_story(story, 0.69)
+#
+# print(example)
 
 
