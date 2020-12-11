@@ -12,216 +12,243 @@ var networks = {"Network": {
   "elements" : {
     "nodes" : [ {
       "data" : {
-        "id" : "153",
-        "shared_name" : "Issue 9",
-        "name" : "Issue 9",
-        "SUID" : 153,
-        "assignee" : "",
+        "id" : "791",
+        "shared_name" : "Issue 12",
+        "name" : "AI4-107",
+        "SUID" : 791,
+        "assignee" : "no",
         "selected" : false
       },
       "position" : {
-        "x" : -234.05393512878845,
-        "y" : 139.83647091327785
+        "x" : -284.1188358524829,
+        "y" : -87.35154299343267
+      },
+      "selected" : false
+    }, {
+      "data" : {
+        "id" : "153",
+        "shared_name" : "Issue 9",
+        "name" : "AI4-106",
+        "SUID" : 153,
+        "assignee" : "no",
+        "selected" : false
+      },
+      "position" : {
+        "x" : -501.801971838811,
+        "y" : -23.111064477807673
       },
       "selected" : false
     }, {
       "data" : {
         "id" : "152",
         "shared_name" : "Issue 10",
-        "name" : "Issue 10",
+        "name" : "AI4-104",
         "SUID" : 152,
-        "assignee" : "",
+        "assignee" : "no",
         "selected" : false
       },
       "position" : {
-        "x" : -93.8894381433939,
-        "y" : 360.2835408025112
+        "x" : -440.57080118451415,
+        "y" : -171.84489016140142
       },
       "selected" : false
     }, {
       "data" : {
         "id" : "151",
         "shared_name" : "Issue 11",
-        "name" : "Issue 11",
+        "name" : "AI4-105",
         "SUID" : 151,
-        "assignee" : "",
+        "assignee" : "no",
         "selected" : false
       },
       "position" : {
-        "x" : 38.11194747340275,
-        "y" : 147.6365931939145
+        "x" : -362.6971744755298,
+        "y" : 39.91545529758295
       },
       "selected" : false
     }, {
       "data" : {
         "id" : "150",
         "shared_name" : "Issue 8",
-        "name" : "Issue 8",
+        "name" : "AI4-102",
         "SUID" : 150,
-        "assignee" : "",
+        "assignee" : "no",
         "selected" : false
       },
       "position" : {
-        "x" : -441.0371795647432,
-        "y" : 349.35533384200727
+        "x" : -322.9361728886157,
+        "y" : 233.85210843478998
       },
       "selected" : false
     }, {
       "data" : {
         "id" : "149",
         "shared_name" : "Issue 7",
-        "name" : "Issue 7",
+        "name" : "AI4-103",
         "SUID" : 149,
-        "assignee" : "",
+        "assignee" : "no",
         "selected" : false
       },
       "position" : {
-        "x" : -694.5670206957049,
-        "y" : 283.9697989552407
+        "x" : -501.801971838811,
+        "y" : 139.91545529758295
       },
       "selected" : false
     }, {
       "data" : {
         "id" : "148",
         "shared_name" : "Issue 6",
-        "name" : "Issue 6",
+        "name" : "AI4-101",
         "SUID" : 148,
-        "assignee" : "",
+        "assignee" : "no",
         "selected" : false
       },
       "position" : {
-        "x" : -501.4834708996164,
-        "y" : 68.31233424784665
+        "x" : -451.3136142948657,
+        "y" : 335.45806546604
       },
       "selected" : false
     }, {
       "data" : {
         "id" : "147",
         "shared_name" : "Issue 5",
-        "name" : "Issue 5",
+        "name" : "AI4-99",
         "SUID" : 147,
-        "assignee" : "",
+        "assignee" : "no",
         "selected" : false
       },
       "position" : {
-        "x" : -673.2029931214877,
-        "y" : -44.53080245893533
+        "x" : -5.25303690228759,
+        "y" : -77.90823702419439
       },
       "selected" : false
     }, {
       "data" : {
         "id" : "146",
         "shared_name" : "Issue 4",
-        "name" : "Issue 4",
+        "name" : "AI4-96",
         "SUID" : 146,
-        "assignee" : "",
+        "assignee" : "no",
         "selected" : false
       },
       "position" : {
-        "x" : -606.2633687180166,
-        "y" : -296.2481125805461
+        "x" : -184.1188358524829,
+        "y" : -171.84489016140142
       },
       "selected" : false
     }, {
       "data" : {
         "id" : "145",
         "shared_name" : "Issue 2",
-        "name" : "Issue 2",
+        "name" : "AI4-98",
         "SUID" : 145,
-        "assignee" : "",
+        "assignee" : "no",
         "selected" : false
       },
       "position" : {
-        "x" : 96.34358913725994,
-        "y" : -200.75831192311406
+        "x" : -175.4906620243579,
+        "y" : 139.91545529758295
       },
       "selected" : false
     }, {
       "data" : {
         "id" : "144",
         "shared_name" : "Issue 3",
-        "name" : "Issue 3",
+        "name" : "AI4-97",
         "SUID" : 144,
-        "assignee" : "",
+        "assignee" : "no",
         "selected" : false
       },
       "position" : {
-        "x" : -397.41741488999793,
-        "y" : -94.27245894583234
+        "x" : -133.6304783085376,
+        "y" : 23.697720007055608
       },
       "selected" : false
     }, {
       "data" : {
         "id" : "143",
         "shared_name" : "Issue 1",
-        "name" : "Issue 1",
+        "name" : "AI4-95",
         "SUID" : 143,
-        "assignee" : "",
+        "assignee" : "no",
         "selected" : false
       },
       "position" : {
-        "x" : -137.56618624030395,
-        "y" : -268.7674788097325
+        "x" : -222.93617288861572,
+        "y" : 351.0367016354736
       },
       "selected" : false
     }, {
       "data" : {
         "id" : "142",
         "shared_name" : "Nain",
-        "name" : "Nain",
+        "name" : "NG",
         "SUID" : 142,
         "assignee" : "yes",
         "selected" : false
       },
       "position" : {
-        "x" : -528.0998096853097,
-        "y" : 213.1854583375059
+        "x" : -432.80583231244384,
+        "y" : 226.96818204318842
       },
       "selected" : false
     }, {
       "data" : {
         "id" : "141",
         "shared_name" : "Aric",
-        "name" : "Aric",
+        "name" : "AM",
         "SUID" : 141,
         "assignee" : "yes",
         "selected" : false
       },
       "position" : {
-        "x" : -108.57976882025676,
-        "y" : 230.19810797702416
+        "x" : -396.6905216434985,
+        "y" : -66.8515735110108
       },
       "selected" : false
     }, {
       "data" : {
         "id" : "140",
         "shared_name" : "Phong",
-        "name" : "Phong",
+        "name" : "PB",
         "SUID" : 140,
         "assignee" : "yes",
         "selected" : false
       },
       "position" : {
-        "x" : -79.34318114610934,
-        "y" : -112.26879399489606
+        "x" : -197.3833622196704,
+        "y" : 246.30458493625483
       },
       "selected" : false
     }, {
       "data" : {
         "id" : "139",
         "shared_name" : "Emily",
-        "name" : "Emily",
+        "name" : "EC",
         "SUID" : 139,
         "assignee" : "yes",
         "selected" : false
       },
       "position" : {
-        "x" : -579.5920202300617,
-        "y" : -175.43445353957904
+        "x" : -115.12269632611572,
+        "y" : -84.79216341579595
       },
       "selected" : false
     } ],
     "edges" : [ {
+      "data" : {
+        "id" : "793",
+        "source" : "791",
+        "target" : "141",
+        "shared_name" : "Issue 12 (interacts with) Aric",
+        "name" : "Issue 12 (interacts with) Aric",
+        "interaction" : "interacts with",
+        "SUID" : 793,
+        "shared_interaction" : "interacts with",
+        "selected" : false
+      },
+      "selected" : false
+    }, {
       "data" : {
         "id" : "164",
         "source" : "153",
