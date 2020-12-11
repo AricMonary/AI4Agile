@@ -1,3 +1,12 @@
+function getIssueFromURLParameters() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+	alert(urlParams.get('issueKey'));
+
+    return urlParams.get('issueKey');
+}
+
 $(function() {
     "use strict";
 
@@ -8,8 +17,9 @@ $(function() {
         }
         return null
     }
+	
     var n = "#cy",
-        network = networks[Object.keys(networks)[0]],
+        network = networks[getIssueFromURLParameters()],
         style = styles[0];
     $(n).cytoscape({
         layout: {

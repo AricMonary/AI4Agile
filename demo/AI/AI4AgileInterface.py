@@ -23,7 +23,10 @@ def epicDecompositionCreateSuggestions():
     else:
         sliderValue = int(issueJSON['sliderValue'])
 
-    suggestions = EpicDecomposition(inputForAI, sliderValue)
+    if len(inputForAI) != 0:
+        suggestions = EpicDecomposition(inputForAI, sliderValue)
+    else:
+        suggestions = []
 
     return json.dumps({'success': True, 'suggestions': suggestions}), 200, {'ContentType': 'application/json'}
 
@@ -34,7 +37,10 @@ def storyOptimizationCreateSuggestions():
     inputForAI = getAndProcessDescription(issueJSON['issueKey'])
     sliderValue = int(issueJSON['sliderValue'])
 
-    suggestions = StoryOptimization(inputForAI, sliderValue)
+    if len(inputForAI) > 1:
+        suggestions = StoryOptimization(inputForAI, sliderValue)
+    else:
+        suggestions = []
 
     return json.dumps({'success': True, 'suggestions': suggestions}), 200, {'ContentType': 'application/json'}
 
@@ -44,12 +50,17 @@ def taskGenerationCreateSuggestions():
     issueJSON = request.get_json()
     inputForAI = getAndProcessDescription(issueJSON['issueKey'])
 
-    suggestions = TaskGeneration(inputForAI)
+    if len(inputForAI) > 1:
+        suggestions = TaskGeneration(inputForAI)
+    else:
+        suggestions = inputForAI
 
     return json.dumps({'success': True, 'suggestions': suggestions}), 200, {'ContentType': 'application/json'}
 
 def getAndProcessDescription(issueKey):
     description = jira.issue_field_value(issueKey, 'description')
+    if description == None:
+        return []
     initialBrokenDescription = description.split('.')
     processedDescription = [x for x in initialBrokenDescription if x != ''] # Remove empty strings
     # Remove starting space
@@ -93,7 +104,7 @@ def createStoryFromEpic(suggestionsJSON):
             'project': {'key': projectKey},
             'issuetype': {"name": "Story"},
             'parent': {'key': parentIssueKey},
-            'summary': suggestion,
+            'summary': createSummaryFromDescription(suggestion),
             'description': suggestion,
         }
         if parentFields['reporter'] != None:
@@ -121,7 +132,7 @@ def createStoryFromStory(suggestionsJSON):
             'project': {'key': projectKey},
             'issuetype': {"name": "Story"},
             'parent': {'key': parentEpicKey},
-            'summary': suggestion,
+            'summary': createSummaryFromDescription(suggestion),
             'description': suggestion,
         }
         if parentFields['reporter'] != None:
@@ -159,7 +170,7 @@ def createTaskFromStory(suggestionsJSON):
             'project': {'key': projectKey},
             'issuetype': {"name": "Task"},
             'parent': {'key': parentEpicKey},
-            'summary': suggestion,
+            'summary': createSummaryFromDescription(suggestion),
             'description': suggestion,
         }
         if parentFields['reporter'] != None:
@@ -188,5 +199,16 @@ def createTaskFromStory(suggestionsJSON):
 
         jira.create_issue_link(issueFields)
 
+def createSummaryFromDescription(description):
+    descriptionList = description.split('.')
+    
+    summary = ''
+    for sentence in descriptionList:
+        if len(summary) + len(sentence + '. ') < 254:
+            summary += sentence + '. '
+        else:
+            return summary
+    return summary
+            
 if __name__ == '__main__':
     app.run()

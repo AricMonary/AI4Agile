@@ -69,7 +69,13 @@ function generateSuggestions(processType, issueKey, sliderValue) {
                 contentType: "application/json",
                 success: function (data) {
                     replyData = JSON.parse(data);
-                    suggestions.list = replyData['suggestions'];
+                    if(replyData['suggestions'].length != 1) {
+                        suggestions.list = replyData['suggestions'];
+                    }
+                    else
+                    {
+                        suggestions.list = [];
+                    }
                 }
             });
             break;

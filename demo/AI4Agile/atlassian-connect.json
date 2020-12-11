@@ -112,7 +112,7 @@
         },
         "target": {
           "type": "web_panel",
-          "url": "/Graph/index.html"
+          "url": "/Graph/index.html?issueKey={issue.key}"
         },
         "tooltip": {
           "value": "Dependency Visualization"
