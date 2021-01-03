@@ -144,7 +144,7 @@ def generate_stories(stories, coefficient, word_emb_model):
         result_story = ""
         for item in stories:
             if item in new_story_set:
-                result_story += item + ". "
+                result_story += item + " "
 
         result.append(result_story)
 

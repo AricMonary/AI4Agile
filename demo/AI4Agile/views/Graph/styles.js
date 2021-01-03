@@ -133,32 +133,32 @@ var styles = [ {
   {
     "selector" : "node[IssueType_A = 'Task']",
     "css" : {
-      "background-color" : "rgb(153,255,144)"
+      "background-color" : "rgb(43, 156, 204)"
     }
   }, {
     "selector" : "node[IssueType_A = 'Epic']",
     "css" : {
-      "background-color" : "rgb(153,153,255)"
+      "background-color" : "rgb(121, 70, 232)"
     }
   }, {
     "selector" : "node[IssueType_A = 'Story']",
     "css" : {
-      "background-color" : "rgb(14,180,227)"
+      "background-color" : "rgb(91, 196, 29)"
     }
   }, {
     "selector" : "node[IssueType_B = 'Task']",
     "css" : {
-      "background-color" : "rgb(153,255,144)"
+      "background-color" : "rgb(43, 156, 204)"
     }
   }, {
     "selector" : "node[IssueType_B = 'Epic']",
     "css" : {
-      "background-color" : "rgb(153,153,255)"
+      "background-color" : "rgb(121, 70, 232)"
     }
   }, {
     "selector" : "node[IssueType_B = 'Story']",
     "css" : {
-      "background-color" : "rgb(14,180,227)"
+      "background-color" : "rgb(91, 196, 29)"
     }
   },{
     "selector" : "node:selected",

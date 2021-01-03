@@ -50,10 +50,14 @@ def taskGenerationCreateSuggestions():
     issueJSON = request.get_json()
     inputForAI = getAndProcessDescription(issueJSON['issueKey'])
 
+    print(input)
+
     if len(inputForAI) > 1:
         suggestions = TaskGeneration(inputForAI)
     else:
         suggestions = inputForAI
+
+    print(suggestions)
 
     return json.dumps({'success': True, 'suggestions': suggestions}), 200, {'ContentType': 'application/json'}
 
@@ -204,7 +208,7 @@ def createSummaryFromDescription(description):
     
     summary = ''
     for sentence in descriptionList:
-        if len(summary) + len(sentence + '. ') < 254:
+        if len(summary) + len(sentence + '. ') < 254 and sentence != '' and sentence != ' ':
             summary += sentence + '. '
         else:
             return summary

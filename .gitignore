@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Specific AI Files
+GoogleNews-vectors-negative300.bin

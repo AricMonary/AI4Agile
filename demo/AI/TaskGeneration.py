@@ -1,20 +1,27 @@
 import stanza
 
+str1 = ""
+counted = 0
+sent = []
+
+#sent.append("Add a background color to cells that can be any RGB color.")
+#sent.append("Be able to change the background color of many cells at once.")
+
 #input is a list of text
 def TaskGeneration (input):
     suggestions = []
     
+    global str1
+    global counted
+    global sent
+
+    str1 = ""
+    counted = 0
+    sent = []
+
     suggestions = parser(input)
 
     return suggestions
-
-
-
-str1 = ""
-counted = 0
-sent = []
-#sent.append("Add a background color to cells that can be any RGB color.")
-#sent.append("Be able to change the background color of many cells at once.")
 
 
 def parser(sent):
