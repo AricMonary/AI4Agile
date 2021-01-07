@@ -2,29 +2,53 @@
 
 \subsection{AI Criteria}
 
-\label{criteria}
+\label{subsection:criteria}
 The overall process that was found when performing an epic breakdown is a combination of clustering related requirements, specifications, and details along with the further breakdown of complex info into smaller stories and tasks. Clustering can be performed in either supervised or unsupervised learning. Supervised learning requires the existence of a data set that has been correctly labeled. Although a general data set of decomposed epics can be generated, it was deemed that the range of topics an epic can encompass was too large to have a trained model that would accurately cluster the content of an epic. 
 
 Additionally, an early assumption made about the decomposition process is that the text processing techniques should not rely upon the existence of historical project information, whether that be in the form of previously completed epics or sprints. As a result, unsupervised clustering techniques were only considered as they allowed for the decomposition process to be applicable to new projects, which lack history, and projects that have not been topically available to train a clustering model off of.
 
 The last criteria for the text processing approaches under consideration was that no additional information should be generated through AI. This was due to the previously discussed lack of data, specific to the project domain, that could be used to potentially generate stories and tasks.
 
-\begin{table}
-\begin{tabularx}{\textwidth}{|c|c|c|c|}
-\hline
-Component & Options & Choice & Reasoning \\
-\hline
-Epic Decomposition & 
-\begin{itemize}
-\item KMeans
-\item Meanshift
-\item DBSCAN
-\item OPTICS
-\end{itemize} &
-Mean-shift & All of the mentioned clustering algorithms are dynamic as they do not require the number of clusters as input. Mean-shift only requires the size of the region to search through (bandwidth), which can be estimated, where all other options require arbitrary values to create clusters.\\
-\hline
-\end{tabularx}
-\end{table}
+\begin{table*}[h]
+	\begin{tabularx}{\textwidth}{|p{3cm}|p{3cm}|p{2cm}|X|}
+	\hline
+	Component & Options & Choice & Reasoning\\
+	\hline
+	Epic Decomposition & 
+	\begin{minipage}{0.15\textwidth}
+		\begin{itemize}
+		\item KMeans
+		\item Meanshift
+		\item DBSCAN
+		\item OPTICS
+		\end{itemize}
+	\end{minipage} &
+	Mean-shift & All of the mentioned clustering algorithms are dynamic as they do not require the number of clusters as input. Mean-shift only requires the size of the region to search through (bandwidth), which can be estimated, where all other options require arbitrary values to create clusters.\\
+	\hline
+	Story Optimization & 
+	\begin{minipage}{0.15\textwidth}
+		\begin{itemize}
+		\item TF-IDF
+		\item SIF
+		\item Word2vec
+		\item Cosine simularity
+		\item Word mover's distance
+		\end{itemize}
+	\end{minipage} &
+	\begin{flushleft}
+	SIF with word2vec and Cosine similarity
+	\end{flushleft} & TF-IDF is the most simple for word embedding. SIF with word2vec can achieve a higher accuracy than TF-IDF with the custom word2vec model that is relevant to the topic. WMD is far more expensive to calculate, especially on longer texts. Cosine similarity can give the same performance without losing too much semantic similarity.\\
+	\hline	
+	Task Generation & 	
+	\begin{minipage}{0.15\textwidth}
+		\begin{itemize}
+		\item Sentence classification
+		\end{itemize}
+	\end{minipage} & Sentence classification & There is a need to split up the different types of sentences, such as complex and compound, into simple sentences, in order for them to be manipulated into tasks. To do this, sentence classification is the necessary first step.\\
+	\hline	
+	\end{tabularx}
+	\caption{AI design choices}
+\end{table*}
 
 \subsection{Epic Decomposition}
 
@@ -34,7 +58,7 @@ Mean-shift & All of the mentioned clustering algorithms are dynamic as they do n
 
 \subsection{Task Generation}
 
-Task generation was identified as the process of breaking down a requirement into its most simplest form. Based on the criteria laid out in \nameref{criteria}, simplification on the existing input of requirements could be completed by deconstructing complex sentences into simple sentences. 
+Task generation was identified as the process of breaking down a requirement into its most simplest form. Based on the criteria laid out in \ref{subsection:criteria}, simplification on the existing input of requirements could be completed by deconstructing complex sentences into simple sentences. 
 
 The first process to break down sentences was to use parts-of-speech tagging to remove any unnecessary words from the sentence; this was done by identifying stopwords, since simple sentences contain only one subject and predicate. Therefore, using the word dependency we were able to determine which words were connected to the subject. By making sure the sentence contained one subject and verb we were able to create a complete simple sentence. Everytime a new subject was found that meant a new sentence was needed. Each simple sentence generated from the stories can then be suggested as tasks.
 
