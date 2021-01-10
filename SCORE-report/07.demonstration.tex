@@ -5,7 +5,7 @@
 
 This section describes a walkthrough of two user stories the team developed based on our requirements, to demonstrate the primary features currently implemented in the finished prototype system. 
 
-\subsubsection{Complete Decomposition Scenario}
+\subsubsection{Complete Decomposition Use Case}
 \label{Scenario1}
 
 \begin{figure}
@@ -41,7 +41,7 @@ If Frank wants to continue the process of breaking up epics, he can go into one 
 
 Once the Story Optimization Suggestions are generated, Frank has the same options as with the previous stories: to select or deselect stories via the checkboxes, make edits, or ignore all suggestions. In addition to those options, Frank can choose to adjust the connectivity slider to change how closely related items need to be in order to stay with the same story.  
 
-Now there are five user stories, since Story 4 was optimized into two separate stories. To continue the decomposition process, Frank opens a story and clicks Generate Tasks (fig. \ref{fig:Scenario1Figure2}).
+Now there are five user stories, since Story 4 was optimized into two separate stories. To continue the decomposition process, Frank opens a story and clicks Generate Tasks (Fig. \ref{fig:Scenario1Figure2}).
 
 \begin{figure}
 \begin{subfigure}{.5\textwidth}
@@ -70,7 +70,7 @@ As before, the options include selecting or deselecting individual suggestions, 
 
 The tasks have now been created, and linked to their parent story to indicate a blocking relationship. All Frank had to do was make some decisions and maybe edits, and now he’s got one story fully decomposed (Fig. \ref{fig:Scenario1Figure5}).
 
-\subsubsection{Relationship Visualization Scenario}
+\subsubsection{Relationship Visualization Use Case}
 \label{Scenario2}
 
 \begin{figure}
@@ -82,11 +82,11 @@ The tasks have now been created, and linked to their parent story to indicate a 
 
 Madison is a scrum master, and she wants to take a closer look at some of the tasks to make sure the developer assignments make sense. To do this, she uses the AI4Agile Issue Relationship Graph feature by navigating to a certain epic, user story, or task, and finding the graph portion (Fig. \ref{fig:Scenario2Figure1}). Now, Madison can see all the available relationships between the task she has selected and other tasks, stories, and the epic they came from. She is better able to decide whether the team members she assigned to these pieces make sense given the relations between them.
 
-For an alternate view of the relationships, Madison can use the Click to view Developer Cluster button (Figure. \ref{fig:Scenario2Figure1}) to see what the current assignments and workload look like for her team (Figure. \ref{fig:Scenario2Figure2}). If she wants to go back to the previous graph view, the Click to view Issue Tree button is in the top left corner.
+For an alternate view of the relationships, Madison can use the Click to view Developer Cluster button (Fig. \ref{fig:Scenario2Figure1}) to see what the current assignments and workload look like for her team (Fig. \ref{fig:Scenario2Figure2}). If she wants to go back to the previous graph view, the Click to view Issue Tree button is in the top left corner.
 
 \subsection{Testing}
 
-The application is primarily composed of individual web panels integrated into Jira’s existing User Interface. As a result, each web panel was able to be created, tested, and reviewed independently from Jira Cloud. The isolation was used to conduct input and output testing but the modules were generally tested within the context of Jira to ensure that the user experience is seamless between our integrated app and the existing Jira Cloud platform.
+The application is primarily composed of individual web panels integrated into Jira’s existing UI. As a result, each web panel was able to be created, tested, and reviewed independently from Jira Cloud. The isolation was used to conduct input and output testing but the modules were generally tested within the context of Jira to ensure that the user experience is seamless between our integrated app and the existing Jira Cloud platform.
 
 The rest of functional testing was performed on component and integration levels. Component testing was separated into two categories: text processing and relationship visualization.
 

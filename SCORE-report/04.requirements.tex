@@ -59,7 +59,7 @@ NFR9 & The response time for AI processing is less than five seconds \\
 \hline
 NFR10 & The response time for visualization is less than two seconds \\
 \hline
-NFR11 & Visualization only generate important relationships \\
+NFR11 & Visualization only generates important relationships \\
 \hline
 NFR12 & Available on Atlassian Marketplace \\
 \hline
@@ -106,7 +106,7 @@ FR1 & Clustering works correctly \\
 \hline
 FR2 & Allow user to select and discard generated issue \\
 \hline
-FR3 & Can process a variety of input type \\
+FR3 & Can process a variety of input types \\
 \hline
 FR4 & User stories extraction works correctly \\
 \hline
@@ -128,10 +128,10 @@ FR11 & The graph should render as the object is selected \\
 \end{table}
 
 \subsection{Requirements Summary}
-The NFRs and FRs listed in Tables \ref{nfrs} and \ref{frt} are the scope of our implementation, each with their own specifications developed as well. To summarize the system's three major functional processes, we conclude that: 1) Epic decomposition consists of taking a templatized epic entered by the user and clustering requirements together into user stories based upon subject; 2) Story optimization further breaks down potentially large stories into smaller stories. Certain stories may not be subjected to change due to their intial small size; 3) Task generation is done by performing parts-of-speech analysis on the user stories. 
+The NFRs and FRs listed in Tables \ref{nfrs} and \ref{frt} are the scope of our implementation, each with their own specifications developed as well. To summarize the system's three major functional processes, we conclude that: 1) Epic decomposition consists of taking a semi-structured epic, entered by the user, and clustering requirements together into user stories based upon subject; 2) Story optimization further breaks down potentially large stories into smaller stories. Certain stories may not be subjected to change due to their intial small size; 3) Task generation is done by performing part of speech analysis on the user stories. 
 
-Furthermore, to achieve the NFRs such as integrity, for each process, the results are offered as suggestions to the user, allowing them to pick and choose which user stories and tasks to add to their Jira board. The user can further adjust settings to fine tune the granuity of generated results. i.e. number of tasks to be generated. Last but not least, epics, user stories, and tasks may be displayed in an interactive tree/cluster graph that shows the explicit and implicit relationships among them.
+Furthermore, to achieve the NFRs such as integrity, for each process, the results are offered as suggestions to the user, allowing them to pick and choose which user stories and tasks to add to their Jira board. The user can further adjust settings to fine tune the granularity of generated results. i.e. number of tasks to be generated. Last but not least, epics, user stories, and tasks may be displayed in an interactive tree/cluster graph that shows the explicit and implicit relationships among them.
 
-Overall, we consider the project's main motivation is reduce the time needed on manual requirement engineering. While AI can play a number of different ways to achieve this goal, the team determined that the artificial intelligence component’s purpose would be centered on processing text into increasingly refined portions to support an efficient RE process. Such an approach would increase the consistency of the outcome of the process, as the central process reduces the impact of human variables. At the meantime, we recognized that knowledge from an experienced project manager are still valuable, thus we make sure that the tool would not alter or discard the original input, avoiding unintended consequences. 
+Overall, we consider the project's main motivation is to reduce the time needed on manual requirement engineering. While AI can play a number of different roles to achieve this goal, the team determined that the artificial intelligence component’s purpose would be centered on processing text into increasingly refined portions to support an efficient RE process. Such an approach would increase the consistency of the outcome of the process, as the central process reduces the impact of human variables. At the meantime, we recognized that knowledge from an experienced project manager is still valuable, thus we make sure that the tool would not alter or discard the original input, avoiding unintended consequences. 
 
 Finally, the team combined the formatted requirement with direct feedback from our mentor and developed the user stories that we later used for demo and verification purposes, as presented in Section \ref{demo}.

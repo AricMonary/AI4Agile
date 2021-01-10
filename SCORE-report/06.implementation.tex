@@ -5,27 +5,27 @@ The AI4Agile app was implemented within Jira Cloud as an app and connected to a 
 
 \subsection{Frontend}
 
-As part of the Atlassian Design Guidelines, a frontend library, Atlassian User Interface (AUI), is provided to create new UI elements to match Jira’s style and user experience. Needed components that were missing from the AUI were crafted by the provided Design Guidelines from Atlassian.
+As part of the Atlassian Design Guidelines \cite{jira3}, a frontend library, Atlassian User Interface (AUI) \cite{jira4}, is provided to create new UI elements to match Jira’s style and user experience. Needed components that were missing from the AUI were crafted by the provided Design Guidelines from Atlassian.
 
 Within Jira, all objects (epics, stories, issues) are rendered in the same way, each containing a shared issue panel as shown in Fig. \ref{fig:issueView}. Our app is implemented within the issue panel in the form of additional panels that can be opened through newly introduced buttons to the primary button set. When a process button or visualization button is pressed, a new panel, built with HTML and javascript, will render and be focused on.
 
-Each of the processes use the same suggestion panel, with variations depending on the need for user inputs in the case of epic decomposition and story optimization. The suggestion module, when opened, requests suggestions from the backend through jQuery AJAX and displays a loading animation until the suggestions are received. Stories can be changed and once checked, they can be created which is done by passing the selected stories via an AJAX call to the backend. The responsibility to populate selected stories to the Jira board is by the backend.
+Each of the processes use the same suggestion panel, with variations depending on the need for user inputs in the case of epic decomposition and story optimization. The suggestion panel, when opened, requests suggestions from the backend through jQuery AJAX \cite{ajax} and displays a loading animation until the suggestions are received. Stories can be changed and once checked, they can be created which is done by passing the selected stories via an AJAX call to the backend. The responsibility to populate selected stories to the Jira board is by the backend.
 
 \begin{figure}
 \centering
 \includegraphics[width=.5\textwidth,keepaspectratio]{./figure/Frontend.png}
-\caption{Issue View within Jira while the Task Generation process shown after suggestions are recieved}
+\caption{Issue Panel within Jira while the Task Generation process shown after suggestions are recieved}
 \label{fig:issueView}
 \end{figure}
 
 \subsection{Backend}
 
-The backend served two primary functionalities: generating suggested issues and populating selected suggestions into Jira. Each process has its corresponding suggestion generator and selected suggestion creator since the specifics of each type of issue varies. Jira treats all issue types (i.e. epics, stories, and tasks) the same, each having the same set of shared fields with the addition of custom fields depending on the type of issue.
+The backend served two primary functionalities: generating suggested issues and populating selected suggestions into Jira. Each process has its corresponding suggestion generator and selected suggestion creator since the specifics of each type of issue varies. Jira handles all issue types (i.e. epics, stories, and tasks) the same, each having the same set of shared fields with the addition of custom fields depending on the type of issue.
 
-All three processes were implemented using Python due to the available libraries and as a result the primary interface was also implemented using Python. The interface uses Flask, a Python web framework, to receive the messages sent by AJAX in the frontend. The information needed from the issues are gathered by querying the Atlassian Rest API through an open-source Python library, “atlassian-Python-api”, which simplifies Atlassian API calls. When generating suggestions, the description is queried for and passed as a list of individual requirements to the text processor. Suggestions are then passed back through a reply to the original message. Once a user selects, and possibly edits, which issues they would like to have populated in their Jira board, then the original issue is queried again to percolate existing fields, such as assignee, reporter, due date, tags, or sprints, to the newly created child issues. Each newly created issue is given a blocking relationship to the issue they were derived from. For example, all of the created stories from an Epic Decomposition will “block” the epic from being completed. Any further tasks created from Task Generation on a story will “block” the story from completion.
+All three processes were implemented using Python due to the available libraries and as a result the primary interface was also implemented using Python. The interface uses Flask \cite{flask}, a Python web framework, to receive the messages sent by AJAX in the frontend. The information needed from the issues are gathered by querying the Atlassian Rest API \cite{jira5} through an open-source Python library, “atlassian-Python-api” \cite{jiraPython}, which simplifies Atlassian API calls. When generating suggestions, the description is queried for and passed as a list of individual requirements to the text processor. Suggestions are then passed back through a reply to the original message. Once a user selects, and possibly edits, which issues they would like to have populated in their Jira board, then the original issue is queried again to percolate existing fields, such as assignee, reporter, due date, tags, or sprints, to the newly created child issues. Each newly created issue is given a blocking relationship to the issue they were derived from. For example, all of the created stories from an Epic Decomposition will “block” the epic from being completed. Any further tasks created from Task Generation on a story will “block” the story from completion.
 
 \subsubsection{Epic Decomposition}
-The Epic Decomposition process was implemented using k-means clustering over a dynamic clustering technique, such as DBSCAN or Mean-shift. Dynamic clustering techniques were unable to be implemented in a manner that yielded consistent meaningful clusters across many epic inputs. This was a result of an inability to filter noise such that the clusters were neither completely disjoint or entirely overlapping. Thus, k-means, a centroid-based clustering algorithm, was used at the cost of selecting a default number of stories to generate. The default number of stories generated is five but the user can select between 2 and 10 stories using a newly added slider in the UI for the Epic Decomposition process.
+The Epic Decomposition process was implemented using k-means clustering over a dynamic clustering technique, such as DBSCAN or Mean shift. Dynamic clustering techniques were unable to be implemented in a manner that yielded consistent meaningful clusters across many epic inputs. This was a result of an inability to filter noise such that the clusters were neither completely disjoint or entirely overlapping. Thus, K-means, a centroid-based clustering algorithm, was used at the cost of selecting a default number of stories to generate. The default number of stories generated is five but the user can select between 2 and 10 stories using a newly added slider in the UI for the Epic Decomposition process.
 
 \subsubsection{Story Optimization}
 For Story Optimization, the process maintained the initial implementation without any significant changes to the algorithm. The algorithm utilizes a pre-trained Word2Vec model, along with SIF and cosine similarity functions from the scikit-learn python library. Initially, the degree of connectivity between sentences was specified by choosing the optimal threshold level. However, it was changed so that the user can choose to increase or decrease the degree of connectivity between sentences offering more flexibility in the generated results.
@@ -52,25 +52,25 @@ The plugin communicates from Jira to the backend interface via a listener throug
 \hline
 \multicolumn{1}{|c|}{\textbf{Component}} & \multicolumn{1}{c|}{\textbf{Subcomponent}} & \multicolumn{1}{c|}{\textbf{Source}} \\
 \hline
-Epic Decomposition & K-means clustering & scikit-learn: machine learning in Python \\
+Epic Decomposition & K-means clustering & scikit-learn: machine learning in Python \cite{scikit} \\
 \hline
-\multirow{4}{*}{Story Optimization} & Word embedding & Google Word2Vec Pre-trained Model \\ 
+\multirow{4}{*}{Story Optimization} & Word embedding & Google Word2Vec Pre-trained Model \cite{googleword2vec} \\ 
 \cline{2-3}
-& Feature Extraction & scikit-learn: machine learning in Python \\ 
+& Feature Extraction & scikit-learn: machine learning in Python \cite{scikit} \\ 
 \cline{2-3}
-& Cosine similarity & scikit-learn: machine learning in Python \\
+& Cosine similarity & scikit-learn: machine learning in Python \cite{scikit} \\
 \cline{2-3}
-& Function decision &N/A \\ 
+& Function decision & N/A \\ 
 \hline
-\multirow{2}{*}{Task Generation} & Sentence classification & Stanford CoreNLP \\ 
+\multirow{2}{*}{Task Generation} & Sentence classification & Stanford CoreNLP \cite{NLP1} \\ 
 \cline{2-3}
-& Part of speech tagging & Natural Language ToolKit \\ 
+& Part of speech tagging & Natural Language ToolKit \cite{nltk} \\ 
 \hline
-\multirow{3}{*}{UI} & Tree relationship graph & Cytoscape \\ 
+\multirow{3}{*}{UI} & Tree relationship graph & Cytoscape \cite{cytoscape} \\ 
 \cline{2-3}
-& Clustered relationship graph & Cytoscape \\ 
+& Clustered relationship graph & Cytoscape \cite{cytoscape} \\ 
 \cline{2-3}
-& Jira Cloud frontend & Atlassian Connect Express Modules \\ 
+& Jira Cloud frontend & Atlassian Connect Express Modules \cite{jiraconnect}\\ 
 \hline
 \end{tabular}
 \end{table}
