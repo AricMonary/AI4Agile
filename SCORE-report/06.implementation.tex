@@ -7,15 +7,16 @@ The AI4Agile app was implemented within Jira Cloud as an app and connected to a 
 
 As part of the Atlassian Design Guidelines, a frontend library, Atlassian User Interface (AUI), is provided to create new UI elements to match Jira’s style and user experience. Needed components that were missing from the AUI were crafted by the provided Design Guidelines from Atlassian.
 
-Within Jira, all objects (epics, stories, issues) are rendered in the same way, each containing a shared issue panel as shown in Figure \ref{fig:issueView}. Our app is implemented within the issue panel in the form of additional panels that can be opened through newly introduced buttons to the primary button set. When a process button or visualization button is pressed, a new panel, built with HTML and javascript, will render and be focused on.
+Within Jira, all objects (epics, stories, issues) are rendered in the same way, each containing a shared issue panel as shown in Fig. \ref{fig:issueView}. Our app is implemented within the issue panel in the form of additional panels that can be opened through newly introduced buttons to the primary button set. When a process button or visualization button is pressed, a new panel, built with HTML and javascript, will render and be focused on.
 
 Each of the processes use the same suggestion panel, with variations depending on the need for user inputs in the case of epic decomposition and story optimization. The suggestion module, when opened, requests suggestions from the backend through jQuery AJAX and displays a loading animation until the suggestions are received. Stories can be changed and once checked, they can be created which is done by passing the selected stories via an AJAX call to the backend. The responsibility to populate selected stories to the Jira board is by the backend.
 
-\begin{figure*}
-\centerline{\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{./figure/Frontend.png}}
+\begin{figure}
+\centering
+\includegraphics[width=.5\textwidth,keepaspectratio]{./figure/Frontend.png}
 \caption{Issue View within Jira while the Task Generation process shown after suggestions are recieved}
 \label{fig:issueView}
-\end{figure*}
+\end{figure}
 
 \subsection{Backend}
 
@@ -35,15 +36,17 @@ The user can choose to increase or decrease the degree of connectivity between s
 The approach for Task Generation was based off a decomposition approach by Das, Majumder, and Phadikar in 2018\cite{NLP1}. Initially the natural language toolkit (NLTK) library was selected for implementing task generation, but it lacked the need for parts-of-speech tagging. The main feature that NLTK lacked was word dependency. Word dependency is important to this process, since this was the main feature used to create simple sentences. Word dependency returns a pair of words, identifying the dependency between the two. The new Python library being used is Stanza. This library allows for parts-of-speech tagging, word dependency, and tree parsing. By having part-of-speech tagging and word dependency, the creation of simple sentences from complex and compound sentences was easier to implement.
 
 \subsection{Communication}
-\begin{figure*}
-\centerline{\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{./figure/SequenceFlowDiagram.png}}
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth,keepaspectratio]{./figure/SequenceFlowDiagram.png}
 \caption{Suggestion web panel sequence diagram representing the flow of messages between the frontend Jira web page and AI4Agile backend}
-\end{figure*}
+\end{figure}
 
 The plugin communicates from Jira to the backend interface via a listener through AJAX calls which are received by Flask. When a web panel is opened for any of the three processes, a message is sent to generate and return the suggestion issues. The Jira panel will function asynchronously with a loading animation appearing until the resulting suggestions are received. Once the results are received, populated in the suggestion box, and the desired suggestions are selected by the user, then a message is sent containing which suggestions to then create within Jira.
 
-\begin{center}
+%\begin{center}
 \begin{table}
+\centering
 \caption{Components, subcomponents, and sources used for implementation of subcomponents}
 \begin{tabular}{ |c|c|c| } 
 \hline
@@ -71,4 +74,4 @@ Epic Decomposition & K-means clustering & scikit-learn: machine learning in Pyth
 \hline
 \end{tabular}
 \end{table}
-\end{center}
+%\end{center}

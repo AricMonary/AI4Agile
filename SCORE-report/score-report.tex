@@ -1,10 +1,12 @@
-\documentclass[11pt,journal,onecolumn]{IEEEtran}
-\IEEEoverridecommandlockouts
+\documentclass[11pt,conference,onecolumn]{IEEEtran}
+%\documentclass[11pt,draft,onecolumn]{IEEEtran}
+%\IEEEoverridecommandlockouts
 % The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithmic}
 \usepackage{graphicx}
+\usepackage{subcaption}
 \usepackage{textcomp}
 \usepackage{xcolor}
 \usepackage{tabularx}
@@ -12,38 +14,33 @@
 \usepackage{multirow}
 \usepackage[textwidth = 155mm]{geometry}
 \usepackage{url}
-\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
-    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \setlist[itemize]{align=parleft, left=0pt..1em}
+%\overfullrule=1mm
 \begin{document}
 
 \title{AI4Agile Summary Report - Team Katara}
 
-\author{
-    \IEEEauthorblockN{Phong Bach\IEEEauthorrefmark{0}, Emily Cawlfield\IEEEauthorrefmark{0}, Nain Galvan\IEEEauthorrefmark{0}, Aric Monary\IEEEauthorrefmark{0}\\}
-	\IEEEauthorblockA{\textit{School of Electrical Engineering and Computer Science} \\
+\author{\IEEEauthorblockN{Phong Bach, Emily Cawlfield, Nain Galvan, Aric Monary}
+\IEEEauthorblockA{\textit{School of Electrical Engineering and Computer Science} \\
 \textit{Washington State University}\\
-Everett, WA, USA \\
+Everett, USA 98201 \\
 phong.bach, emily.cawlfield, nain.galvan, aric.monary@wsu.edu}
 }
-
 \maketitle
-
-\let\clearpage\relax
-\include{./01.introduction}
-\include{./02.preliminaryUnderstanding}
-%\include{./03.collaboration}
-\include{./04.requirements}
-\include{./05.design}
-\include{./06.implementation}
-\include{./07.demonstration}
-%\include{./08.verificationAndValidation}
-\include{./09.futureWorks}
-%\include{./10.conclusion}
+\input{01.introduction}
+\input{02.preliminaryUnderstanding}
+%\input{./03.collaboration}
+\input{04.requirements}
+\input{05.design}
+\input{06.implementation}
+\input{07.demonstration}
+%\input{./08.verificationAndValidation}
+\input{09.futureWorks}
+%\input{./10.conclusion}
 
 \section*{Acknowledgment}
-
 Special thanks to Dr. Hoa Khanh Dam, Dr. Bolong Zeng, Prof. Jeremy Thompson, and Skip Baccus for their support, assistance, and time given to the team and this project.
+
 \bibliographystyle{plain}
 \bibliography{ref}
 

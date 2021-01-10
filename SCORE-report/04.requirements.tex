@@ -11,13 +11,14 @@ We consider Epic, User Story, and Tasks as the three levels of requirements item
 \subsection{Requirement Modeling with KAOS}
 First, the team modeled the requirements through the use of KAOS models\cite{KAOS}. KAOS is a Goal-oriented requirement engineering \cite{GOAL} tool that emphasizes goals in requirement acquisition. The team built the KAOS models to build thorough traceabilities within project requirements, which includes describing the problem to be solved, identifying top level goals to address problems, the constraint it must be fulfilled by solutions, etc. Moreover, using the KAOS models, the team could easily remove or add requirements as we encounter new information and changes. \cite{KAOS} provides universally applicable patterns for reference, and we specified our initial goals by adopting these generic patterns, which also guide the later requirement refinement.
 
-\begin{figure*}
-\centerline{\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{./figure/GoalsNFR1.png}}
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth,keepaspectratio]{./figure/GoalsNFR1.png}
 \caption{Goal: “Decomposition requests satisfied in a secure, usable, efficient, compatible, and reliable way”.}
 \label{goal1}
-\end{figure*}
+\end{figure}
 
-We identify three primary processes to handle the requirements items defined above: 1) Epic Decomposition, 2) Story Optimization, and 3) Task Generation. Figure \ref{goal1} defines the top-level goal for the entire system, with subgoals that enumerate all the cases that must be covered to fulfill our main goal. The subgoals each encompasses a portion of the functional and nonfunctional requirements (FRs and NFRs) of the system. As shown in \ref{goal1}, the goals that our system should achieve are:
+We identify three primary processes to handle the requirements items defined above: 1) Epic Decomposition, 2) Story Optimization, and 3) Task Generation. Fig. \ref{goal1} defines the top-level goal for the entire system, with subgoals that enumerate all the cases that must be covered to fulfill our main goal. The subgoals each encompasses a portion of the functional and nonfunctional requirements (FRs and NFRs) of the system. As shown in Fig. \ref{goal1}, the goals that our system should achieve are:
 
 \begin{itemize}
 	\item Decomposition and visualization request satisfied
@@ -68,13 +69,14 @@ NFR13 & Available on Atlassian Partner Marketplace \\
 \end{table}
 %\end{center}
 
-\begin{figure*}
-\centerline{\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{./figure/GoalsNFR2.png}}
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth,keepaspectratio]{./figure/GoalsNFR2.png}
 \caption{Goal: “Decomposition request and visualization satisfied”.}
 \label{frgs}
-\end{figure*}
+\end{figure}
 
-Next, we broke down the “decomposition request and visualizations satisfied” goal into subgoals, which correlated to the main FRs. Figure \ref{frgs} shows the first level of functional subgoals, also listed below: 
+Next, we broke down the “decomposition request and visualizations satisfied” goal into subgoals, which correlated to the main FRs. Fig. \ref{frgs} shows the first level of functional subgoals, also listed below: 
 
 \begin{itemize}
 	\item User stories are generated correctly from epic
@@ -83,13 +85,14 @@ Next, we broke down the “decomposition request and visualizations satisfied”
 	\item Visualization of the relationships are generated correctly
 \end{itemize}
 
-Each subgoal in Figure \ref{frgs} has its own KAOS goal model to be further refined. Due to space constraint, we include one example in Figure \ref{fr1} to demonstrate the refinement from subgoal ``User stories are generated correctly from epic'' to the specification, as well as responsible agent for fulfillment.  From these models, we concluded the functional requirements as in Table \ref{frt}.
+Each subgoal in Fig. \ref{frgs} has its own KAOS goal model to be further refined. Due to space constraint, we include one example in Fig. \ref{fr1} to demonstrate the refinement from subgoal ``User stories are generated correctly from epic'' to the specification, as well as responsible agent for fulfillment.  From these models, we concluded the functional requirements as in Table \ref{frt}.
 
-\begin{figure*}
-\centerline{\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{./figure/GoalsFR1.png}}
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{./figure/GoalsFR1.png}
 \caption{Goal: “User stories are generated correctly from epic”.}
 \label{fr1}
-\end{figure*}
+\end{figure}
 
 \begin{table}
 \centering
