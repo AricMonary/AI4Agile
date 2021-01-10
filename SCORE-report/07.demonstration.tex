@@ -1,6 +1,9 @@
-\section{Verification and Validation}
+\section{Demonstration and Testing}
+\label{demo}
 
-\subsection{Demonstration}
+\subsection{Demonstration by Walkthrough}
+
+This section describes a walkthrough of two user stories the team developed based on our requirements, to demonstrate the primary features currently implemented in the finished prototype system. 
 
 \subsubsection{Complete Decomposition Scenario}
 \label{Scenario1}
@@ -49,7 +52,7 @@ As before, the options include selecting or deselecting individual suggestions, 
 \label{fig:Scenario1Figure5}
 \end{figure*}
 
-The tasks have now been created, and linked to their parent story to indicate a blocking relationship. All Frank had to do was make some decisions and maybe edits, and now he’s got one story fully decomposed (fig. \label{fig:Scenario1Figure5}).
+The tasks have now been created, and linked to their parent story to indicate a blocking relationship. All Frank had to do was make some decisions and maybe edits, and now he’s got one story fully decomposed (Fig. \ref{fig:Scenario1Figure5}).
 
 \subsubsection{Relationship Visualization Scenario}
 \label{Scenario2}
@@ -69,3 +72,13 @@ Madison is a scrum master, and she wants to take a closer look at some of the ta
 \end{figure*}
 
 For an alternate view of the relationships, Madison can use the Click to view Developer Cluster button (fig. \ref{fig:Scenario2Figure1}) to see what the current assignments and workload look like for her team (fig. \ref{fig:Scenario2Figure2}). If she wants to go back to the previous graph view, the Click to view Issue Tree button is in the top left corner.
+
+\subsection{Testing}
+
+The application is primarily composed of individual web panels integrated into Jira’s existing User Interface. As a result, each web panel was able to be created, tested, and reviewed independently from Jira Cloud. The isolation was used to conduct input and output testing but the modules were generally tested within the context of Jira to ensure that the user experience is seamless between our integrated app and the existing Jira Cloud platform.
+
+The rest of functional testing was performed on component and integration levels. Component testing was separated into two categories: text processing and relationship visualization.
+
+We based the testing of the text processing component upon results from three categories of inputs: ideal, disjoint, and semi-ideal. Ideal inputs were those where all information belonged to clear categories. Disjoint inputs were those where all information fell completely within separate categories. Semi-ideal inputs had both outlier pieces of information and information that distinctly can be clustered with other info. Disjoint inputs were used to evaluate edge case usages of the tool. To represent the average case, semi-ideal inputs were used since natural language understanding from a vector perspective is ambiguous without context.
+
+For integration testing, all possible user paths were explored as each text process could be done independently or sequentially. For example, a user can complete the entire process by entering by decomposing an epic, optimizing the generated stories, and then generate tasks from the optimized stories. However, a user may choose to only optimize stories that were manually entered and then go on to generate tasks from the optimized stories. 

@@ -1,0 +1,49 @@
+\begin{thebibliography}{1}
+
+\bibitem{proposal}
+Ai4agile project proposal.
+\newblock
+  \url{https://docs.google.com/document/d/1WmgeMHOnADNMihlKlDplKXlLrw4bFCQHz1jZdyxrtSA/}.
+
+\bibitem{jira1}
+Atlassain jira marketplace.
+\newblock \url{https://marketplace.atlassian.com/addons/app/jira}.
+
+\bibitem{jira2}
+Atlassain jira software cloud.
+\newblock \url{https://www.atlassian.com/software/jira/whats-new/cloud}.
+
+\bibitem{dam3}
+Hoa~Khanh Dam.
+\newblock Empowering software engineering with artificial intelligence.
+\newblock {\em Lecture Notes in Business Information Processing}, 367, 2018.
+
+\bibitem{dam2}
+Hoa~Khanh Dam.
+\newblock Artificial intelligence for software engineering.
+\newblock In {\em XRDS: Crossroads}, volume~25, pages 34--37, 2019.
+
+\bibitem{dam1}
+Hoa~Khanh Dam, Truyen Tran, John Grundy, Aditya Ghose, and Yasutaka Kamei.
+\newblock Towards effective ai-powered agile project management.
+\newblock In {\em Proceedings of the 41st International Conference on Software
+  Engineering (ICSE 2019)}. New Ideas and Emerging Results, 2019.
+
+\bibitem{GOAL}
+A.~Dardenne, A.~van Lamsweerde, and S.~Fickas.
+\newblock Goal-directed requirements acquisition.
+\newblock {\em Science of computer programming}, 20:3--50, 1993.
+
+\bibitem{NLP1}
+Bidyut Das, Mukta Majumder, and Santanu Phadikar.
+\newblock A novel system for generating simple sentences from complex and
+  compound sentences.
+\newblock {\em International Journal of Modern Education and Computer
+  Science.}, 1:57--64, 2018.
+
+\bibitem{KAOS}
+Respect-IT.
+\newblock A kaos tutorial.
+\newblock 2007.
+
+\end{thebibliography}

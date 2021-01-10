@@ -1,16 +1,17 @@
 \section{Design}
+\label{design}
 
-\subsection{AI Criteria}
-
+\subsection{AI Selection Criteria}
 \label{subsection:criteria}
-The overall process that was found when performing an epic breakdown is a combination of clustering related requirements, specifications, and details along with the further breakdown of complex info into smaller stories and tasks. Clustering can be performed in either supervised or unsupervised learning. Supervised learning requires the existence of a data set that has been correctly labeled. Although a general data set of decomposed epics can be generated, it was deemed that the range of topics an epic can encompass was too large to have a trained model that would accurately cluster the content of an epic. 
+Performing an epic breakdown involves a combination of clustering related requirements, specifications, and details along with the further breakdown of complex info into smaller stories and tasks. Clustering can be performed in either supervised or unsupervised learning. Supervised learning requires the existence of a data set that has been correctly labeled. Although the team might be able to generate general data set of decomposed epics, we concluded that an typical epic might have too many subjects, and we would not be able to produce any accurately labeled model for training purposes. 
 
-Additionally, an early assumption made about the decomposition process is that the text processing techniques should not rely upon the existence of historical project information, whether that be in the form of previously completed epics or sprints. As a result, unsupervised clustering techniques were only considered as they allowed for the decomposition process to be applicable to new projects, which lack history, and projects that have not been topically available to train a clustering model off of.
+Additionally, for the stated purpose of increasing consistencies, we made the assumption that the decomposition process would not rely upon historical project information, such as previously completed epics or sprints. As a result, unsupervised clustering techniques were chosen as it couldo be equally applicable to new and old projects alike.
 
-The last criteria for the text processing approaches under consideration was that no additional information should be generated through AI. This was due to the previously discussed lack of data, specific to the project domain, that could be used to potentially generate stories and tasks.
+The last criteria for the text processing approaches was that we would not attempt to generate ``new'' information based on given input. This was due to the previously discussed lack of data, specific to the project domain, that could be used to potentially generate stories and tasks. Table \ref{table:ai} summarizes the decisions we made regarding the selection of AI techniques.
 
 \begin{table*}[h]
 	\caption{AI design choices}
+	\label{table:ai}
 	\begin{tabularx}{\textwidth}{|p{3cm}|p{3cm}|p{2cm}|X|}
 	\hline
 	Component & Options & Choice & Reasoning\\
@@ -56,7 +57,7 @@ Through manual decompositions of epics into stories it was identified that the p
 Based on a series of tests on a simpler text clustering problem, K-means, a non-deterministic centroid-based clustering technique, yielded the best results when it came to creating consistent clusters of requirements. The downside to K-means is that it requires the number of clusters to be identified, forcing there to be user input or an estimation to be made. Since it was a goal to have the app be applicable to a large range of epics, in terms of topic and size, issues such as DBSCAN, OPTICS, and Mean shift were explored as they are dynamic and do not require the number of clusters to be specified. DBSCAN/OPTICS are density-based clustering techniques and Mean shift is a centroid-based clustering technique. Ultimately, it was decided to go with Mean shift since the implementation of the technique included an estimation of the cluster sizes, thus requiring no external input.
 
 \subsection{Story Optimization}
-The process of story optimization is further breaking down a story to if it contains more than one story or software feature that needed to be achieved. For story optimization, sentence similarity is high priority. 
+Story optimization is further breaking down a story to if it contains more than one story or software feature that needed to be achieved. For story optimization, sentence similarity is high priority. 
 
 A pre-trained Word2Vec model was used to extract the features out of sentences. A sentence embedding technique called SIF embeddings (Smooth Inverse Frequency) was used to compute sentence embeddings as a weighted average of word vectors. Using the features, a comparison was made by calculating the cosine similarity between sentences. 
 
@@ -64,7 +65,7 @@ The result was the similarity coefficient between sentences and it could be used
 
 \subsection{Task Generation}
 
-Task generation was identified as the process of breaking down a requirement into its most simplest form. Based on the criteria laid out in \ref{subsection:criteria}, simplification on the existing input of requirements could be completed by deconstructing complex sentences into simple sentences. 
+Task generation was identified as the process of breaking down a requirement into its most simplest form. Based on the criteria laid out in Section \ref{subsection:criteria}, simplification on the existing input of requirements could be completed by deconstructing complex sentences into simple sentences. 
 
 The first process to break down sentences was to use parts-of-speech tagging to remove any unnecessary words from the sentence; this was done by identifying stopwords, since simple sentences contain only one subject and predicate. Therefore, using the word dependency we were able to determine which words were connected to the subject. By making sure the sentence contained one subject and verb we were able to create a complete simple sentence. Everytime a new subject was found that meant a new sentence was needed. Each simple sentence generated from the stories can then be suggested as tasks.
 
@@ -76,14 +77,14 @@ The first process to break down sentences was to use parts-of-speech tagging to 
 \label{fig:ExampleDataFlowDiagram}
 \end{figure*}\
 
-There is an overall linear flow, as seen in figure \ref{fig:ExampleDataFlowDiagram} to AI4Agile’s main processing: Epic Decomposition, Story Optimization, and then Task Generation. Additionally, the relationship graph may be generated at any point and is independent of the previously mentioned flow. It is possible that the starting point in the flow may vary between uses. For example, a user may have manually entered in all their overarching user stories for their epic, forgoing the use of the Epic Decomposition process. From these entered stories, either story optimization or task generation may be performed.
+There is an overall linear flow, as seen in Figure \ref{fig:ExampleDataFlowDiagram} to AI4Agile’s main processing: Epic Decomposition, Story Optimization, and then Task Generation. Additionally, the relationship graph may be generated at any point and is independent of the previously mentioned flow. It is possible that the starting point in the flow may vary between uses. For example, a user may have manually entered in all their overarching user stories for their epic, forgoing the use of the Epic Decomposition process. From these entered stories, either story optimization or task generation may be performed.
 
 \begin{figure*}
 \centerline{\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{./figure/DataflowDiagram.png}}
 \caption{Data Flow diagram showing the various entry points, sources of data, and processes within Jira and AI4Agile}
 \label{fig:DataFlowDiagram}
 \end{figure*}
-Placeholder cause I need to reference figure \ref{fig:DataFlowDiagram}
+Placeholder cause I need to reference Figure \ref{fig:DataFlowDiagram}
 \subsection{Relationship visualization}
 The purpose of the relationship graph is to give users a visual representation of the dependencies between a selected issue in Jira and the issues that are related to it. Currently in Jira, hierarchies are shown minimally in such ways as dropdown lists from epics, or lists within an issue selection pane of either children or explicitly specified blocking/cloning/similarity relationships. This graph provides a way to view those relationships in one place at a glance, for ease of visual understanding.
 \subsection{User Interface and Experience}

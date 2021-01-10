@@ -11,16 +11,20 @@
 \usepackage{enumitem}
 \usepackage{multirow}
 \usepackage[textwidth = 155mm]{geometry}
+\usepackage{url}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \setlist[itemize]{align=parleft, left=0pt..1em}
 \begin{document}
 
-\title{Team Katara - AI4Agile Initial Report}
+\title{AI4Agile Summary Report - Team Katara}
 
 \author{
     \IEEEauthorblockN{Phong Bach\IEEEauthorrefmark{0}, Emily Cawlfield\IEEEauthorrefmark{0}, Nain Galvan\IEEEauthorrefmark{0}, Aric Monary\IEEEauthorrefmark{0}\\}
-    \IEEEauthorblockA{\IEEEauthorrefmark{0}Washington State University Everett}
+	\IEEEauthorblockA{\textit{School of Electrical Engineering and Computer Science} \\
+\textit{Washington State University}\\
+Everett, WA, USA \\
+phong.bach, emily.cawlfield, nain.galvan, aric.monary@wsu.edu}
 }
 
 \maketitle
@@ -28,23 +32,19 @@
 \let\clearpage\relax
 \include{./01.introduction}
 \include{./02.preliminaryUnderstanding}
-\include{./03.collaboration}
+%\include{./03.collaboration}
 \include{./04.requirements}
 \include{./05.design}
 \include{./06.implementation}
 \include{./07.demonstration}
-\include{./08.verificationAndValidation}
+%\include{./08.verificationAndValidation}
 \include{./09.futureWorks}
-\include{./10.conclusion}
+%\include{./10.conclusion}
 
 \section*{Acknowledgment}
 
-Special thanks to Dr. Bolong Zeng, Skip Baccus, and Jeremy Thompson for their support, assistance, and time given to the team and this project.
-
-\begin{thebibliography}{00} 
-\bibitem{b1} Hoa Khanh Dam, Truyen Tran, John Grundy, Aditya Ghose and Yasutaka Kamei, Towards effective AI-powered agile project management, Proceedings of the 41st International Conference on Software Engineering (ICSE 2019), New Ideas and Emerging Results.
-\bibitem{b2} R, Luis, Guzman, Jaime, A, Sebastián. (2015). Extraction of goals and their classification in the KAOS model using natural language processing. Ingeniare. Revista chilena de ingeniería. 23. 59-66. 10.4067/S0718-33052015000100007.
-\bibitem{b3} Das, Bidyut, Majumder, Mukta, Phadikar, Santanu. (2018). A Novel System for Generating Simple Sentences from Complex and Compound Sentences. International Journal of Modern Education and Computer Science. 1. 57-64. 10.5815/ijmecs.2018.01.06.
-\end{thebibliography}
+Special thanks to Dr. Hoa Khanh Dam, Dr. Bolong Zeng, Prof. Jeremy Thompson, and Skip Baccus for their support, assistance, and time given to the team and this project.
+\bibliographystyle{plain}
+\bibliography{ref}
 
 \end{document}

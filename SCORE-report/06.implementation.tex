@@ -1,4 +1,5 @@
 \section{Implementation}
+\label{implementation}
 
 The AI4Agile app was implemented within Jira Cloud as an app and connected to a Python-based backend.
 
@@ -6,7 +7,7 @@ The AI4Agile app was implemented within Jira Cloud as an app and connected to a 
 
 As part of the Atlassian Design Guidelines, a frontend library, Atlassian User Interface (AUI), is provided to create new UI elements to match Jira’s style and user experience. Needed components that were missing from the AUI were crafted by the provided Design Guidelines from Atlassian.
 
-Within Jira, all objects (epics, stories, issues) are rendered in the same way, each containing a shared issue panel as shown in figure \ref{fig:issueView}. Our app is implemented within the issue panel in the form of additional panels that can be opened through newly introduced buttons to the primary button set. When a process button or visualization button is pressed, a new panel, built with HTML and javascript, will render and be focused on.
+Within Jira, all objects (epics, stories, issues) are rendered in the same way, each containing a shared issue panel as shown in Figure \ref{fig:issueView}. Our app is implemented within the issue panel in the form of additional panels that can be opened through newly introduced buttons to the primary button set. When a process button or visualization button is pressed, a new panel, built with HTML and javascript, will render and be focused on.
 
 Each of the processes use the same suggestion panel, with variations depending on the need for user inputs in the case of epic decomposition and story optimization. The suggestion module, when opened, requests suggestions from the backend through jQuery AJAX and displays a loading animation until the suggestions are received. Stories can be changed and once checked, they can be created which is done by passing the selected stories via an AJAX call to the backend. The responsibility to populate selected stories to the Jira board is by the backend.
 
@@ -31,7 +32,7 @@ For Story Optimization, the process maintained the initial implementation withou
 The user can choose to increase or decrease the degree of connectivity between sentences. The slider displays options from 0 to 10, which maps to values from 0.65 to 0.75 as threshold values on the backend. The slider integration was a feature that was added based on mentor feedback. A parameter is exposed to give the user more control of the output. The exposed parameter is the degree of connectivity between the sentences. It was determined after impact analysis that it is better to implement it this way because it generates more meaningful results tailored to each user. This also eliminates the need for having a fixed threshold number, since the optimal threshold number can vary between inputs.
 
 \subsubsection{Task Generation}
-The approach for Task Generation was based off a decomposition approach by Das, Majumder, and Phadikar in 2018\cite{b3}. Initially the natural language toolkit (NLTK) library was selected for implementing task generation, but it lacked the need for parts-of-speech tagging. The main feature that NLTK lacked was word dependency. Word dependency is important to this process, since this was the main feature used to create simple sentences. Word dependency returns a pair of words, identifying the dependency between the two. The new Python library being used is Stanza. This library allows for parts-of-speech tagging, word dependency, and tree parsing. By having part-of-speech tagging and word dependency, the creation of simple sentences from complex and compound sentences was easier to implement.
+The approach for Task Generation was based off a decomposition approach by Das, Majumder, and Phadikar in 2018\cite{NLP1}. Initially the natural language toolkit (NLTK) library was selected for implementing task generation, but it lacked the need for parts-of-speech tagging. The main feature that NLTK lacked was word dependency. Word dependency is important to this process, since this was the main feature used to create simple sentences. Word dependency returns a pair of words, identifying the dependency between the two. The new Python library being used is Stanza. This library allows for parts-of-speech tagging, word dependency, and tree parsing. By having part-of-speech tagging and word dependency, the creation of simple sentences from complex and compound sentences was easier to implement.
 
 \subsection{Communication}
 \begin{figure*}
