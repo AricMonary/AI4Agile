@@ -4,21 +4,21 @@
 \subsection{Preliminary Analysis}
 We first performed analysis on the given proposal in Section \ref{scope}. On the infrastructure side, the proposal requires the project to be integrated into Jira. Among the different versions of Jira software available, the team chose Jira Cloud over Jira Server, for its cloud-based nature is more compatible in modern workplace. 
 
-We defined the key concepts as given in the primary requirements. For the purpose of our project, we consider
+We defined the key concepts given in the primary requirements. For the purpose of our project, we consider
 \textbf{Epic} to be a collection or narrative of user stories; they contain more information as to the functional usage of a target project being documented. The next level is \textbf{User Story}, which is a compact set of requirements. These requirements can be furthered broken down into \textbf{Tasks}, actionable item to be completed as part of a user story. 
 We consider Epic, User Story, and Tasks as the three levels of requirements items that our tool focuses on. 
 
 \subsection{Requirement Modeling with KAOS}
-First, the team modeled the requirements through the use of KAOS models\cite{KAOS}. KAOS is a Goal-oriented requirement engineering \cite{GOAL} tool that emphasizes goals in requirement acquisition. The team built the KAOS models to build thorough traceability within project requirements, which includes describing the problem to be solved, identifying top level goals to address problems, the constraint it must be fulfilled by solutions, etc. Moreover, using the KAOS models, the team could easily remove or add requirements as we encounter new information and changes. \cite{KAOS} provides universally applicable patterns for reference, and we specified our initial goals by adopting these generic patterns, which also guide the later requirement refinement.
+First, the team modeled the requirements using KAOS models\cite{KAOS}. KAOS is a Goal-oriented requirement engineering \cite{GOAL} tool that emphasizes goals in requirement acquisition. The team built the KAOS models to guarantee thorough traceability across all requirements, which includes describing the problems, identifying top level goals to address problems and stating the constraint for solutions, etc. Moreover, using the KAOS models, the team could easily remove or add requirements as we encounter new information and changes. \cite{KAOS} provides universally applicable generic patterns for reference too, and we specified our initial goals by adopting these patterns, with selected models presented below.
 
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth,keepaspectratio]{./figure/GoalsNFR1.png}
-\caption{Goal: “Decomposition requests satisfied in a secure, usable, efficient, compatible, and reliable way”.}
+\caption{Top level goal model of AI4Agile}
 \label{goal1}
 \end{figure}
 
-We identify three primary processes to handle the requirements items defined above: 1) Epic Decomposition, 2) Story Optimization, and 3) Task Generation. Fig. \ref{goal1} defines the top-level goal for the entire system, with subgoals that enumerate all the cases that must be covered to fulfill our main goal. The subgoals each encompasses a portion of the functional and nonfunctional requirements (FRs and NFRs) of the system. As shown in Fig. \ref{goal1}, the goals that our system should achieve are:
+We identify three primary processes to handle the requirements items defined above: 1) Epic Decomposition, 2) Story Optimization, and 3) Task Generation. Fig. \ref{goal1} defines the top-level goal for the entire system, with subgoals that enumerate all cases that must be covered to fulfill our main goal. The subgoals each encompasses a portion of the functional and nonfunctional requirements (FRs and NFRs) of the system. As shown in Fig. \ref{goal1}, the goals that our system should achieve are:
 
 \begin{itemize}
 	\item Decomposition and visualization request satisfied
@@ -28,9 +28,8 @@ We identify three primary processes to handle the requirements items defined abo
 	\item Compatible decomposition system
 \end{itemize}
 
-The goals for “Safe System”, “Usable System”, “Efficient System”, and “Compatible System” covered the NFR portion of the system. By using respective generic patterns from \cite{KAOS}, we generated the nonfunctional requirements for our system as shown in Table \ref{nfrs}.
+The goals for “Safe”, “Usable”, “Efficient”, and “Compatible System” covered the NFR portion of the system. By using respective generic patterns from \cite{KAOS}, we generated the nonfunctional requirements for our system as shown in Table \ref{nfrs}.
 
-%\begin{center}
 \begin{table}
 \centering
 \caption{Non-functional requirements}
@@ -67,16 +66,15 @@ NFR13 & Available on Atlassian Partner Marketplace \\
 \hline
 \end{tabular}
 \end{table}
-%\end{center}
 
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth,keepaspectratio]{./figure/GoalsNFR2.png}
-\caption{Goal: “Decomposition request and visualization satisfied”.}
+\caption{Functional goal decomposition continued from Fig. \ref{goal1}}
 \label{frgs}
 \end{figure}
 
-Next, we broke down the “decomposition request and visualizations satisfied” goal into subgoals, which correlated to the main FRs. Fig. \ref{frgs} shows the first level of functional subgoals, also listed below: 
+Next, we broke down the “decomposition request and visualizations satisfied” goal into subgoals, which correlated to the main FRs. Fig. \ref{frgs} shows the first level of functional subgoals, listed below: 
 
 \begin{itemize}
 	\item User stories are generated correctly from epic
@@ -85,12 +83,12 @@ Next, we broke down the “decomposition request and visualizations satisfied”
 	\item Visualization of the relationships are generated correctly
 \end{itemize}
 
-Each subgoal in Fig. \ref{frgs} has its own KAOS goal model to be further refined. Due to space constraint, we include one example in Fig. \ref{fr1} to demonstrate the refinement from subgoal ``User stories are generated correctly from epic'' to the specification, as well as responsible agent for fulfillment.  From these models, we concluded the functional requirements as in Table \ref{frt}.
+Each subgoal in Fig. \ref{frgs} has its own KAOS goal models that were further refined. Due to space constraint, we include one example in Fig. \ref{fr1} to demonstrate the refinement of subgoal ``User stories are generated correctly from epic'' to the specification, as well as responsible agents for fulfillment.  From these models, we obtained the functional requirements as shown in Table \ref{frt}.
 
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{./figure/GoalsFR1.png}
-\caption{Goal: “User stories are generated correctly from epic”.}
+\caption{Further refinement of one subgoal in Fig. \ref{frgs}}
 \label{fr1}
 \end{figure}
 
@@ -128,10 +126,8 @@ FR11 & The graph should render as the object is selected \\
 \end{table}
 
 \subsection{Requirements Summary}
-The NFRs and FRs listed in Tables \ref{nfrs} and \ref{frt} are the scope of our implementation, each with their own specifications developed as well. To summarize the system's three major functional processes, we conclude that: 1) Epic decomposition consists of taking a semi-structured epic, entered by the user, and clustering requirements together into user stories based upon subject; 2) Story optimization further breaks down potentially large stories into smaller stories. Certain stories may not be subjected to change due to their initial small size; 3) Task generation is done by performing part of speech analysis on the user stories. 
+The NFRs and FRs in Tables \ref{nfrs} and \ref{frt} became the initial scope for our implementation, each with their own specifications developed as well. To summarize the system's three major functional processes, we concluded that: 1) Epic decomposition means that, given a semi-structured, manually entered epic, the app would refine it into user stories in the form of subject-based clusters; 2) Story optimization further breaks down large stories into smaller stories; 3) Task generation is done by performing part-of-speech analysis on the user stories. 
 
-Furthermore, to achieve the NFRs such as integrity, for each process, the results are offered as suggestions to the user, allowing them to pick and choose which user stories and tasks to add to their Jira board. The user can further adjust settings to fine tune the granularity of generated results. i.e. number of tasks to be generated. Finally, epics, user stories, and tasks may be displayed in an interactive tree/cluster graph that shows the explicit and implicit relationships among them.
+Furthermore, to satisfy the NFRs such as integrity, for each process, the app would offer suggestion results to the user, allowing them to pick and choose which user stories and tasks to add to their Jira board. The user can further adjust settings to fine tune the granularity of generated results, i.e. number of tasks to be generated. Finally, epics, user stories, and tasks can be displayed in an interactive tree/cluster graph that shows the explicit and implicit relationships among them.
 
-Overall, we consider the project's main motivation is to reduce the time needed on manual requirement engineering. While AI can play several different roles to achieve this goal, the team determined that the artificial intelligence component’s purpose would be centered on processing text into increasingly refined portions to support an efficient RE process. Such an approach would increase the consistency of the outcome of the process, as the central process reduces the impact of human variables. At the meantime, we recognized that knowledge from an experienced project manager is still valuable, thus we make sure that the tool would not alter or discard the original input, avoiding unintended consequences. 
-
-Finally, the team combined the formatted requirement with direct feedback from our mentor and developed the user stories that we later used for demo and verification purposes, as presented in Section \ref{demo}.
+We consider the project's main motivation is to reduce the time needed on manual Requirement Engineering (RE). While AI could play several different roles to achieve this goal, our app utilized the artificial intelligence component for text processing, generating increasingly refined results to support an efficient RE process. This approach could also increase the consistency of the RE outcomes, as the central process reduces the impact of human variables. At the meantime, we recognized that knowledge from an experienced project manager is still crucial, thus we make sure that the tool would not alter or discard any original input, preventing unintended consequences. Last but not least, the team combined the formatted requirement with direct feedback from our mentor and developed the user stories that we later used for demo and verification purposes, as presented in Section \ref{demo}.

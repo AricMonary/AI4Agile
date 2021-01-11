@@ -3,11 +3,11 @@
 
 \subsection{AI Selection Criteria}
 \label{subsection:criteria}
-Performing an epic breakdown involves a combination of clustering related requirements, specifications, and details along with the further breakdown of complex info into smaller stories and tasks. Clustering can be performed in either supervised or unsupervised learning. Supervised learning requires the existence of a data set that has been correctly labeled. Although the team might be able to generate a general data set of decomposed epics, we concluded that a typical epic might have too many subjects, and we would not be able to produce any accurately labeled model for training purposes. 
+Performing an epic breakdown involves the task of 1) clustering related requirements, specifications, and 2) breaking complex information into smaller stories and tasks. Clustering can be performed with either supervised or unsupervised learning. Supervised learning requires the existence of a data set that has been correctly labeled. Although the team might be able to generate a general data set of decomposed epics, we concluded that a typical epic might have too many subjects, and we would not produce accurately labeled model for training purposes. 
 
 Additionally, for the stated purpose of increasing consistencies, we assumed that the decomposition process would not rely upon historical project information, such as previously completed epics or sprints. As a result, unsupervised clustering techniques were chosen as it could be equally applicable to new and old projects alike.
 
-The last criteria for the text processing approaches was that we would not attempt to generate ``new'' information based on given input. This was due to the previously discussed lack of data, specific to the project domain, that could be used to potentially generate stories and tasks. Table \ref{table:ai} summarizes the decisions we made regarding the selection of AI techniques.
+The final consideration for choosing the text processing approach was that we would not attempt to generate ``new'' information based on given input. This was due to  lack of data, specific to the project domain, that could be used to potentially generate stories and tasks. Table \ref{table:ai} summarizes the rational behind our decisions regarding the selection of AI techniques.
 
 \begin{table}[!h]
 	\caption{AI design choices}
@@ -47,12 +47,12 @@ The last criteria for the text processing approaches was that we would not attem
 \end{table}
 
 \subsection{Epic Decomposition}
-Through manual decompositions of epics into stories it was identified that the process fundamentally involved the categorization of requirements and specifications. As such, text clustering techniques were based upon the vectorization of the contents of epics. Each requirement, assumed to be in the form of a complete sentence or distinguishable section, is vectorized and normalized to perform comparisons.
+Through manual decompositions of epics into stories, we discovered that the process was fundamentally about categorizing requirements and specifications. Each requirement, assumed to be in the form of a complete sentence or distinguishable section, is vectorized and normalized to perform comparisons. Then, text clustering may be performed based upon such vectors. 
 
-Based on a series of tests on a simpler text clustering problem, K-means, a non-deterministic centroid-based clustering technique, yielded the best results when it came to creating consistent clusters of requirements. The downside to K-means is that it requires the number of clusters to be identified, forcing there to be user input or an estimation to be made. Since it was a goal to have the process be applicable to a large range of epics, in terms of subject and size, dynamic clustering techniques, such as DBSCAN, OPTICS, and Mean shift, were explored as they do not require the number of clusters to be specified. DBSCAN/OPTICS are density-based and Mean shift is a centroid-based clustering technique. Ultimately, it was decided to go with Mean shift since the implementation of the technique included an estimation of the cluster sizes, thus requiring no external input.
+Based on a series of tests on a simpler text clustering problem, K-means, a non-deterministic centroid-based clustering technique, yielded the best results when it came to creating consistent clusters of requirements. The downside to K-means is that it requires the number of clusters to be identified, forcing there to be user input or an estimation to be made. Since we want the process to be useful for epics with many subjects and large in size, we looked into dynamic clustering techniques as well, such as DBSCAN, OPTICS, and Mean shift. Such techniques do not require the number of clusters to be specified. DBSCAN/OPTICS are density-based and Mean shift is a centroid-based clustering technique. Ultimately, we went with Mean shift since the implementation included an estimation of cluster sizes, thus requiring no external input.
 
 \subsection{Story Optimization}
-Story optimization further refines stories that are identified as containing more than one story or software feature. For story optimization, sentence similarity is high priority. 
+Story optimization further refines stories that might contain more than one story or software feature. For story optimization, sentence similarity is high priority. 
 
 Google's pre-trained Word2Vec model\cite{googleword2vec} is used to extract the features out of sentences. A sentence embedding technique called SIF embeddings (Smooth Inverse Frequency) is used to compute sentence embeddings as a weighted average of word vectors. Using the features, a comparison is made by calculating the cosine similarity between sentences. 
 
@@ -60,9 +60,9 @@ The result is the similarity coefficient between sentences and it could be used 
 
 \subsection{Task Generation}
 
-Task generation was identified as the process of breaking down a requirement into its simplest form. Based on the criterion laid out in Section \ref{subsection:criteria}, simplification on the existing input of requirements can be completed by deconstructing complex sentences into simple sentences. 
+Task generation is the process of breaking down a requirement into its simplest form. Based on the criterion laid out in Section \ref{subsection:criteria}, simplifying existing input of requirements can be completed by deconstructing complex sentences into simple sentences. 
 
-The first process to break down sentences was to use part of speech tagging to remove any unnecessary words from the sentence; this was done by identifying stop words, since simple sentences contain only one subject and predicate. Therefore, using the word dependency, which words are connected to the subject can be determined. By ensuring the sentence contains one subject and verb, it is possible to create a complete simple sentence. Every time a new subject is found, a new sentence can be created. Each simple sentence generated from the stories can then be suggested as a task.
+The first step to break down sentences was to use part-of-speech tagging to remove unnecessary stop words from the sentence so that each simple sentence contains only one subject and predicate. By ensuring so, it is possible to create a complete simple sentence. Every time a new subject is found, a new sentence is created. Each simple sentence generated from the stories is then be suggested as a task.
 
 \subsection{Process Flow}
 
@@ -73,10 +73,10 @@ The first process to break down sentences was to use part of speech tagging to r
 \label{fig:ExampleDataFlowDiagram}
 \end{figure}\
 
-There is an overall linear flow, as seen in Fig. \ref{fig:ExampleDataFlowDiagram} to AI4Agile’s main processing: Epic Decomposition, Story Optimization, and then Task Generation. Additionally, the relationship graph may be generated at any point and is independent of the previously mentioned flow. It is possible that the starting point in the flow may vary between uses. For example, a user may have manually entered in all their overarching user stories for their epic, forgoing the use of the Epic Decomposition process. From these entered stories, either story optimization or task generation may be performed.
+Fig. \ref{fig:ExampleDataFlowDiagram} models the overall flow of AI4Agile’s main processing. A relationship graph may be generated at any point and is independent of the processes in Fig. \ref{fig:ExampleDataFlowDiagram}.  The starting point in the flow may also vary between uses. For example, a user may have manually entered all their overarching user stories for their epic, skipping the Epic Decomposition process entirely, and go directly to perform either story optimization or task generation.
 
 \subsection{Relationship Visualization}
-The purpose of the relationship graph is to give users a visual representation of the dependencies between a selected issue in Jira and the issues that are related to it. Currently in Jira, hierarchies are shown minimally in such ways as dropdown lists from epics or lists within an issue selection pane of either children or explicitly specified blocking/cloning/similarity relationships. This graph provides a way to view those relationships in one place at a glance, for ease of visual understanding.
+The purpose of the relationship graph is to give users a visual representation of the dependencies between a selected issue in Jira and the relevant issues. This graph provides a way to view those relationships in one place at a glance, for ease of understanding.
 
 \subsection{User Interface and Experience}
 For the user interface and experience, a combination of prototyping and stakeholder meetings went into the decisions displayed in Table \ref{tab:UIUXDesignChoices}. The highest priority was to make the interface as intuitive and easy to use as possible, to fall in line with the larger project goal of saving users time throughout the agile development process.
