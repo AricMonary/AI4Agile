@@ -33,15 +33,15 @@ Frank is a software requirements analyst, and he wants to speed up the process o
 \caption{User Story Suggestions Views}
 \end{figure}
 
-Now, Frank looks at the suggestions the AI came up with (Fig. \ref{fig:Scenario1Figure2}). If he decides he doesn’t like any of these suggestions, he can click the Ignore All button to go back to his Spreadsheet Application epic. If Frank wants more or fewer stories, he can adjust the value on the slider and it will refresh the results. To edit a story, he can click on its text box, then save or cancel those edits. To ignore a story suggestion entirely, he can leave its box unchecked. Once Frank is happy with his resulting user story or the set of stories he wants, he clicks Create Selected. 
+Now, Frank looks at the suggestions the AI came up with (Fig. \ref{fig:Scenario1Figure2}). If he decides he does not like any of these suggestions, he can click the Ignore All button to go back to his Spreadsheet Application epic. If Frank wants more or fewer stories, he can adjust the value on the slider and it will refresh the results. To edit a story, he can click on its text box, then save or cancel those edits. To ignore a story suggestion entirely, he can leave its box unchecked. Once Frank is happy with his resulting user story or the set of stories he wants, he clicks Create Selected. 
 
 After refreshing the webpage, the newly created user stories that Frank approved are visible under the heading of the Spreadsheet Application epic.
 
 If Frank wants to continue the process of breaking up epics, he can go into one of the user stories and click Optimize User Story (Fig. \ref{fig:Scenario1Figure3}). Depending on the size of the user story already, it might be broken down into multiple smaller stories, or left alone if it’s already optimized.
 
-Once the Story Optimization Suggestions are generated, Frank has the same options as with the previous stories: to select or deselect stories via the checkboxes, make edits, or ignore all suggestions. In addition to those options, Frank can choose to adjust the connectivity slider to change how closely related items need to be in order to stay with the same story.  
+Once the Story Optimization Suggestions are generated, Frank has the same options as with the previous stories: to select or deselect stories via the checkboxes, make edits, or ignore all suggestions. In addition to those options, Frank can choose to adjust the connectivity slider to change how closely related items need to be to stay with the same story.  
 
-Now there are five user stories, since Story 4 was optimized into two separate stories. To continue the decomposition process, Frank opens a story and clicks Generate Tasks (Fig. \ref{fig:Scenario1Figure2}).
+Now there are five user stories since the fourth Story was optimized into two separate stories. To continue the decomposition process, Frank opens a story and clicks Generate Tasks (Fig. \ref{fig:Scenario1Figure2}).
 
 \begin{figure}
 \begin{subfigure}{.5\textwidth}
@@ -68,7 +68,7 @@ As before, the options include selecting or deselecting individual suggestions, 
 \label{fig:Scenario1Figure5}
 \end{figure}
 
-The tasks have now been created, and linked to their parent story to indicate a blocking relationship. All Frank had to do was make some decisions and maybe edits, and now he’s got one story fully decomposed (Fig. \ref{fig:Scenario1Figure5}).
+The tasks have now been created and linked to their parent story to indicate a blocking relationship. All Frank had to do was make some decisions and maybe edits, and now he’s got one story fully decomposed (Fig. \ref{fig:Scenario1Figure5}).
 
 \subsubsection{Relationship Visualization Use Case}
 \label{Scenario2}
@@ -86,7 +86,7 @@ For an alternate view of the relationships, Madison can use the Click to view De
 
 \subsection{Testing}
 
-The application is primarily composed of individual web panels integrated into Jira’s existing UI. As a result, each web panel was able to be created, tested, and reviewed independently from Jira Cloud. The isolation was used to conduct input and output testing but the modules were generally tested within the context of Jira to ensure that the user experience is seamless between our integrated app and the existing Jira Cloud platform.
+The application is primarily composed of individual web panels integrated into Jira’s existing UI. As a result, each web panel was able to be created, tested, and reviewed independently from Jira Cloud. The isolation was used to conduct input and output testing, but the modules were generally tested within the context of Jira to ensure that the user experience is seamless between our integrated app and the existing Jira Cloud platform.
 
 The rest of functional testing was performed on component and integration levels. Component testing was separated into two categories: text processing and relationship visualization.
 

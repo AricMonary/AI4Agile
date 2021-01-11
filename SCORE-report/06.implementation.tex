@@ -14,7 +14,7 @@ Each of the processes use the same suggestion panel, with variations depending o
 \begin{figure}
 \centering
 \includegraphics[width=.5\textwidth,keepaspectratio]{./figure/Frontend.png}
-\caption{Issue Panel within Jira while the Task Generation process shown after suggestions are recieved}
+\caption{Issue Panel within Jira while the Task Generation process shown after suggestions are received}
 \label{fig:issueView}
 \end{figure}
 
@@ -22,10 +22,10 @@ Each of the processes use the same suggestion panel, with variations depending o
 
 The backend served two primary functionalities: generating suggested issues and populating selected suggestions into Jira. Each process has its corresponding suggestion generator and selected suggestion creator since the specifics of each type of issue varies. Jira handles all issue types (i.e. epics, stories, and tasks) the same, each having the same set of shared fields with the addition of custom fields depending on the type of issue.
 
-All three processes were implemented using Python due to the available libraries and as a result the primary interface was also implemented using Python. The interface uses Flask \cite{flask}, a Python web framework, to receive the messages sent by AJAX in the frontend. The information needed from the issues are gathered by querying the Atlassian Rest API \cite{jira5} through an open-source Python library, “atlassian-Python-api” \cite{jiraPython}, which simplifies Atlassian API calls. When generating suggestions, the description is queried for and passed as a list of individual requirements to the text processor. Suggestions are then passed back through a reply to the original message. Once a user selects, and possibly edits, which issues they would like to have populated in their Jira board, then the original issue is queried again to percolate existing fields, such as assignee, reporter, due date, tags, or sprints, to the newly created child issues. Each newly created issue is given a blocking relationship to the issue they were derived from. For example, all of the created stories from an Epic Decomposition will “block” the epic from being completed. Any further tasks created from Task Generation on a story will “block” the story from completion.
+All three processes were implemented using Python due to the available libraries and as a result the primary interface was also implemented using Python. The interface uses Flask \cite{flask}, a Python web framework, to receive the messages sent by AJAX in the frontend. The information needed from the issues are gathered by querying the Atlassian Rest API \cite{jira5} through an open-source Python library, “atlassian-Python-api” \cite{jiraPython}, which simplifies Atlassian API calls. When generating suggestions, the description is queried for and passed as a list of individual requirements to the text processor. Suggestions are then passed back through a reply to the original message. Once a user selects, and possibly edits, which issues they would like to have populated in their Jira board, then the original issue is queried again to percolate existing fields, such as assignee, reporter, due date, tags, or sprints, to the newly created child issues. Each newly created issue is given a blocking relationship to the issue they were derived from. For example, all the created stories from an Epic Decomposition will “block” the epic from being completed. Any further tasks created from Task Generation on a story will “block” the story from completion.
 
 \subsubsection{Epic Decomposition}
-The Epic Decomposition process was implemented using k-means clustering over a dynamic clustering technique, such as DBSCAN or Mean shift. Dynamic clustering techniques were unable to be implemented in a manner that yielded consistent meaningful clusters across many epic inputs. This was a result of an inability to filter noise such that the clusters were neither completely disjoint or entirely overlapping. Thus, K-means, a centroid-based clustering algorithm, was used at the cost of selecting a default number of stories to generate. The default number of stories generated is five but the user can select between 2 and 10 stories using a newly added slider in the UI for the Epic Decomposition process.
+The Epic Decomposition process was implemented using k-means clustering over a dynamic clustering technique, such as DBSCAN or Mean shift. Dynamic clustering techniques were unable to be implemented in a manner that yielded consistent meaningful clusters across many epic inputs. This was a result of an inability to filter noise such that the clusters were neither completely disjoint nor entirely overlapping. Thus, K-means, a centroid-based clustering algorithm, was used at the cost of selecting a default number of stories to generate. The default number of stories generated is five, but the user can select between two and ten stories using a newly added slider in the UI for the Epic Decomposition process.
 
 \subsubsection{Story Optimization}
 For Story Optimization, the process maintained the initial implementation without any significant changes to the algorithm. The algorithm utilizes a pre-trained Word2Vec model, along with SIF and cosine similarity functions from the scikit-learn python library. Initially, the degree of connectivity between sentences was specified by choosing the optimal threshold level. However, it was changed so that the user can choose to increase or decrease the degree of connectivity between sentences offering more flexibility in the generated results.
@@ -38,7 +38,7 @@ The approach for Task Generation was based off a decomposition approach by Das, 
 \subsection{Communication}
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth,keepaspectratio]{./figure/SequenceFlowDiagram.png}
+\includegraphics[width=0.75\textwidth,keepaspectratio]{./figure/SequenceFlowDiagram.png}
 \caption{Suggestion web panel sequence diagram representing the flow of messages between the frontend Jira web page and AI4Agile backend}
 \end{figure}
 
