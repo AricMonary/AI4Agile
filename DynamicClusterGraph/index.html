@@ -1,0 +1,97 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <title>Cluster Graph</title>
+    <script src="js/cytoscape.min.js"></script>
+    <script type="text/javascript" src="datasets/custom.json"></script>
+</head>
+
+<style>
+    #cy {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
+</style>
+
+<body>
+    <div id="cy"></div>
+    <script>
+        var cy = cytoscape({
+            container: document.getElementById('cy'),
+            // User AJAX to get the JSON file to element
+            elements: [{"data": {"id": "1", "idInt": 1, "name": "PB", "query": true, "score": 0}, "classes": "assignee", "group": "nodes", "removed": false, "selected": false, "selectable": true, "locked": false, "grabbable": true}, {"data": {"id": "2", "idInt": 2, "name": "N", "query": true, "score": 0}, "classes": "assignee", "group": "nodes", "removed": false, "selected": false, "selectable": true, "locked": false, "grabbable": true}, {"data": {"id": "3", "idInt": 3, "name": "EC", "query": true, "score": 0}, "classes": "assignee", "group": "nodes", "removed": false, "selected": false, "selectable": true, "locked": false, "grabbable": true}, {"data": {"id": "4", "idInt": 4, "name": "AI4-100", "query": true, "score": 0.125}, "classes": ["issue", "Task"], "group": "nodes", "removed": false, "selected": false, "selectable": true, "locked": false, "grabbable": true}, {"data": {"id": "5", "idInt": 5, "name": "AI4-99", "query": true, "score": 0.125}, "classes": ["issue", "Task"], "group": "nodes", "removed": false, "selected": false, "selectable": true, "locked": false, "grabbable": true}, {"data": {"id": "6", "idInt": 6, "name": "AI4-98", "query": true, "score": 0.125}, "classes": ["issue", "Task"], "group": "nodes", "removed": false, "selected": false, "selectable": true, "locked": false, "grabbable": true}, {"data": {"id": "7", "idInt": 7, "name": "AI4-97", "query": true, "score": 0.125}, "classes": ["issue", "Story"], "group": "nodes", "removed": false, "selected": false, "selectable": true, "locked": false, "grabbable": true}, {"data": {"id": "8", "idInt": 8, "name": "AI4-92", "query": true, "score": 0.125}, "classes": ["issue", "Story"], "group": "nodes", "removed": false, "selected": false, "selectable": true, "locked": false, "grabbable": true}, {"data": {"id": "9", "idInt": 9, "name": "AI4-91", "query": true, "score": 0.125}, "classes": ["issue", "Story"], "group": "nodes", "removed": false, "selected": false, "selectable": true, "locked": false, "grabbable": true}, {"data": {"id": "10", "idInt": 10, "name": "AI4-90", "query": true, "score": 0.125}, "classes": ["issue", "Story"], "group": "nodes", "removed": false, "selected": false, "selectable": true, "locked": false, "grabbable": true}, {"data": {"id": "11", "idInt": 11, "name": "AI4-89", "query": true, "score": 0.125}, "classes": ["issue", "Story"], "group": "nodes", "removed": false, "selected": false, "selectable": true, "locked": false, "grabbable": true}, {"data": {"source": 1, "target": 4, "directed": true, "intn": true, "rIntnId": 1, "id": "e1"}, "position": {}, "group": "edges", "removed": false, "selected": false, "selectable": true, "locked": false, "grabbable": true, "directed": true}, {"data": {"source": 3, "target": 5, "directed": true, "intn": true, "rIntnId": 2, "id": "e2"}, "position": {}, "group": "edges", "removed": false, "selected": false, "selectable": true, "locked": false, "grabbable": true, "directed": true}, {"data": {"source": 1, "target": 6, "directed": true, "intn": true, "rIntnId": 3, "id": "e3"}, "position": {}, "group": "edges", "removed": false, "selected": false, "selectable": true, "locked": false, "grabbable": true, "directed": true}, {"data": {"source": 3, "target": 7, "directed": true, "intn": true, "rIntnId": 4, "id": "e4"}, "position": {}, "group": "edges", "removed": false, "selected": false, "selectable": true, "locked": false, "grabbable": true, "directed": true}, {"data": {"source": 2, "target": 8, "directed": true, "intn": true, "rIntnId": 5, "id": "e5"}, "position": {}, "group": "edges", "removed": false, "selected": false, "selectable": true, "locked": false, "grabbable": true, "directed": true}, {"data": {"source": 2, "target": 9, "directed": true, "intn": true, "rIntnId": 6, "id": "e6"}, "position": {}, "group": "edges", "removed": false, "selected": false, "selectable": true, "locked": false, "grabbable": true, "directed": true}, {"data": {"source": 2, "target": 10, "directed": true, "intn": true, "rIntnId": 7, "id": "e7"}, "position": {}, "group": "edges", "removed": false, "selected": false, "selectable": true, "locked": false, "grabbable": true, "directed": true}, {"data": {"source": 2, "target": 11, "directed": true, "intn": true, "rIntnId": 8, "id": "e8"}, "position": {}, "group": "edges", "removed": false, "selected": false, "selectable": true, "locked": false, "grabbable": true, "directed": true}],
+            layout: {
+                name: "cose",
+                animate: true,
+                idealEdgeLength: 50
+            },
+            style: [
+                {
+                    selector: "node",
+                    style: {
+                        "label": "data(name)",
+                        "font-size" : 12,
+                        "font-weight" : "normal",
+                        "border-color" : "rgb(255,255,255)",
+                        "text-halign": "center",
+                        "text-valign": "center"
+                    }
+                },
+                {
+                    selector: ".Story",
+                    style: {
+                        "background-color" : "rgb(91,196,29)",
+                        "color" : "rgb(0,0,0)",
+                        "shape": "round-rectangle",
+                        "label": "data(name)",
+                        "font-size" : 14,
+                        "width": "100px"
+                    }
+                },
+                {
+                    selector: ".Task",
+                    style: {
+                        "background-color" : "rgb(43,156,204)",
+                        "color" : "rgb(0,0,0)",
+                        "shape": "round-rectangle",
+                        "label": "data(name)",
+                        "font-size" : 14,
+                        "width": "100px"
+                    }
+                },
+                {
+                    selector: ".assignee",
+                    style: {
+                        "background-color": "black",
+                        "font-size" : 16,
+                        "color" : "rgb(255,255,255)",
+                        "shape": "ellipse",
+                        "label": "data(name)",
+                        "width": "70px",
+                        "height": "70px"
+                    }
+                },
+                {
+                    selector: "edge",
+                    style: {
+                        "width": 3,
+                        "line-color" : "rgb(102,102,102)",
+                        "source-arrow-shape" : "none",
+                        "target-arrow-shape" : "triangle",
+                        "target-arrow-color" : "rgb(102,102,102)",
+                        'curve-style': 'bezier',
+                        "arrow-scale": 1
+                    }
+                }
+            ],
+            zoomingEnabled: true
+    });
+
+    </script>
+</body>
+</html>

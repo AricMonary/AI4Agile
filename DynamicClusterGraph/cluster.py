@@ -5,6 +5,19 @@ from jira import JIRA
 my_parent = 'AI4-88'
 
 
+# Return the parent of the target issue
+def get_epic(target_issue):
+    # Authenticate JIRA
+    auth_jira = JIRA(server='https://playingabout.atlassian.net/',
+                     basic_auth=('phong.bach@wsu.edu', 'OOCqwKugtQBVE6sdFied7862'))
+
+    # Get the issue
+    current_issue = auth_jira.search_issues('issue = "' + target_issue + '"')
+
+    return current_issue[0].fields.parent.key
+
+
+# Generate JSON file network
 def generate_dataset(target_parent):
     # Authenticate JIRA
     auth_jira = JIRA(server='https://playingabout.atlassian.net/',
@@ -15,6 +28,7 @@ def generate_dataset(target_parent):
 
     # List of all child issues
     print(current_issues)
+    print(len(current_issues))
 
     # Find the assignee for the issue
     # Map assignee to the issue
@@ -27,13 +41,16 @@ def generate_dataset(target_parent):
     for issue in current_issues:
         key = issue
         assignee = str(issue.fields.assignee)
-        issue_key = issue.key
+
+        words = assignee.split(" ")
+        letters = [word[0] for word in words]
+        assignee_initial = "".join(letters)
 
         # Add assignee to the list
-        assignee_set.add(assignee)
+        assignee_set.add(assignee_initial)
 
         # Add assignee and issue tuple to the list
-        assignee_and_issue_list.append((assignee, key))
+        assignee_and_issue_list.append((assignee_initial, key))
 
     # Generate the nodes
     nodes = []  # the final subset of nodes
@@ -47,9 +64,9 @@ def generate_dataset(target_parent):
                 "id": str(i + 1),  # the string representation of the unique node ID
                 "idInt": i + 1,  # the numeric representation of the unique node ID
                 "name": item,
-                "query": True,
-                "classes": None  # the keyword 'classes' is used to group the nodes in classes
+                "query": True
             },
+            "classes": "assignee",  # the keyword 'classes' is used to group the nodes in classes
             "group": "nodes",  # it belongs in the group of nodes
             "removed": False,
             "selected": False,  # the node is not selected
@@ -67,9 +84,9 @@ def generate_dataset(target_parent):
                 "id": str(i + 1),  # the string representation of the unique node ID
                 "idInt": i + 1,  # the numeric representation of the unique node ID
                 "name": item.key,
-                "query": True,
-                "classes": None  # the keyword 'classes' is used to group the nodes in classes
+                "query": True
             },
+            "classes": ["issue", item.fields.issuetype.name],  # the keyword 'classes' is used to group the nodes in classes
             "group": "nodes",  # it belongs in the group of nodes
             "removed": False,
             "selected": False,  # the node is not selected
@@ -112,6 +129,7 @@ def generate_dataset(target_parent):
             "directed": True  # the edge is directed
         }
         edges.append(edge)
+        i = i + 1
 
     print(edges)
 
@@ -139,9 +157,3 @@ def generate_dataset(target_parent):
 
 # Main
 generate_dataset(my_parent)
-
-# from py2cytoscape.data.cyrest_client import CyRestClient
-# cy = CyRestClient()
-#
-# network = cy.network.import_file('/dataset/custom.json')
-# print(network.get_id())
