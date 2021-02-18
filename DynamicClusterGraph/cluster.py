@@ -23,12 +23,16 @@ def generate_dataset(target_parent):
     auth_jira = JIRA(server='https://playingabout.atlassian.net/',
                      basic_auth=('phong.bach@wsu.edu', 'OOCqwKugtQBVE6sdFied7862'))
 
-    # Get all the child issues
-    current_issues = auth_jira.search_issues('parent = "' + target_parent + '"')
+    # Get all issues
+    # current_issues = auth_jira.search_issues('parent = "' + target_parent + '"')
 
-    # List of all child issues
-    print(current_issues)
-    print(len(current_issues))
+    current_epic = auth_jira.search_issues('project = AI4 AND issuetype = epic')
+    current_story = auth_jira.search_issues('project = AI4 AND issuetype = story')
+    current_task = auth_jira.search_issues('project = AI4 AND issuetype = task')
+    current_issues = []
+    current_issues.extend(current_epic)
+    current_issues.extend(current_story)
+    current_issues.extend(current_task)
 
     # Find the assignee for the issue
     # Map assignee to the issue
