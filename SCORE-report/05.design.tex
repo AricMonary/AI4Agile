@@ -5,9 +5,9 @@
 \label{subsection:criteria}
 Performing an epic breakdown involves the task of 1) clustering related requirements, specifications, and 2) breaking complex information into smaller stories and tasks. Clustering can be performed with either supervised or unsupervised learning. Supervised learning requires the existence of a data set that has been correctly labeled. Although the team might be able to generate a general data set of decomposed epics, we concluded that a typical epic might have too many subjects, and we would not produce accurately labeled model for training purposes. 
 
-Additionally, for the stated purpose of increasing consistencies, we assumed that the decomposition process would not rely upon historical project information, such as previously completed epics or sprints. As a result, unsupervised clustering techniques were chosen as it could be equally applicable to new and old projects alike.
+Additionally, for the stated purpose of increasing consistencies, we assumed that the decomposition process would not rely upon historical project information, such as previously completed epics or sprints. As a result, the team chose unsupervised clustering techniques, as that could be equally applicable to old and new projects alike.
 
-The final consideration for choosing the text processing approach was that we would not attempt to generate ``new'' information based on given input. This was due to  lack of data, specific to the project domain, that could be used to potentially generate stories and tasks. Table \ref{table:ai} summarizes the rational behind our decisions regarding the selection of AI techniques.
+The final consideration for choosing the text processing approach was that we would not attempt to generate ``new'' information based on given input. This was due to  lack of data, specific to the project domain, that could be used to potentially generate stories and tasks. Table \ref{table:ai} summarizes the rationale behind our decisions regarding the selection of AI techniques.
 
 \begin{table}[!h]
 	\caption{AI design choices}
@@ -52,15 +52,11 @@ Through manual decompositions of epics into stories, we discovered that the proc
 Based on a series of tests on a simpler text clustering problem, K-means, a non-deterministic centroid-based clustering technique, yielded the best results when it came to creating consistent clusters of requirements. The downside to K-means is that it requires the number of clusters to be identified, forcing there to be user input or an estimation to be made. Since we want the process to be useful for epics with many subjects and large in size, we looked into dynamic clustering techniques as well, such as DBSCAN, OPTICS, and Mean shift. Such techniques do not require the number of clusters to be specified. DBSCAN/OPTICS are density-based and Mean shift is a centroid-based clustering technique. Ultimately, we went with Mean shift since the implementation included an estimation of cluster sizes, thus requiring no external input.
 
 \subsection{Story Optimization}
-Story optimization further refines stories that might contain more than one story or software feature. For story optimization, sentence similarity is high priority. 
-
-Google's pre-trained Word2Vec model\cite{googleword2vec} is used to extract the features out of sentences. A sentence embedding technique called SIF embeddings (Smooth Inverse Frequency) is used to compute sentence embeddings as a weighted average of word vectors. Using the features, a comparison is made by calculating the cosine similarity between sentences. 
-
-The result is the similarity coefficient between sentences and it could be used to group sentences together based on their degree of similarity. A function decision is used to correctly group sentences from the similarity coefficient using a specified threshold level. 
+Story optimization further refines stories that might contain more than one story or software feature. For story optimization, sentence similarity is high priority. Google's pre-trained Word2Vec model\cite{googleword2vec} is used to extract the features out of sentences. A sentence embedding technique called SIF embeddings (Smooth Inverse Frequency) is used to compute sentence embeddings as a weighted average of word vectors. Using the features, a comparison is made by calculating the cosine similarity between sentences. The result is the similarity coefficient between sentences and it could be used to group sentences together based on their degree of similarity. A function decision is used to correctly group sentences from the similarity coefficient using a specified threshold level. 
 
 \subsection{Task Generation}
 
-Task generation is the process of breaking down a requirement into its simplest form. Based on the criterion laid out in Section \ref{subsection:criteria}, simplifying existing input of requirements can be completed by deconstructing complex sentences into simple sentences. 
+Task generation is the process of breaking down a requirement into its simplest form. Based on the criteria laid out in Section \ref{subsection:criteria}, simplifying existing input of requirements can be completed by deconstructing complex sentences into simple sentences. 
 
 The first step to break down sentences was to use part-of-speech tagging to remove unnecessary stop words from the sentence so that each simple sentence contains only one subject and predicate. By ensuring so, it is possible to create a complete simple sentence. Every time a new subject is found, a new sentence is created. Each simple sentence generated from the stories is then be suggested as a task.
 
