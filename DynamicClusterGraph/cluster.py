@@ -1,6 +1,7 @@
 import json
 
 from jira import JIRA
+from atlassian import Jira
 
 my_parent = 'AI4-88'
 
@@ -20,19 +21,18 @@ def get_epic(target_issue):
 # Generate JSON file network
 def generate_dataset(target_parent):
     # Authenticate JIRA
-    auth_jira = JIRA(server='https://playingabout.atlassian.net/',
-                     basic_auth=('phong.bach@wsu.edu', 'OOCqwKugtQBVE6sdFied7862'))
+    jira_instance = Jira(
+        url="https://playingabout.atlassian.net/",
+        username="phong.bach@wsu.edu",
+        password="OOCqwKugtQBVE6sdFied7862",
+    )
 
     # Get all issues
-    # current_issues = auth_jira.search_issues('parent = "' + target_parent + '"')
 
-    current_epic = auth_jira.search_issues('project = AI4 AND issuetype = epic')
-    current_story = auth_jira.search_issues('project = AI4 AND issuetype = story')
-    current_task = auth_jira.search_issues('project = AI4 AND issuetype = task')
-    current_issues = []
-    current_issues.extend(current_epic)
-    current_issues.extend(current_story)
-    current_issues.extend(current_task)
+    query = 'project = AI4 AND (issuetype = "epic" OR issuetype = "story" OR issuetype = "task")'
+    current_issues = jira_instance.jql(query, limit=1000)
+
+    current_issues = current_issues['issues']
 
     # Find the assignee for the issue
     # Map assignee to the issue
@@ -43,8 +43,12 @@ def generate_dataset(target_parent):
     assignee_and_issue_dict = {}
 
     for issue in current_issues:
-        key = issue
-        assignee = str(issue.fields.assignee)
+        key = issue["key"]
+
+        if issue["fields"]["assignee"] is None:
+            assignee = "None"
+        else:
+            assignee = str(issue["fields"]["assignee"]["displayName"])
 
         words = assignee.split(" ")
         letters = [word[0] for word in words]
@@ -82,15 +86,16 @@ def generate_dataset(target_parent):
         i = i + 1
 
     for item in current_issues:
-        assignee_and_issue_dict[item.key] = i + 1
+        assignee_and_issue_dict[item["key"]] = i + 1
         node = {
             "data": {
                 "id": str(i + 1),  # the string representation of the unique node ID
                 "idInt": i + 1,  # the numeric representation of the unique node ID
-                "name": item.key,
+                "name": item["key"],
                 "query": True
             },
-            "classes": ["issue", item.fields.issuetype.name],  # the keyword 'classes' is used to group the nodes in classes
+            "classes": ["issue", item["fields"]["issuetype"]["name"]],
+            # the keyword 'classes' is used to group the nodes in classes
             "group": "nodes",  # it belongs in the group of nodes
             "removed": False,
             "selected": False,  # the node is not selected
@@ -100,7 +105,6 @@ def generate_dataset(target_parent):
         }
         nodes.append(node)
         i = i + 1
-    print(nodes)
 
     # Get the edges
     # get the source node and the target node
@@ -135,8 +139,6 @@ def generate_dataset(target_parent):
         edges.append(edge)
         i = i + 1
 
-    print(edges)
-
     # Calculate the indegree
     # initial dictionary mapping each node id to its normalized indegree
     NUM_NODES = len(assignee_set) + len(current_issues)
@@ -144,8 +146,6 @@ def generate_dataset(target_parent):
     N = len(edges)
     for e in edges:
         nodes_indegree[int(e["data"]["target"])] += 1.0 / N
-
-    print(max(list(nodes_indegree.values())))
 
     for node in nodes:
         node["data"]["score"] = nodes_indegree[node["data"]["idInt"]]
@@ -155,7 +155,7 @@ def generate_dataset(target_parent):
     data.extend(nodes)
     data.extend(edges)
 
-    with open('datasets/custom.json', 'w') as f:
+    with open('datasets/cluster.json', 'w') as f:
         json.dump(data, f)
 
 
