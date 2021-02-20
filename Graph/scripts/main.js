@@ -1,4 +1,4 @@
-function getIssueFromURLParameters() {
+/* function getIssueFromURLParameters() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
 
@@ -14,7 +14,7 @@ function getIssueFromURLParameters() {
 	var graphToGrab = urlParams.get('issueKey') + graphType;
 	
     return graphToGrab;
-}
+} */
 
 $(function() {
     "use strict";
@@ -28,20 +28,18 @@ $(function() {
     }
 	
     var n = "#cy",
-        network = networks[getIssueFromURLParameters()],
+        network = networks[Object.keys(networks)[0]],
         style = styles[0];
     $(n).cytoscape({
         layout: {
-            name: "preset",
-            padding: 10, //space on edges when graph loads
-            avoidOverlap: true,
-            avoidOverlapPadding: 5,
-            //fit: true, // fits to viewport, in theory
-            //spacingFactor: 1.90
+            name: 'tree',
+            orientation: "topToBottom",
+            depthSpace: 4,
+            breadthSpace: 4,
+            subtreeSpace: 4,
         },
         wheelSensitivity: 0.05,
-        autolock : true, //make nodes not moveable
-        //boxSelectionEnabled: !0,
+        //autolock : true, //make nodes not moveable
         ready: function() {
             window.cy = this, 
                     cy.load(network.elements), console.log(network);

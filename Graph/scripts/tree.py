@@ -1,10 +1,11 @@
 import json
+import os
 
 nodes = []
 edges = []
 
 # Main source: https://isquared.digital/blog/2020-03-24-viz-tools-pt2-2/
-with open('IssueQueryResults.json') as f:
+with open(os.path.join(os.pardir, 'data/IssueQueryResults.json'), 'r') as f:
     issueData = json.load(f) # setup issueData dictionary
 
     # Get project website for hrefs
@@ -18,7 +19,8 @@ with open('IssueQueryResults.json') as f:
             "id": str(1),  # the string representation of the unique node ID
             "idInt": 1,  # the numeric representation of the unique node ID
             "name": issueData.get("key"),  # the name of the node used for printing
-            "href": link + issueData.get("key")
+            "href": link + issueData.get("key"),
+            "type": issueData.get("fields").get("issuetype").get("name") # issue type (Epic/Story/Task)
         },
         "group": "nodes",  # it belongs in the group of nodes
         "removed": False,
@@ -37,7 +39,8 @@ with open('IssueQueryResults.json') as f:
                 "id": str(0),  # the string representation of the unique node ID
                 "idInt": 0,  # the numeric representation of the unique node ID
                 "name": name,  # the name of the node used for printing
-                "href": link + name
+                "href": link + name,
+                "type": issueData.get("fields").get("issuetype").get("name") # issue type (Epic/Story/Task)
             },
             "group": "nodes",  # it belongs in the group of nodes
             "removed": False,
@@ -74,7 +77,8 @@ with open('IssueQueryResults.json') as f:
                 "id": str(i + 2),  # the string representation of the unique node ID
                 "idInt": i + 2,  # the numeric representation of the unique node ID
                 "name": name,  # the name of the node used for printing
-                "href": link + name
+                "href": link + name,
+                "type": (issueLinks[i]).get("inwardIssue").get("fields").get("issuetype").get("name") # issue type (Epic/Story/Task)
             },
             "group": "nodes",  # it belongs in the group of nodes
             "removed": False,
@@ -101,4 +105,16 @@ with open('IssueQueryResults.json') as f:
             "directed": True  # the edge is directed
         }
         edges.append(edge)
-   
+
+    els = {}
+    A = {}
+    networks = {}
+    els["nodes"] = nodes
+    els["edges"] = edges
+    A["elements"] = els
+    networks["A"] = A
+    with open(os.path.join(os.pardir, 'data/networks.js'), 'w') as f2: # create file in directory above
+        filestart = "var networks = "
+        f2.write(filestart)
+    with open(os.path.join(os.pardir, 'data/networks.js'), 'a') as f2:   
+        f2.write(json.dumps(networks))  # add formatted nodes and edges to networks file
