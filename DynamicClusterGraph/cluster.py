@@ -3,23 +3,23 @@ import json
 from jira import JIRA
 from atlassian import Jira
 
-my_parent = 'AI4-88'
+project = 'AI4'
 
 
-# Return the parent of the target issue
-def get_epic(target_issue):
-    # Authenticate JIRA
-    auth_jira = JIRA(server='https://playingabout.atlassian.net/',
-                     basic_auth=('phong.bach@wsu.edu', 'OOCqwKugtQBVE6sdFied7862'))
+# # Return the parent of the target issue
+# def get_epic(target_issue):
+#     # Authenticate JIRA
+#     auth_jira = JIRA(server='https://playingabout.atlassian.net/',
+#                      basic_auth=('phong.bach@wsu.edu', 'OOCqwKugtQBVE6sdFied7862'))
+#
+#     # Get the issue
+#     current_issue = auth_jira.search_issues('issue = "' + target_issue + '"')
+#
+#     return current_issue[0].fields.parent.key
 
-    # Get the issue
-    current_issue = auth_jira.search_issues('issue = "' + target_issue + '"')
 
-    return current_issue[0].fields.parent.key
-
-
-# Generate JSON file network
-def generate_dataset(target_parent):
+# Generate network file in javascript
+def generate_dataset(project):
     # Authenticate JIRA
     jira_instance = Jira(
         url="https://playingabout.atlassian.net/",
@@ -29,7 +29,7 @@ def generate_dataset(target_parent):
 
     # Get all issues
 
-    query = 'project = AI4 AND (issuetype = "epic" OR issuetype = "story" OR issuetype = "task")'
+    query = 'project = ' + project + ' AND (issuetype = "epic" OR issuetype = "story" OR issuetype = "task")'
     current_issues = jira_instance.jql(query, limit=1000)
 
     current_issues = current_issues['issues']
@@ -155,9 +155,10 @@ def generate_dataset(target_parent):
     data.extend(nodes)
     data.extend(edges)
 
-    with open('datasets/cluster.json', 'w') as f:
+    with open('network.js', 'w') as f:
+        f.write('var network = ')
         json.dump(data, f)
 
 
 # Main
-generate_dataset(my_parent)
+generate_dataset(project)
