@@ -2,7 +2,18 @@ function getIssueFromURLParameters() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
 
-    return urlParams.get('issueKey');
+	var currentText = document.getElementById("switchGraphs").innerHTML;
+	
+	if(currentText === "Click to view Developer Cluster") {
+		graphType = "A";
+	}
+	else{
+		graphType = "B";
+	}
+
+	var graphToGrab = urlParams.get('issueKey') + graphType;
+	
+    return graphToGrab;
 }
 
 $(function() {
