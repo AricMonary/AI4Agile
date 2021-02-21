@@ -10,7 +10,7 @@
   
       let cy; 
   
-      let $stylesheet = "styles.json";
+      let $stylesheet = "styles.js";
       let getStylesheet = name => {
         let convert = res => name.match(/[.]json$/) ? toJson(res) : toText(res);
   
@@ -35,14 +35,13 @@
       let applyDatasetFromSelect = () => 
             Promise.resolve( $dataset ).then( getDataset ).then( applyDataset );
   
-      let $layout = "tree";
+      let $layout = "dagre";
       let layouts = {
         layout: {
-          name: 'tree',
-          orientation: "topToBottom",
-          depthSpace: 4,
-          breadthSpace: 4,
-          subtreeSpace: 4,
+          name: 'dagre',
+          fit: true, // whether to fit to viewport
+          padding: 30,
+          animate: false
         }
       };
       let prevLayout;
@@ -62,6 +61,5 @@
       });
   
       tryPromise( applyDatasetFromSelect ).then( applyStylesheetFromSelect ).then( applyLayoutFromSelect );
-      $('#redo-layout').addEventListener('click', applyLayoutFromSelect);
     });
   })();

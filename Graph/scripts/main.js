@@ -32,20 +32,20 @@ $(function() {
         style = styles[0];
     $(n).cytoscape({
         layout: {
-            name: 'tree',
-            orientation: "topToBottom",
-            depthSpace: 4,
-            breadthSpace: 4,
-            subtreeSpace: 4,
+            name: 'dagre',
+            fit: true, // whether to fit to viewport
+            padding: 30, // fit padding
+            animate: false,
         },
         wheelSensitivity: 0.05,
         //autolock : true, //make nodes not moveable
-        ready: function() {
+        ready: function() { // on layoutready
             window.cy = this, 
                     cy.load(network.elements), console.log(network);
                     console.log(style);
                     var o = e("default", style);
                     null === o && (o = style), cy.style().fromJson(o.style).update()        
-        }
+        },
+        stop: function(){} // on layoutstop
     })
 });
