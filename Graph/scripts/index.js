@@ -14,7 +14,7 @@
       let getStylesheet = name => {
         let convert = res => name.match(/[.]json$/) ? toJson(res) : toText(res);
   
-        return fetch(`${name}`).then( convert );
+        return fetch(`scripts/${name}`).then( convert );
       };
       let applyStylesheet = stylesheet => {
         if( typeof stylesheet === typeof '' ){
@@ -26,7 +26,7 @@
       let applyStylesheetFromSelect = () => Promise.resolve( $stylesheet ).then( getStylesheet ).then( applyStylesheet );
   
       let $dataset = "networks.js";
-      let getDataset = name => fetch(`${name}`).then( toJson );
+      let getDataset = name => fetch(`scripts/${name}`).then( toJson );
       let applyDataset = dataset => {
         // replace eles
         cy.elements().remove();
