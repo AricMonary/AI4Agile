@@ -26,7 +26,7 @@ var style = [
   {
     "selector" : "edge",
     "css" : {
-      "font-family" : "Dialog.plain",
+      "font-family" : "sans-serif",
       "font-weight" : "normal",
       "line-color" : "rgb(132,132,132)",
       "target-arrow-color" : "rgb(132,132,132)",

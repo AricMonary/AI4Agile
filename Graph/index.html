@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/@atlassian/aui@9.1/dist/aui/aui-prototyping.css" />
 
     <script src="data/network.js"></script>
-    <!--script src="styles/style.js"></script-->
+    <script src="styles/style.js"></script>
 
     <!--script src="scripts/cytoscape.min.js"></script-->
     <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
@@ -49,57 +49,7 @@
                 avoidOverlap: true, // prevents node overlap, may overflow boundingBox if not enough space
                 spacingFactor: 1.75 // positive spacing factor, larger => more space between nodes
             },
-            style: [
-                {
-                    "selector": "node[type = 'Task']",
-                    "css": {
-                        "background-color": "rgb(43,156,204)"
-                    }
-                },
-                {
-                    "selector": "node[type = 'Epic']",
-                    "css": {
-                        "background-color": "rgb(121,70,232)"
-                    }
-                },
-                {
-                    "selector": "node[type = 'Story']",
-                    "css": {
-                        "background-color": "rgb(91,196,29)"
-                    }
-                },
-                {
-                    "selector": "node:selected",
-                    "css": {
-                        "background-color": "rgb(112,112,112)"
-                    }
-                },
-                {
-                    "selector": "edge",
-                    "css": {
-                        "font-family": "sans-serif",
-                        "font-weight": "normal",
-                        "line-color": "rgb(132,132,132)",
-                        "target-arrow-color": "rgb(132,132,132)",
-                        "source-arrow-shape": "none",
-                        "line-style": "solid",
-                        "color": "rgb(0,0,0)",
-                        "source-arrow-color": "rgb(0,0,0)",
-                        "opacity": 1.0,
-                        "content": "",
-                        "target-arrow-shape": "triangle",
-                        "font-size": 10,
-                        "width": 2.0,
-                        "text-opacity": 1.0
-                    }
-                },
-                {
-                    "selector": "edge:selected",
-                    "css": {
-                        "line-color": "rgb(0,0,0)"
-                    }
-                }
-            ],
+            style: style,
             zoomingEnabled: true,
             maxZoom: 1.6,
             minZoom: 0.96
@@ -107,7 +57,7 @@
         $(document).ready(function () {
             // Open the "href" node attribute on click
             cy.on('tap', 'node', function () {
-                try { // your browser may block popups
+                try { // browser may block popups
                     window.open(this.data('href'));
                 } catch (e) { // fall back on url change
                     window.location.href = this.data('href');
@@ -115,7 +65,6 @@
             });
         });
     </script>
-    <!--script src="scripts/custom.js"></script-->
     <script src="https://connect-cdn.atl-paas.net/all.js"></script>
     <script src="scripts/util.js"></script>
 </body>
