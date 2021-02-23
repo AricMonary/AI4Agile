@@ -1,4 +1,4 @@
-/* function getIssueFromURLParameters() {
+function getIssueFromURLParameters() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
 
@@ -14,7 +14,7 @@
 	var graphToGrab = urlParams.get('issueKey') + graphType;
 	
     return graphToGrab;
-} */
+}
 
 /* $(function() {
     "use strict";

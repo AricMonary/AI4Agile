@@ -12,10 +12,8 @@
     <script src="data/network.js"></script>
     <script src="styles/style.js"></script>
 
-    <!--script src="scripts/cytoscape.min.js"></script-->
     <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
     <script src="https://unpkg.com/jquery@3.1.1/dist/jquery.min.js"></script>
-    <!--script src="scripts/index.js"></script-->
 
     <style>
         #cy {
@@ -27,13 +25,11 @@
             z-index: 999;
         }
     </style>
-
 </head>
 
 <body>
     <div class="aui-buttons" class="buttons">
-        <button class="aui-button" id="switchGraphs" onClick="switchGraphButtonName()">Click to view Developer
-            Cluster</button>
+        <button class="aui-button" id="switchGraphs" onClick="switchGraphButtonName()">Click to view Developer Cluster</button>
     </div>
 
     <!-- Actual Cytoscape.js Instance -->
@@ -65,6 +61,7 @@
             });
         });
     </script>
+
     <script src="https://connect-cdn.atl-paas.net/all.js"></script>
     <script src="scripts/util.js"></script>
 </body>
