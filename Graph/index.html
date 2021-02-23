@@ -44,7 +44,7 @@
                 fit: true, // whether to fit the viewport to the graph
                 padding: 10, // padding on fit
                 avoidOverlap: true, // prevents node overlap, may overflow boundingBox if not enough space
-                spacingFactor: 1, // positive spacing factor, larger => more space between nodes
+                spacingFactor: 0.45, // positive spacing factor, larger => more space between nodes
                 directed: true
             },
             style: style,
@@ -52,7 +52,6 @@
             maxZoom: 1.6,
             minZoom: 0.96
         });
-        cy.layout('breadthfirst').run();
         $(document).ready(function () {
             // Open the "href" node attribute on click
             cy.on('tap', 'node', function () {

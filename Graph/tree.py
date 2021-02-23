@@ -39,7 +39,7 @@ with open('data/IssueQueryResults.json', 'r') as f:
                 "idInt": 0,  # the numeric representation of the unique node ID
                 "name": name,  # the name of the node used for printing
                 "href": link + name,
-                "type": issueData.get("fields").get("issuetype").get("name") # issue type (Epic/Story/Task)
+                "type": issueData.get("fields").get("parent").get("fields").get("issuetype").get("name") # issue type (Epic/Story/Task)
             },
             "group": "nodes",  # it belongs in the group of nodes
             "removed": False,
