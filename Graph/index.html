@@ -42,14 +42,14 @@
             layout: {
                 name: 'breadthfirst',
                 fit: true, // whether to fit the viewport to the graph
-                padding: 10, // padding on fit
+                padding: 0, // padding on fit
                 avoidOverlap: true, // prevents node overlap, may overflow boundingBox if not enough space
                 spacingFactor: 0.45, // positive spacing factor, larger => more space between nodes
-                directed: true
+                directed: false
             },
             style: style,
             zoomingEnabled: true,
-            maxZoom: 1.6,
+            wheelSensitivity: 0.5,
             minZoom: 0.96
         });
         $(document).ready(function () {
