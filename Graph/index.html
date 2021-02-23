@@ -29,7 +29,8 @@
 
 <body>
     <div class="aui-buttons" class="buttons">
-        <button class="aui-button" id="switchGraphs" onClick="switchGraphButtonName()">Click to view Developer Cluster</button>
+        <button class="aui-button" id="switchGraphs" onClick="switchGraphButtonName()">Click to view Developer
+            Cluster</button>
     </div>
 
     <!-- Actual Cytoscape.js Instance -->
@@ -43,13 +44,15 @@
                 fit: true, // whether to fit the viewport to the graph
                 padding: 10, // padding on fit
                 avoidOverlap: true, // prevents node overlap, may overflow boundingBox if not enough space
-                spacingFactor: 1.75 // positive spacing factor, larger => more space between nodes
+                spacingFactor: 1, // positive spacing factor, larger => more space between nodes
+                directed: true
             },
             style: style,
             zoomingEnabled: true,
             maxZoom: 1.6,
             minZoom: 0.96
         });
+        cy.layout('breadthfirst').run();
         $(document).ready(function () {
             // Open the "href" node attribute on click
             cy.on('tap', 'node', function () {
