@@ -58,6 +58,7 @@ var style = [
       "opacity": 1.0,
       "content": "",
       "target-arrow-shape": "triangle",
+      'curve-style': 'bezier',
       "font-size": 10,
       "width": 2.0,
       "text-opacity": 1.0

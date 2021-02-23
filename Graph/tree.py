@@ -53,7 +53,6 @@ with open('data/IssueQueryResults.json', 'r') as f:
             "data": {
                 "source": str(1),  # the source node id (edge comes from this node)(selected issue)
                 "target": str(0),  # the target node id (edge goes to this node)(parent issue)
-                "directed": True,
                 "id": "e" + str(1)
             },
             "position": {},  # the initial position is not known
@@ -91,7 +90,6 @@ with open('data/IssueQueryResults.json', 'r') as f:
             "data": {
                 "source": str(i + 2),  # the source node id (edge comes from this node)(current blocking issue)
                 "target": str(1),  # the target node id (edge goes to this node)(selected issue)
-                "directed": True,
                 "id": "e" + str(i + 2)
             },
             "position": {},  # the initial position is not known
