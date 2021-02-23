@@ -5,7 +5,7 @@ nodes = []
 edges = []
 
 # Main source: https://isquared.digital/blog/2020-03-24-viz-tools-pt2-2/
-with open(os.path.join(os.pardir, 'data/IssueQueryResults.json'), 'r') as f:
+with open('data/IssueQueryResults.json', 'r') as f:
     issueData = json.load(f) # setup issueData dictionary
 
     # Get project website for hrefs
@@ -106,15 +106,18 @@ with open(os.path.join(os.pardir, 'data/IssueQueryResults.json'), 'r') as f:
         }
         edges.append(edge)
 
-    els = {}
-    A = {}
-    networks = {}
-    els["nodes"] = nodes
-    els["edges"] = edges
-    A["elements"] = els
-    networks["A"] = A
-    with open(os.path.join(os.pardir, 'data/networks.js'), 'w') as f2: # create file in directory above
-        filestart = "var networks = "
-        f2.write(filestart)
-    with open(os.path.join(os.pardir, 'data/networks.js'), 'a') as f2:   
+    #els = {}
+    #A = {}
+    #networks = {}
+    #els["nodes"] = nodes
+    #els["edges"] = edges
+    #A["elements"] = els
+    #networks["A"] = A
+    networks = []
+    networks.extend(nodes)
+    networks.extend(edges)
+    #with open(os.path.join(os.pardir, 'data/networks.js'), 'w') as f2: # create file in directory above
+        #filestart = "var networks = "
+        #f2.write(filestart)
+    with open('data/networks.json', 'w') as f2:   
         f2.write(json.dumps(networks))  # add formatted nodes and edges to networks file

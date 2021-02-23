@@ -9,9 +9,9 @@ $( document ).ready(function(){
      }
   });
   
-  //var eles = cy.elements();
-  //cy.fit(eles)
-  //cy.center(eles)
+  var eles = cy.elements();
+  cy.fit(eles)
+  cy.center(eles)
   cy.maxZoom(1.6)
   cy.minZoom(0.96)
 });

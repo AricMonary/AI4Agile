@@ -16,7 +16,7 @@
     return graphToGrab;
 } */
 
-$(function() {
+/* $(function() {
     "use strict";
 
     function e(e, n) {
@@ -48,4 +48,4 @@ $(function() {
         },
         stop: function(){} // on layoutstop
     })
-});
+}); */
