@@ -106,18 +106,18 @@ with open('data/IssueQueryResults.json', 'r') as f:
         }
         edges.append(edge)
 
-    #els = {}
-    #A = {}
-    #networks = {}
-    #els["nodes"] = nodes
-    #els["edges"] = edges
-    #A["elements"] = els
-    #networks["A"] = A
-    networks = []
-    networks.extend(nodes)
-    networks.extend(edges)
-    #with open(os.path.join(os.pardir, 'data/networks.js'), 'w') as f2: # create file in directory above
-        #filestart = "var networks = "
-        #f2.write(filestart)
-    with open('data/networks.json', 'w') as f2:   
+    els = {}
+    A = {}
+    networks = {}
+    els["nodes"] = nodes
+    els["edges"] = edges
+    A["elements"] = els
+    networks["A"] = A
+    #networks = []
+    #networks.extend(nodes)
+    #networks.extend(edges)
+    with open('data/network.js', 'w') as f2: # create file in directory above
+        filestart = "var network = "
+        f2.write(filestart)
+    with open('data/network.js', 'a') as f2:   
         f2.write(json.dumps(networks))  # add formatted nodes and edges to networks file
