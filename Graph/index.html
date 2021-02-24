@@ -49,13 +49,16 @@
                 padding: 0, // padding on fit
                 avoidOverlap: true, // prevents node overlap, may overflow boundingBox if not enough space
                 spacingFactor: 0.45, // positive spacing factor, larger => more space between nodes
-                directed: false
+                directed: true,
+                roots: "0"
             },
             style: style,
             zoomingEnabled: true,
             wheelSensitivity: 0.5,
             minZoom: 0.96
         });
+        var layout = cy.layout({name: 'breadthfirst'});
+        layout.run();
         $(document).ready(function () {
             // Open the "href" node attribute on click
             cy.on('tap', 'node', function () {
