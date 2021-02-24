@@ -63,8 +63,8 @@ with open('data/IssueQueryResults.json', 'r') as f:
         nodes.append(node)
         edge = {
             "data": {
-                "source": str(1), # source node id (edge comes from this node)(selected issue)
-                "target": str(0), # target node id (edge goes to this node)(parent issue)
+                "source": str(0), # source node id (edge comes from this node)(parent issue)
+                "target": str(1), # target node id (edge goes to this node)(selected issue)
                 "id": "e" + str(1) # e for edge
             },
             "position": {},  # the initial position is not known
@@ -110,7 +110,7 @@ with open('data/IssueQueryResults.json', 'r') as f:
         
         # source node id (edge comes from this node)(current blocking issue)
         # target node id (edge goes to this node)(selected issue)
-        data = {"source": str(i + 2), "target": "1", "id": "e" + str(i + 2) } if issueLinks[i].get("type").get("inward") == "is blocked by" else {"source": "1", "target": str(i + 2), "id": "e" + str(i + 2) }
+        data = {"source": "1", "target": str(i + 2), "id": "e" + str(i + 2) } if issueLinks[i].get("type").get("inward") == "is blocked by" else {"source": str(i + 2), "target": "1", "id": "e" + str(i + 2) }
         
         edge = {
             "data": data,
