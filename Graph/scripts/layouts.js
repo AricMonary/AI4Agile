@@ -7,3 +7,17 @@ var treeLayout = {
     directed: true, // whether the tree is directed downwards (edges can point any direction if false)
     roots: undefined
 }
+
+var clusterLayout = {
+    name: "fcose",
+    padding: 10,
+    animate: true,
+    randomize: true, 
+    quality: "default",
+    padding: 30,
+    avoidOverlap: true,
+    avoidOverlapPadding: 5,
+    nodeSeparation: 150,
+    nodeRepulsion: node => 6500,
+    idealEdgeLength: edge => 90
+}

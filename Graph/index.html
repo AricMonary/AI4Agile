@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Graph</title>
+    <title>Graph Visualization with Cytoscape</title>
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/@atlassian/aui@9.1/dist/aui/aui-prototyping.css" />
 
     <script src="data/treeNetwork.js"></script>
-    <script src="scripts/style.js"></script>
-    <script src="scripts/treeLayout.js"></script>
+    <script src="scripts/styles.js"></script>
+    <script src="scripts/layouts.js"></script>
 
     <script src="scripts/cytoscape.min.js"></script>
     <script src="https://unpkg.com/jquery@3.1.1/dist/jquery.min.js"></script>
@@ -27,8 +27,7 @@
 
 <body>
     <div class="aui-buttons" class="buttons">
-        <button class="aui-button" id="switchGraphs" onClick="switchGraphButtonName()">Click to view Developer
-            Cluster</button>
+        <button class="aui-button" id="switchGraphs" onClick="switchGraph()">Click to view Developer Cluster</button>
     </div>
 
     <!-- Actual Cytoscape.js Instance -->
@@ -39,8 +38,7 @@
             elements: treeNetwork,
             layout: treeLayout,
             style: treeStyle,
-            zoomingEnabled: true,
-            wheelSensitivity: 0.5
+            zoomingEnabled: true
         });
         $(document).ready(function () {
             // Open the "href" node attribute on click
