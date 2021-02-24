@@ -1,36 +1,40 @@
 import json
 
-from jira import JIRA
 from atlassian import Jira
+from flask import Flask, request
 
-project = 'AI4'
+# project = 'AI4'
 
+app = Flask(__name__)
 
-# # Return the parent of the target issue
-# def get_epic(target_issue):
-#     # Authenticate JIRA
-#     auth_jira = JIRA(server='https://playingabout.atlassian.net/',
-#                      basic_auth=('phong.bach@wsu.edu', 'OOCqwKugtQBVE6sdFied7862'))
-#
-#     # Get the issue
-#     current_issue = auth_jira.search_issues('issue = "' + target_issue + '"')
-#
-#     return current_issue[0].fields.parent.key
+# Authenticate JIRA
+jira = Jira(
+    url="https://playingabout.atlassian.net/",
+    username="phong.bach@wsu.edu",
+    password="OOCqwKugtQBVE6sdFied7862",
+)
+
+# Listener to generate network for cluster graph
+@app.route('/clusterGraphGenerateNetwork', methods=['POST'])
+def clusterGraphGenerateNetwork():
+    issueJSON = request.get_json()
+    
+    # Get issue key
+    issueKey = issueJSON['issueKey']
+    index = issueKey.index('-')
+
+    # Get project name
+    projectID = issueKey[0:index]
+    clusterNetwork = generate_dataset(projectID)
+
+    return json.dumps({'success': True, 'clusterNetwork': clusterNetwork}), 200, {'ContentType': 'application/json'}
 
 
 # Generate network file in javascript
 def generate_dataset(project):
-    # Authenticate JIRA
-    jira_instance = Jira(
-        url="https://playingabout.atlassian.net/",
-        username="phong.bach@wsu.edu",
-        password="OOCqwKugtQBVE6sdFied7862",
-    )
-
     # Get all issues
-
     query = 'project = ' + project + ' AND (issuetype = "epic" OR issuetype = "story" OR issuetype = "task")'
-    current_issues = jira_instance.jql(query, limit=1000)
+    current_issues = jira.jql(query, limit=1000)
 
     current_issues = current_issues['issues']
 
@@ -155,9 +159,10 @@ def generate_dataset(project):
     data.extend(nodes)
     data.extend(edges)
 
-    with open('network.js', 'w') as f:
-        f.write('var network = ')
-        json.dump(data, f)
+    return json.dumps(data)
+    # with open('network.js', 'w') as f:
+    #     f.write('var network = ')
+    #     json.dump(data, f)
 
 
 # Main
