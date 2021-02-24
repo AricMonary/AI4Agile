@@ -66,6 +66,12 @@
                 }
             });
         });
+        $(window).ready(function () {
+            cy.on('resize', function (event) {
+                cy.center();
+                cy.fit();
+            });
+        });
     </script>
 
     <script src="https://connect-cdn.atl-paas.net/all.js"></script>
