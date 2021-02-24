@@ -5,7 +5,6 @@
 <head>
     <title>Cluster Graph</title>
     <script src="js/cytoscape.min.js"></script>
-    <script src="network.js"></script>
     <script src="styles.js"></script>
     <script src="https://unpkg.com/layout-base/layout-base.js"></script>
     <script src="https://unpkg.com/cose-base/cose-base.js"></script>
@@ -25,6 +24,17 @@
 <body>
     <div id="cy"></div>
     <script>
+        $.ajax({
+            type: "POST",
+            url: "/clusterGraphGenerateNetwork",
+            data: jsonOfIssueKey,
+            contentType: "application/json",
+            success: function (data) {
+                replyData = JSON.parse(data);
+                network = replyData;
+            }
+        });
+
         var cy = cytoscape({
             container: document.getElementById('cy'),
             elements: network,
