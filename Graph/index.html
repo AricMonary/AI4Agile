@@ -34,6 +34,9 @@
             Cluster</button>
     </div>
 
+    <!--script src="https://unpkg.com/@popperjs/core@2"></script-->
+    <!--script src="https://unpkg.com/tippy.js@6"></script-->
+
     <!-- Actual Cytoscape.js Instance -->
     <div id="cy"></div>
     <script>
@@ -61,12 +64,6 @@
                 } catch (e) { // fall back on url change
                     window.location.href = this.data('href');
                 }
-            });
-        });
-        $(window).ready(function () {
-            cy.on('resize', function (event) {
-                cy.center();
-                cy.fit();
             });
         });
     </script>

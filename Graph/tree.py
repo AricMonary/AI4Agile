@@ -5,11 +5,11 @@ edges = []
 
 # Main source: https://isquared.digital/blog/2020-03-24-viz-tools-pt2-2/
 with open('data/IssueQueryResults.json', 'r') as f:
-    issueData = json.load(f) # setup issueData dictionary
+    issueData = json.load(f)  # setup issueData dictionary
 
     # Get project website for hrefs
     link = issueData.get("fields").get("project").get("self")
-    link = link.partition("rest")[0] # remove rest api parts
+    link = link.partition("rest")[0]  # remove rest api parts
     link = link + "browse/"
 
     # Setup primary node to connect to
@@ -17,9 +17,11 @@ with open('data/IssueQueryResults.json', 'r') as f:
         "data": {
             "id": str(1),  # the string representation of the unique node ID
             "idInt": 1,  # the numeric representation of the unique node ID
-            "name": issueData.get("key"),  # the name of the node used for printing
+            # the name of the node used for printing
+            "name": issueData.get("key"),
             "href": link + issueData.get("key"),
-            "type": issueData.get("fields").get("issuetype").get("name") # issue type (Epic/Story/Task)
+            # issue type (Epic/Story/Task)
+            "type": issueData.get("fields").get("issuetype").get("name")
         },
         "group": "nodes",  # it belongs in the group of nodes
         "removed": False,
@@ -31,15 +33,17 @@ with open('data/IssueQueryResults.json', 'r') as f:
     nodes.append(selectedNode)
 
     # Get parent, if applicable
-    if "parent" in issueData.get("fields"): 
+    if "parent" in issueData.get("fields"):
         name = str(issueData.get("fields").get("parent").get("key"))
         node = {
             "data": {
-                "id": str(0),  # the string representation of the unique node ID
+                # the string representation of the unique node ID
+                "id": str(0),
                 "idInt": 0,  # the numeric representation of the unique node ID
                 "name": name,  # the name of the node used for printing
                 "href": link + name,
-                "type": issueData.get("fields").get("parent").get("fields").get("issuetype").get("name") # issue type (Epic/Story/Task)
+                # issue type (Epic/Story/Task)
+                "type": issueData.get("fields").get("parent").get("fields").get("issuetype").get("name")
             },
             "group": "nodes",  # it belongs in the group of nodes
             "removed": False,
@@ -51,8 +55,10 @@ with open('data/IssueQueryResults.json', 'r') as f:
         nodes.append(node)
         edge = {
             "data": {
-                "source": str(1),  # the source node id (edge comes from this node)(selected issue)
-                "target": str(0),  # the target node id (edge goes to this node)(parent issue)
+                # the source node id (edge comes from this node)(selected issue)
+                "source": str(1),
+                # the target node id (edge goes to this node)(parent issue)
+                "target": str(0),
                 "id": "e" + str(1)
             },
             "position": {},  # the initial position is not known
@@ -67,16 +73,26 @@ with open('data/IssueQueryResults.json', 'r') as f:
         edges.append(edge)
 
     # Loop to get linked/blocking issues
-    issueLinks = issueData.get("fields").get("issuelinks") # issuelinks is a list of dictionaries, not a single dictionary
+    # issuelinks is a list of dictionaries, not a single dictionary
+    issueLinks = issueData.get("fields").get("issuelinks")
     for i in range(0, len(issueLinks)):
-        name = (issueLinks[i]).get("inwardIssue").get("key")
+        if issueLinks[i].get("inwardIssue") != None:
+            name = (issueLinks[i]).get("inwardIssue").get("key")
+            type = (issueLinks[i]).get("inwardIssue").get("fields").get("issuetype").get("name")
+        elif (issueLinks[i]).get("outwardIssue") != None:
+            name = (issueLinks[i]).get("outwardIssue").get("key")
+            type = (issueLinks[i]).get("outwardIssue").get("fields").get("issuetype").get("name")
+        else:
+            continue
         node = {
             "data": {
-                "id": str(i + 2),  # the string representation of the unique node ID
+                # the string representation of the unique node ID
+                "id": str(i + 2),
                 "idInt": i + 2,  # the numeric representation of the unique node ID
                 "name": name,  # the name of the node used for printing
                 "href": link + name,
-                "type": (issueLinks[i]).get("inwardIssue").get("fields").get("issuetype").get("name") # issue type (Epic/Story/Task)
+                # issue type (Epic/Story/Task)
+                "type": type
             },
             "group": "nodes",  # it belongs in the group of nodes
             "removed": False,
@@ -88,8 +104,10 @@ with open('data/IssueQueryResults.json', 'r') as f:
         nodes.append(node)
         edge = {
             "data": {
-                "source": str(i + 2),  # the source node id (edge comes from this node)(current blocking issue)
-                "target": str(1),  # the target node id (edge goes to this node)(selected issue)
+                # the source node id (edge comes from this node)(current blocking issue)
+                "source": str(i + 2),
+                # the target node id (edge goes to this node)(selected issue)
+                "target": str(1),
                 "id": "e" + str(i + 2)
             },
             "position": {},  # the initial position is not known
@@ -113,8 +131,9 @@ with open('data/IssueQueryResults.json', 'r') as f:
     networks = []
     networks.extend(nodes)
     networks.extend(edges)
-    with open('data/network.js', 'w') as f2: # create file in directory above
+    with open('data/network.js', 'w') as f2:  # create file in directory above
         filestart = "var network = "
         f2.write(filestart)
-    with open('data/network.js', 'a') as f2:   
-        f2.write(json.dumps(networks))  # add formatted nodes and edges to networks file
+    with open('data/network.js', 'a') as f2:
+        # add formatted nodes and edges to networks file
+        f2.write(json.dumps(networks))
