@@ -1,4 +1,4 @@
-var style = [
+var treeStyle = [
   {
     "selector": "node",
     "css": {

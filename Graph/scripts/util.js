@@ -1,4 +1,4 @@
-var graphType = "A";
+var graphType = "tree";
 
 function switchGraphButtonName() {
 	var currentText = document.getElementById("switchGraphs").innerHTML;
@@ -12,4 +12,22 @@ function switchGraphButtonName() {
 	else {
 		document.getElementById("switchGraphs").innerHTML="Click to view Developer Cluster"; 
 	}
+}
+
+function getIssueFromURLParameters() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+	var currentText = document.getElementById("switchGraphs").innerHTML;
+	
+	if(currentText === "Click to view Developer Cluster") {
+		graphType = "A";
+	}
+	else{
+		graphType = "B";
+	}
+
+	var graphToGrab = urlParams.get('issueKey') + graphType;
+	
+    return graphToGrab;
 }

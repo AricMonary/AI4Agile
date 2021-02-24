@@ -3,16 +3,14 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Relationship Visualization Graph</title>
-    <meta name="description" content="Relationship Visualization Graph for agile development projects">
-    <!--meta name="viewport" content="width=device-width, initial-scale=1.0"-->
+    <title>Graph</title>
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/@atlassian/aui@9.1/dist/aui/aui-prototyping.css" />
 
-    <script src="data/network.js"></script>
-    <script src="styles/style.js"></script>
+    <script src="data/treeNetwork.js"></script>
+    <script src="scripts/style.js"></script>
+    <script src="scripts/treeLayout.js"></script>
 
-    <!--script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script   Possibly slower alternative -->
     <script src="scripts/cytoscape.min.js"></script>
     <script src="https://unpkg.com/jquery@3.1.1/dist/jquery.min.js"></script>
 
@@ -23,7 +21,6 @@
             position: absolute;
             left: 0;
             top: 2;
-            z-index: 999;
         }
     </style>
 </head>
@@ -34,25 +31,14 @@
             Cluster</button>
     </div>
 
-    <!--script src="https://unpkg.com/@popperjs/core@2"></script-->
-    <!--script src="https://unpkg.com/tippy.js@6"></script-->
-
     <!-- Actual Cytoscape.js Instance -->
     <div id="cy"></div>
     <script>
         var cy = cytoscape({
             container: document.getElementById('cy'),
-            elements: network,
-            layout: {
-                name: 'breadthfirst',
-                fit: true, // whether to fit the viewport to the graph
-                padding: 10, // padding on fit
-                avoidOverlap: true, // prevents node overlap, may overflow boundingBox if not enough space
-                spacingFactor: 0.45, // positive spacing factor, larger => more space between nodes
-                directed: true, // whether the tree is directed downwards (edges can point any direction if false)
-                roots: undefined
-            },
-            style: style,
+            elements: treeNetwork,
+            layout: treeLayout,
+            style: treeStyle,
             zoomingEnabled: true,
             wheelSensitivity: 0.5
         });
