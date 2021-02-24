@@ -1,79 +1,65 @@
 import json
 
 from atlassian import Jira
-from flask import Flask, request, make_response, jsonify
-from flask_cors import CORS
+from flask import Flask, request
 
 from EpicDecomposition import *
 from StoryOptimization import *
 from TaskGeneration import *
 
 app = Flask(__name__)
-CORS(app)
 jira = Jira(
     url='https://playingabout.atlassian.net/',
     username='aric.monary@wsu.edu',
     password='NCx7f7ZWle5yfwS3DB8JBCEA')
 
 # Listener to generate suggestions for Epic Decomposition
-@app.route('/epicDecompositionCreateSuggestions', methods=['POST', 'OPTIONS'])
+@app.route('/epicDecompositionCreateSuggestions', methods=['POST'])
 def epicDecompositionCreateSuggestions():
-    if request.method == "OPTIONS":
-        return _build_cors_prelight_response()
-    elif request.method == "POST":
-        issueJSON = request.get_json()
-        inputForAI = getAndProcessDescription(issueJSON['issueKey'])
-
-        if int(issueJSON['sliderValue']) > len(inputForAI):
-            sliderValue = len(inputForAI)
-        else:
-            sliderValue = int(issueJSON['sliderValue'])
-
-        if len(inputForAI) != 0:
-            suggestions = EpicDecomposition(inputForAI, sliderValue)
-        else:
-            suggestions = []
-
-        return json.dumps({'success': True, 'suggestions': suggestions}), 200, {'ContentType': 'application/json', 'Access-Control-Allow-Origin': '*'}
+    issueJSON = request.get_json()
+    inputForAI = getAndProcessDescription(issueJSON['issueKey'])
+    if int(issueJSON['sliderValue']) > len(inputForAI):
+        sliderValue = len(inputForAI)
     else:
-        print("Invalid epicDecompositionCreateSuggestions request.")
-
-# Listener to generate suggestions for Story Optimization
-@app.route('/storyOptimizationCreateSuggestions', methods=['POST', 'OPTIONS'])
-def storyOptimizationCreateSuggestions():
-    if request.method == "OPTIONS":
-        return _build_cors_prelight_response()
-    elif request.method == "POST":
-        issueJSON = request.get_json()
-        inputForAI = getAndProcessDescription(issueJSON['issueKey'])
         sliderValue = int(issueJSON['sliderValue'])
 
-        if len(inputForAI) > 1:
-            suggestions = StoryOptimization(inputForAI, sliderValue)
-        else:
-            suggestions = []
-
-        return json.dumps({'success': True, 'suggestions': suggestions}), 200, {'ContentType': 'application/json', 'Access-Control-Allow-Origin': '*'}
+    if len(inputForAI) != 0:
+        suggestions = EpicDecomposition(inputForAI, sliderValue)
     else:
-        print("Invalid storyOptimizationCreateSuggestions request.")
+        suggestions = []
+
+    return json.dumps({'success': True, 'suggestions': suggestions}), 200, {'ContentType': 'application/json'}
+
+# Listener to generate suggestions for Story Optimization
+@app.route('/storyOptimizationCreateSuggestions', methods=['POST'])
+def storyOptimizationCreateSuggestions():
+    issueJSON = request.get_json()
+    inputForAI = getAndProcessDescription(issueJSON['issueKey'])
+    sliderValue = int(issueJSON['sliderValue'])
+
+    if len(inputForAI) > 1:
+        suggestions = StoryOptimization(inputForAI, sliderValue)
+    else:
+        suggestions = []
+
+    return json.dumps({'success': True, 'suggestions': suggestions}), 200, {'ContentType': 'application/json'}
 
 # Listener to generate suggestions for Task Generation
-@app.route('/taskGenerationCreateSuggestions', methods=['POST', 'OPTIONS'])
+@app.route('/taskGenerationCreateSuggestions', methods=['POST'])
 def taskGenerationCreateSuggestions():
-    if request.method == "OPTIONS":
-        return _build_cors_prelight_response()
-    elif request.method == "POST":
-        issueJSON = request.get_json()
-        inputForAI = getAndProcessDescription(issueJSON['issueKey'])
+    issueJSON = request.get_json()
+    inputForAI = getAndProcessDescription(issueJSON['issueKey'])
 
-        if len(inputForAI) > 1:
-            suggestions = TaskGeneration(inputForAI)
-        else:
-            suggestions = inputForAI
+    print(input)
 
-        return json.dumps({'success': True, 'suggestions': suggestions}), 200, {'ContentType': 'application/json', 'Access-Control-Allow-Origin': '*'}
+    if len(inputForAI) > 1:
+        suggestions = TaskGeneration(inputForAI)
     else:
-        print("Invalid taskGenerationCreateSuggestions request.")
+        suggestions = inputForAI
+
+    print(suggestions)
+
+    return json.dumps({'success': True, 'suggestions': suggestions}), 200, {'ContentType': 'application/json'}
 
 def getAndProcessDescription(issueKey):
     description = jira.issue_field_value(issueKey, 'description')
@@ -90,40 +76,27 @@ def getAndProcessDescription(issueKey):
     return processedDescription
 
 # Listener to create selected suggestions for Epic Decomposition
-@app.route('/epicDecompositionCreateIssues', methods=['POST', 'OPTIONS'])
+@app.route('/epicDecompositionCreateIssues', methods=['POST'])
 def epicDecompositionCreateIssues():
-    if request.method == "OPTIONS":
-        return _build_cors_prelight_response()
-    elif request.method == "POST":
-        suggestionsJSON = request.get_json()
-        createStoryFromEpic(suggestionsJSON)
-        return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
-    else:
-        print("Invalid epicDecompositionCreateIssues request.")
+    suggestionsJSON = request.get_json()
+
+    createStoryFromEpic(suggestionsJSON)
+    return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
 
 # Listener to create selected suggestions for Story Optimization
-@app.route('/storyOptimizationCreateIssues', methods=['POST', 'OPTIONS'])
+@app.route('/storyOptimizationCreateIssues', methods=['POST'])
 def storyOptimizationCreateIssues():
-    if request.method == "OPTIONS":
-        return _build_cors_prelight_response()
-    elif request.method == "POST":
-        suggestionsJSON = request.get_json()
-        createStoryFromStory(suggestionsJSON)
-        return json.dumps({'success': True}), 200, {'ContentType': 'application/json', 'Access-Control-Allow-Origin': '*'}
-    else:
-        print("Invalid storyOptimizationCreateIssues request.")
+    suggestionsJSON = request.get_json()
+    createStoryFromStory(suggestionsJSON)
+    return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
 
 # Listener to create selected suggestions for Task Generation
-@app.route('/taskGenerationCreateIssues', methods=['POST', 'OPTIONS'])
+@app.route('/taskGenerationCreateIssues', methods=['POST'])
 def taskGenerationCreateIssues():
-    if request.method == "OPTIONS":
-        return _build_cors_prelight_response()
-    elif request.method == "POST":
-        suggestionsJSON = request.get_json()
-        createTaskFromStory(suggestionsJSON)
-        return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
-    else:
-        print("Invalid taskGenerationCreateIssues request.")
+    suggestionsJSON = request.get_json()
+
+    createTaskFromStory(suggestionsJSON)
+    return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
 
 def createStoryFromEpic(suggestionsJSON):
     projectKey = suggestionsJSON['projectKey']
@@ -240,16 +213,6 @@ def createSummaryFromDescription(description):
         else:
             return summary
     return summary
-
-# Source: https://stackoverflow.com/a/52875875
-def _build_cors_prelight_response():
-    response = make_response()
-    response.headers.add("Access-Control-Allow-Origin", "*")
-    response.headers.add('Access-Control-Allow-Headers', "*")
-    response.headers.add('Access-Control-Allow-Methods', "*")
-    print(response)
-    return response
-
+            
 if __name__ == '__main__':
-    downloadStanza()
     app.run()

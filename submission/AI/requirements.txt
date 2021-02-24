@@ -1,0 +1,7 @@
+nltk==3.5
+stanza==1.1.1
+Flask==1.1.2
+Unidecode==1.2.0
+Flask_Cors==3.0.10
+atlassian_python_api==2.1.2
+scikit_learn==0.24.1

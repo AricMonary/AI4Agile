@@ -29,7 +29,7 @@ def parser(sent):
         result = []
         str2 = "".join(sent)
         global str1
-        # Uncomment when running for the first tim
+        # Uncomment when running for the first time
         #stanza.download('en')
         nlp = stanza.Pipeline('en', processors='tokenize,mwt,pos,lemma,depparse')
         count = 0
@@ -71,8 +71,6 @@ def sentenceBuilder(value, list2,list3):
         list3.append(value[1])
     return list2,list3
 
-def downloadStanza():
-    stanza.download('en')
 
 if __name__=='__main__':
     print(parser(sent))

@@ -1,0 +1,6 @@
+numpy==1.19.4
+stanza==1.1.1
+gensim==3.8.3
+Flask==1.1.2
+atlassian_python_api==2.1.2
+scikit_learn==0.24.1
