@@ -1,4 +1,5 @@
 import json
+import re
 
 from atlassian import Jira
 
@@ -9,7 +10,7 @@ jira = Jira(
 
 # expect issue key as input from Ajax response
 with open('data/IssueQueryResults.json', 'w') as f:   
-        f.write(json.dumps(jira.issue('AI4-97')))
+        f.write(json.dumps(jira.issue('AI4-98')))
 
 
 nodes = []
@@ -110,7 +111,8 @@ with open('data/IssueQueryResults.json', 'r') as f:
         
         # source node id (edge comes from this node)(current blocking issue)
         # target node id (edge goes to this node)(selected issue)
-        data = {"source": "1", "target": str(i + 2), "id": "e" + str(i + 2) } if issueLinks[i].get("type").get("inward") == "is blocked by" else {"source": str(i + 2), "target": "1", "id": "e" + str(i + 2) }
+        isPassive = re.search("is [a-z]+ by", issueLinks[i].get("type").get("inward")) # not matching -> returns None
+        data = {"source": "1", "target": str(i + 2), "id": "e" + str(i + 2) } if isPassive else {"source": str(i + 2), "target": "1", "id": "e" + str(i + 2) }
         
         edge = {
             "data": data,
