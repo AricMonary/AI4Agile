@@ -17,11 +17,9 @@ with open('data/IssueQueryResults.json', 'r') as f:
         "data": {
             "id": str(1),  # the string representation of the unique node ID
             "idInt": 1,  # the numeric representation of the unique node ID
-            # the name of the node used for printing
-            "name": issueData.get("key"),
-            "href": link + issueData.get("key"),
-            # issue type (Epic/Story/Task)
-            "type": issueData.get("fields").get("issuetype").get("name")
+            "name": issueData.get("key"), # the name of the node used for printing
+            "href": link + issueData.get("key"), # web link for this issue
+            "type": issueData.get("fields").get("issuetype").get("name") # issue type (Epic/Story/Task)
         },
         "group": "nodes",  # it belongs in the group of nodes
         "removed": False,
@@ -37,13 +35,11 @@ with open('data/IssueQueryResults.json', 'r') as f:
         name = str(issueData.get("fields").get("parent").get("key"))
         node = {
             "data": {
-                # the string representation of the unique node ID
-                "id": str(0),
+                "id": str(0), # the string representation of the unique node ID
                 "idInt": 0,  # the numeric representation of the unique node ID
                 "name": name,  # the name of the node used for printing
-                "href": link + name,
-                # issue type (Epic/Story/Task)
-                "type": issueData.get("fields").get("parent").get("fields").get("issuetype").get("name")
+                "href": link + name, # web link for this issue
+                "type": issueData.get("fields").get("parent").get("fields").get("issuetype").get("name") # issue type (Epic/Story/Task)
             },
             "group": "nodes",  # it belongs in the group of nodes
             "removed": False,
@@ -55,11 +51,9 @@ with open('data/IssueQueryResults.json', 'r') as f:
         nodes.append(node)
         edge = {
             "data": {
-                # the source node id (edge comes from this node)(selected issue)
-                "source": str(1),
-                # the target node id (edge goes to this node)(parent issue)
-                "target": str(0),
-                "id": "e" + str(1)
+                "source": str(1), # source node id (edge comes from this node)(selected issue)
+                "target": str(0), # target node id (edge goes to this node)(parent issue)
+                "id": "e" + str(1) # e for edge
             },
             "position": {},  # the initial position is not known
             "group": "edges",  # it belongs in the group of edges
@@ -84,15 +78,14 @@ with open('data/IssueQueryResults.json', 'r') as f:
             type = (issueLinks[i]).get("outwardIssue").get("fields").get("issuetype").get("name")
         else:
             continue
+
         node = {
             "data": {
-                # the string representation of the unique node ID
-                "id": str(i + 2),
+                "id": str(i + 2), # the string representation of the unique node ID
                 "idInt": i + 2,  # the numeric representation of the unique node ID
                 "name": name,  # the name of the node used for printing
                 "href": link + name,
-                # issue type (Epic/Story/Task)
-                "type": type
+                "type": type # issue type (Epic/Story/Task)
             },
             "group": "nodes",  # it belongs in the group of nodes
             "removed": False,
@@ -102,15 +95,13 @@ with open('data/IssueQueryResults.json', 'r') as f:
             "grabbable": True  # we can grab and move the node
         }
         nodes.append(node)
+        
+        # source node id (edge comes from this node)(current blocking issue)
+        # target node id (edge goes to this node)(selected issue)
+        data = {"source": str(i + 2), "target": "1", "id": "e" + str(i + 2) } if issueLinks[i].get("type").get("inward") == "is blocked by" else {"source": "1", "target": str(i + 2), "id": "e" + str(i + 2) }
+        
         edge = {
-            "data": {
-                # the source node id (edge comes from this node)(current blocking issue)
-                "source": str(i + 2),
-                # the target node id (edge goes to this node)(selected issue)
-                "target": str(1),
-                "id": "e" + str(i + 2)
-            },
-            "position": {},  # the initial position is not known
+            "data": data,
             "group": "edges",  # it belongs in the group of edges
             "removed": False,
             "selected": False,  # the edge is not selected
@@ -121,13 +112,6 @@ with open('data/IssueQueryResults.json', 'r') as f:
         }
         edges.append(edge)
 
-    #els = {}
-    #A = {}
-    #networks = {}
-    #els["nodes"] = nodes
-    #els["edges"] = edges
-    #A["elements"] = els
-    #networks["A"] = A
     networks = []
     networks.extend(nodes)
     networks.extend(edges)
@@ -135,5 +119,4 @@ with open('data/IssueQueryResults.json', 'r') as f:
         filestart = "var network = "
         f2.write(filestart)
     with open('data/network.js', 'a') as f2:
-        # add formatted nodes and edges to networks file
-        f2.write(json.dumps(networks))
+        f2.write(json.dumps(networks)) # add formatted nodes and edges to networks file
