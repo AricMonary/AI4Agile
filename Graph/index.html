@@ -46,19 +46,16 @@
             layout: {
                 name: 'breadthfirst',
                 fit: true, // whether to fit the viewport to the graph
-                padding: 0, // padding on fit
+                padding: 10, // padding on fit
                 avoidOverlap: true, // prevents node overlap, may overflow boundingBox if not enough space
                 spacingFactor: 0.45, // positive spacing factor, larger => more space between nodes
-                directed: true,
-                roots: "0"
+                directed: false,
+                roots: 1
             },
             style: style,
             zoomingEnabled: true,
-            wheelSensitivity: 0.5,
-            minZoom: 0.96
+            wheelSensitivity: 0.5
         });
-        var layout = cy.layout({name: 'breadthfirst'});
-        layout.run();
         $(document).ready(function () {
             // Open the "href" node attribute on click
             cy.on('tap', 'node', function () {
