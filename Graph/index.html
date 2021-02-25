@@ -13,7 +13,7 @@
     <script src="scripts/layouts.js"></script>
 
     <script src="scripts/cytoscape.min.js"></script>
-    <script src="https://unpkg.com/jquery@3.1.1/dist/jquery.min.js"></script>
+    <script src="scripts/jquery.min.js"></script>
 
     <script src="https://unpkg.com/layout-base/layout-base.js"></script>
     <script src="https://unpkg.com/cose-base/cose-base.js"></script>
@@ -39,6 +39,17 @@
     <div class="graph" id="cyTr"></div>
     <div class="graph" id="cyCl" style="display: none;"></div>
     <script>
+        /* $.ajax({
+            type: "POST",
+            url: "/generateClusterNetwork",
+            data: jsonOfIssueKey,
+            contentType: "application/json",
+            success: function (data) {
+                replyData = JSON.parse(data);
+                network = replyData;
+            }
+        }); */
+
         var cyTr = cytoscape({
             container: document.getElementById('cyTr'),
             elements: treeNetwork,
