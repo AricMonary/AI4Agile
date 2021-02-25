@@ -4,8 +4,8 @@
   "description": "AI4Agile - AI-powered Plugin to Accelerate Agile Development",
   "baseUrl": "https://ai4agilejiracloudapp.azurewebsites.net",
   "vendor": {
-         "name": "Team Katara from Washington State University Everett",
-         "url": "https://ai4agilejiracloudapp.azurewebsites.net"
+         "name": "Team Katara of Washington State University Everett",
+         "url": "http://example.com"
      },
   "authentication": {
     "type": "none"
@@ -33,6 +33,7 @@
         "target": {
           "type": "web_panel",
           "url": "/views/Suggestions/suggestions.html?projectKey={project.key}&parentIssueKey={issue.key}&processType=epicDecomposition"
+		  
         },
         "tooltip": {
           "value": "Epic Decomposition"
@@ -113,7 +114,7 @@
         },
         "target": {
           "type": "web_panel",
-          "url": "/views/Graph/index.html"
+          "url": "/views/Graph/graph.html?projectKey={project.key}&parentIssueKey={issue.key}"
         },
         "tooltip": {
           "value": "Dependency Visualization"

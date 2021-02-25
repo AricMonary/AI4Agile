@@ -11,7 +11,7 @@ function getAndRenderGraphs() {
 
     $.ajax({
         type: "POST",
-        url: "http://127.0.0.1:5000/clusterGraphGenerateNetwork",
+        url: "https://ai4agilegraphbackend.azurewebsites.net/clusterGraphGenerateNetwork",
         async: false,
         data: jsonOfIssueKey,
         contentType: "application/json",
@@ -23,7 +23,7 @@ function getAndRenderGraphs() {
 
     $.ajax({
         type: "POST",
-        url: "http://127.0.0.1:5000/treeGraphGenerateNetwork",
+        url: "https://ai4agilegraphbackend.azurewebsites.net/treeGraphGenerateNetwork",
         async: false,
         data: jsonOfIssueKey,
         contentType: "application/json",
