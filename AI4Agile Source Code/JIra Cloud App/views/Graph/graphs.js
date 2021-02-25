@@ -60,6 +60,7 @@ function getAndRenderGraphs() {
     });
     $(window).ready(function () {
         cyTr.on('resize', function (event) {
+            cyTr.layout({name: 'breadthfirst', directed: true, spacingFactor: 0.75}).run();
             cyTr.center();
             cyTr.fit();
         });
