@@ -1,3 +1,6 @@
+var clusterNetwork = [];
+var treeNetwork = [];
+
 function getAndRenderGraphs() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -9,24 +12,33 @@ function getAndRenderGraphs() {
     $.ajax({
         type: "POST",
         url: "http://127.0.0.1:5000/clusterGraphGenerateNetwork",
+        async: false,
         data: jsonOfIssueKey,
         contentType: "application/json",
         success: function (data) {
             replyData = JSON.parse(data);
-            clusterNetwork = replyData['treeNetwork'];
+            console.log(replyData);
+            clusterNetwork = replyData['clusterNetwork'];
+            console.log(clusterNetwork);
         }
     });
 
     $.ajax({
         type: "POST",
         url: "http://127.0.0.1:5000/treeGraphGenerateNetwork",
+        async: false,
         data: jsonOfIssueKey,
         contentType: "application/json",
         success: function (data) {
             replyData = JSON.parse(data);
+            console.log(replyData);
             treeNetwork = replyData['treeNetwork'];
+            console.log(treeNetwork);
         }
     });
+
+    console.log(treeNetwork);
+    console.log(clusterNetwork);
 
     var cyTr = cytoscape({
         container: document.getElementById('cyTr'),
