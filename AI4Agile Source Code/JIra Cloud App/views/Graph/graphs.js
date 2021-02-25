@@ -17,9 +17,7 @@ function getAndRenderGraphs() {
         contentType: "application/json",
         success: function (data) {
             replyData = JSON.parse(data);
-            console.log(replyData);
             clusterNetwork = replyData['clusterNetwork'];
-            console.log(clusterNetwork);
         }
     });
 
@@ -31,29 +29,25 @@ function getAndRenderGraphs() {
         contentType: "application/json",
         success: function (data) {
             replyData = JSON.parse(data);
-            console.log(replyData);
             treeNetwork = replyData['treeNetwork'];
-            console.log(treeNetwork);
         }
     });
 
-    console.log(treeNetwork);
-    console.log(clusterNetwork);
-
     var cyTr = cytoscape({
         container: document.getElementById('cyTr'),
-        elements: treeNetwork,
+        elements: JSON.parse(treeNetwork),
         layout: treeLayout,
         style: treeStyle,
         zoomingEnabled: true
     });
     var cyCl = cytoscape({
         container: document.getElementById('cyCl'),
-        elements: clusterNetwork,
+        elements: JSON.parse(clusterNetwork),
         layout: clusterLayout,
         style: clusterStyle,
         zoomingEnabled: true
     });
+
     $(document).ready(function () {
         // Open the "href" node attribute on click
         cyTr.on('tap', 'node', function () {
