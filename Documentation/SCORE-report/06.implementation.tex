@@ -29,7 +29,9 @@ All three processes were implemented using available Python libraries, with the 
 The Epic Decomposition process was implemented using k-means clustering over a dynamic clustering technique, such as DBSCAN or Mean shift. Dynamic clustering techniques were unable to be implemented in a manner that yielded consistent meaningful clusters across many epic inputs. This was a result of an inability to filter noises such that the clusters were neither completely disjoint nor entirely overlapping. Thus, K-means, a centroid-based clustering algorithm, was used at the cost of selecting a default number of stories to generate. The default number of stories generated is five, but the user can select between two and ten stories using a newly added slider in the UI for the Epic Decomposition process.
 
 \subsubsection{Story Optimization}
-For Story Optimization, the process maintained the initial implementation without any significant changes to the algorithm. The algorithm utilizes a pre-trained Word2Vec model, along with SIF and cosine similarity functions from the scikit-learn python library. Initially, the degree of connectivity between sentences was specified by choosing the optimal threshold level. However, it was changed so that the user can choose to increase or decrease the degree of connectivity between sentences offering more flexibility in the generated results.
+For Story Optimization, in the beginning, a pre-trained Word2Vec model was used to extract the features out of sentences. A sentence embedding technique called SIF embeddings (Smooth Inverse Frequency) was used to compute sentence embeddings as a weighted average of word vectors. However, these techniques were extremely computationally intensive. The story optimization also required every sentence to be compared against one another, which led to a long waiting time. To overcome the obstacle, the implementation was changed to use TF-IDF from the scikit-learn python library. The technique was also able to extract features from sentences with a faster process time.
+
+Initially, the degree of connectivity between sentences was specified by choosing the optimal threshold level. However, it was changed so that the user can choose to increase or decrease the degree of connectivity between sentences offering more flexibility in the generated results.
 
 The user can choose to increase or decrease the degree of connectivity between sentences. The slider displays options from 0 to 10, which maps to values from 0.65 to 0.75 as threshold values on the backend. The slider integration was a feature that was added based on mentor feedback. A parameter is exposed to give the user more control of the output. The exposed parameter is the degree of connectivity between the sentences. It was determined after impact analysis that it is better to implement it this way because it generates more meaningful results tailored to each user. This also eliminates the need for having a fixed threshold number, since the optimal threshold number can vary between inputs.
 
@@ -59,7 +61,7 @@ The AI4Agile Jira Connect App front-end and back-end is hosted as three Azure We
 \hline
 Epic Decomposition & K-means clustering & scikit-learn: machine learning in Python \cite{scikit} \\
 \hline
-\multirow{4}{*}{Story Optimization} & Word embedding & Google Word2Vec Pre-trained Model \cite{googleword2vec} \\ 
+\multirow{4}{*}{Story Optimization} & Word embedding & scikit-learn: machine learning in Python \cite{scikit} \\ 
 \cline{2-3}
 & Feature Extraction & scikit-learn: machine learning in Python \cite{scikit} \\ 
 \cline{2-3}
