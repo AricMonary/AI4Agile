@@ -17,7 +17,7 @@ edges = []
 
 # Main source: https://isquared.digital/blog/2020-03-24-viz-tools-pt2-2/
 # with open('data/IssueQueryResults.json', 'r') as f:
-issueData = jira.issue('AI4-98')  # json.load(f)  # setup issueData dictionary
+issueData = jira.issue('AI4-97')  # json.load(f)  # setup issueData dictionary
 
 # Get project website for hrefs
 link = issueData.get("fields").get("project").get("self")
