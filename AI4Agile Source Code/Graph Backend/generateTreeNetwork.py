@@ -115,6 +115,18 @@ def generate_tree_dataset(issueKey):
             "locked": False,  # the node position is not immutable
             "grabbable": True  # we can grab and move the node
         }
+        nodes.append(node)
+
+        edge = {
+            "data": data,
+            "group": "edges",  # it belongs in the group of edges
+            "removed": False,
+            "selected": False,  # the edge is not selected
+            "selectable": True,  # we can select the node
+            "locked": False,  # the edge position is not immutable
+            "grabbable": True,  # we can grab and move the node
+            "directed": True  # the edge is directed
+        }
         edges.append(edge)
 
     networks = []
