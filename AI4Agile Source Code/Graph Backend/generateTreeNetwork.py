@@ -83,14 +83,20 @@ def generate_tree_dataset(issueKey):
     # issuelinks is a list of dictionaries, not a single dictionary
     issueLinks = issueData.get("fields").get("issuelinks")
     for i in range(0, len(issueLinks)):
+        data = {}
         if issueLinks[i].get("inwardIssue") != None:
+            # source node id (edge comes from this node)(current blocking issue)
+            # target node id (edge goes to this node)(selected issue)
+            # not matching -> returns None
+            isPassive = re.search("is [a-z]+ by", issueLinks[i].get("type").get("inward"))
+            data = {"source": "1", "target": str(i + 2), "id": "e" + str(i + 2)} if isPassive else {"source": str(i + 2), "target": "1", "id": "e" + str(i + 2)}
+        
             name = (issueLinks[i]).get("inwardIssue").get("key")
-            type = (issueLinks[i]).get("inwardIssue").get(
-                "fields").get("issuetype").get("name")
+            type = (issueLinks[i]).get("inwardIssue").get("fields").get("issuetype").get("name")
         elif (issueLinks[i]).get("outwardIssue") != None:
+            data = {"source": str(i + 2), "target": "1", "id": "e" + str(i + 2)} # this issue blocks another "outward" issue
             name = (issueLinks[i]).get("outwardIssue").get("key")
-            type = (issueLinks[i]).get("outwardIssue").get(
-                "fields").get("issuetype").get("name")
+            type = (issueLinks[i]).get("outwardIssue").get("fields").get("issuetype").get("name")
         else:
             continue
 
@@ -108,24 +114,6 @@ def generate_tree_dataset(issueKey):
             "selectable": True,  # we can select the node
             "locked": False,  # the node position is not immutable
             "grabbable": True  # we can grab and move the node
-        }
-        nodes.append(node)
-
-        # source node id (edge comes from this node)(current blocking issue)
-        # target node id (edge goes to this node)(selected issue)
-        # not matching -> returns None
-        isPassive = re.search("is [a-z]+ by", issueLinks[i].get("type").get("inward"))
-        data = {"source": "1", "target": str(i + 2), "id": "e" + str(i + 2)} if isPassive else {"source": str(i + 2), "target": "1", "id": "e" + str(i + 2)}
-
-        edge = {
-            "data": data,
-            "group": "edges",  # it belongs in the group of edges
-            "removed": False,
-            "selected": False,  # the edge is not selected
-            "selectable": True,  # we can select the node
-            "locked": False,  # the edge position is not immutable
-            "grabbable": True,  # we can grab and move the node
-            "directed": True  # the edge is directed
         }
         edges.append(edge)
 
