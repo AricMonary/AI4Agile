@@ -72,7 +72,7 @@ The first step to break down sentences was to use part-of-speech tagging to remo
 Fig. \ref{fig:ExampleDataFlowDiagram} models the overall flow of AI4Agile’s main processing. A relationship graph may be generated at any point and is independent of the processes in Fig. \ref{fig:ExampleDataFlowDiagram}.  The starting point in the flow may also vary between uses. For example, a user may have manually entered all their overarching user stories for their epic, skipping the Epic Decomposition process entirely, and go directly to perform either story optimization or task generation.
 
 \subsection{Relationship Visualization}
-The purpose of the relationship graph is to give users a visual representation of the dependencies between a selected issue in Jira and the relevant issues. This graph provides a way to view those relationships in one place at a glance, for ease of understanding.
+The purpose of the relationship graph is to give users a visual representation of the dependencies between a selected issue in Jira and the relevant issues. This graph provides a way to view those relationships in one place at a glance, for ease of understanding. Having such a view can assist users in agile processes such as grouping tasks for sprints, or assigning tasks to developers. The usefulness comes by showing which tasks depend on other issues and need to be finished in series, and which tasks have already been assigned to certain developers, or which developers already have a large task load and shouldn't be the first pick for additional assignments. 
 
 \subsection{User Interface and Experience}
 For the user interface and experience, a combination of prototyping and stakeholder meetings went into the decisions displayed in Table \ref{tab:UIUXDesignChoices}. The highest priority was to make the interface as intuitive and easy to use as possible, to fall in line with the larger project goal of saving users time throughout the agile development process.
@@ -99,7 +99,7 @@ For the user interface and experience, a combination of prototyping and stakehol
 		\item External database use
 		\item Strictly Jira database use
 	\end{itemize} & 
-	Strictly Jira database use & There is a need to split up the different types of sentences, such as complex and compound, into simple sentences, in order for them to be manipulated into tasks. To do this, sentence classification is the necessary first step.\\
+	Strictly Jira database use & For the scope of the initial release, it was determined that a database would only add an unnecessary level of complexity. For later features that may include the use of historical project data, this will be reassessed.\\
 	\hline
 	\begin{itemize}
 		\item Relationship Graph as tree
