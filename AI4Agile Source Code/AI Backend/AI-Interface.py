@@ -11,9 +11,9 @@ from TaskGeneration import TaskGeneration
 app = Flask(__name__)
 CORS(app)
 jira = Jira(
-    url='https://playingabout.atlassian.net/',
-    username='aric.monary@wsu.edu',
-    password='NCx7f7ZWle5yfwS3DB8JBCEA')
+    url='https://ai4agile.atlassian.net/',
+    username='aric.monary@gmail.com',
+    password='1DUcQzOBmyhq38npvuC41330')
 
 # Listener to generate suggestions for Epic Decomposition
 @app.route('/epicDecompositionCreateSuggestions', methods=['POST', 'OPTIONS'])

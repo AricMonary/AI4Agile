@@ -8,34 +8,32 @@ var suggestions = {
         return this.listOfSuggestions;
     },
     set list(value) {
-      this.listOfSuggestions = value;
-      renderSuggestions();
+        this.listOfSuggestions = value;
+        renderSuggestions();
     }
-  }
+}
 
 function getsuggestions() {
-    
+
     clearSuggestions();
     changeButtonState(false);
-    
+
     parametersFromURL = getURLParameters();
 
     processType = parametersFromURL['processType'];
     issueKey = parametersFromURL['parentIssueKey'];
 
-    if(document.getElementById("slider") != null)
-    {
+    if (document.getElementById("slider") != null) {
         sliderValue = document.getElementById("slider").value;
         generateSuggestions(processType, issueKey, sliderValue);
     }
-    else
-    {
+    else {
         generateSuggestions(processType, issueKey, 0);
     }
 }
 
 function generateSuggestions(processType, issueKey, sliderValue) {
-    var jsonOfIssueKey = JSON.stringify({ 'issueKey': issueKey, 'sliderValue': sliderValue});
+    var jsonOfIssueKey = JSON.stringify({ 'issueKey': issueKey, 'sliderValue': sliderValue });
 
     insertLoader();
 
@@ -71,11 +69,10 @@ function generateSuggestions(processType, issueKey, sliderValue) {
                 contentType: "application/json",
                 success: function (data) {
                     replyData = JSON.parse(data);
-                    if(replyData['suggestions'].length != 1) {
+                    if (replyData['suggestions'].length != 1) {
                         suggestions.list = replyData['suggestions'];
                     }
-                    else
-                    {
+                    else {
                         suggestions.list = ['No Story Optimization Possible'];
                     }
                 }
@@ -120,12 +117,10 @@ function renderSuggestions() {
         checkbox.setAttribute('type', 'checkbox');
         checkbox.setAttribute('name', 'suggestion');
         //checkbox.setAttribute('checked', 'true');
-        
-        if(suggestion == "No Story Optimization Possible")
-        {
+
+        if (suggestion == "No Story Optimization Possible") {
             checkbox.disabled = true;
             label.setAttribute("contenteditable", "false");
-            checkbox.setAttribute('checked', 'false');
         }
 
         // add the label element to your div
@@ -137,41 +132,36 @@ function renderSuggestions() {
 
     document.getElementById('selectAll').disabled = false;
     document.getElementById('deselectAll').disabled = false;
-    document.getElementById('createSuggestions').disabled = true;
 }
 
 // For demo button
 function createSuggestions() {
-    if (!(document.getElementById('createSuggestions').disabled)) {
+    var div = document.getElementById('suggestions');
+    suggestionsToRender = suggestions;
+    for (suggestion of suggestionsToRender) {
+        var newDiv = document.createElement("div");
+        newDiv.setAttribute("class", "suggestion")
+        // create the necessary elements
+        var label = document.createElement("label");
+        label.setAttribute("contenteditable", "true");
+        label.setAttribute("for", "suggestion");
+        label.appendChild(document.createTextNode(suggestion));
 
-        var div = document.getElementById('suggestions');
-        suggestionsToRender = suggestions;
-        for (suggestion of suggestionsToRender) {
-            var newDiv = document.createElement("div");
-            newDiv.setAttribute("class", "suggestion")
-            // create the necessary elements
-            var label = document.createElement("label");
-            label.setAttribute("contenteditable", "true");
-            label.setAttribute("for", "suggestion");
-            label.appendChild(document.createTextNode(suggestion));
+        var checkbox = document.createElement("input");
+        checkbox.setAttribute('type', 'checkbox');
+        checkbox.setAttribute('name', 'suggestion');
+        checkbox.setAttribute('class', '')
+        //checkbox.setAttribute('checked', 'True');
 
-            var checkbox = document.createElement("input");
-            checkbox.setAttribute('type', 'checkbox');
-            checkbox.setAttribute('name', 'suggestion');
-            checkbox.setAttribute('class', '')
-            //checkbox.setAttribute('checked', 'True');
-
-            // add the label element to your div
-            newDiv.appendChild(checkbox);
-            newDiv.appendChild(label);
-            newDiv.appendChild(document.createElement("br"));
-            div.appendChild(newDiv);
-        }
+        // add the label element to your div
+        newDiv.appendChild(checkbox);
+        newDiv.appendChild(label);
+        newDiv.appendChild(document.createElement("br"));
+        div.appendChild(newDiv);
     }
 
     document.getElementById('selectAll').disabled = false;
     document.getElementById('deselectAll').disabled = false;
-    document.getElementById('createSuggestions').disabled = true;
 }
 
 function checkAllSuggestions(checked) {
@@ -196,6 +186,11 @@ function createSelectedSuggestions() {
         if (populatedSuggestions[i].checked == true) {
             checkedSuggestions.push(populatedSuggestions[i].parentElement.childNodes[1].innerHTML);
         }
+    }
+
+    if (checkedSuggestions.length == 0)
+    {
+        return;
     }
 
     var paramtersFromURL = getURLParameters();
@@ -356,13 +351,13 @@ function populateRange() {
 
 function insertLoader() {
     var div = document.getElementById('suggestions');
-    
+
     var loading = document.createElement("div");
-    loading.setAttribute('id', 'loading'); 
+    loading.setAttribute('id', 'loading');
     loading.setAttribute('class', 'loading');
-    
+
     var loader = document.createElement("div");
-    loader.setAttribute('id', 'loader'); 
+    loader.setAttribute('id', 'loader');
     loader.setAttribute('class', 'loader');
 
     loading.appendChild(loader);

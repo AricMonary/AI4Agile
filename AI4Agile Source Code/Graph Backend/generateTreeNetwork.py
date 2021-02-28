@@ -4,9 +4,9 @@ import re
 from atlassian import Jira
 
 jira = Jira(
-    url='https://playingabout.atlassian.net/',
-    username='aric.monary@wsu.edu',
-    password='NCx7f7ZWle5yfwS3DB8JBCEA')
+    url='https://ai4agile.atlassian.net/',
+    username='aric.monary@gmail.com',
+    password='1DUcQzOBmyhq38npvuC41330')
 
 def generate_tree_dataset(issueKey):
     # expect issue key as input from Ajax response

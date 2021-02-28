@@ -4,9 +4,9 @@ import json
 
 # Authenticate JIRA
 jira = Jira(
-    url="https://playingabout.atlassian.net/",
-    username="phong.bach@wsu.edu",
-    password="OOCqwKugtQBVE6sdFied7862",
+    url='https://ai4agile.atlassian.net/',
+    username='aric.monary@gmail.com',
+    password='1DUcQzOBmyhq38npvuC41330')
 )
 
 # Generate network file in javascript
