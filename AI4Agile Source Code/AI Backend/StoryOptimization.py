@@ -7,10 +7,11 @@ from nltk.corpus import stopwords
 from unidecode import unidecode
 import string
 
+dependencyInstalled = False
 
 # Split paragraph into an array and eliminate bad sentence
 def pre_process_story(story_input):
-    story_sentences = story_input.split(".")
+    story_sentences = story_input
 
     # Remove bad sentences
     for story_sentence in story_sentences:
@@ -25,6 +26,11 @@ def pre_process_story(story_input):
 
 
 def pre_process(corpus):
+    global dependencyInstalled
+    if not dependencyInstalled:
+        nltk.download('stopwords')
+        nltk.download('punkt')
+        dependencyInstalled = True
     # convert input corpus to lower case.
     corpus = corpus.lower()
     # collecting a list of stop words from nltk and punctuation form

@@ -150,7 +150,17 @@ def createStoryFromEpic(suggestionsJSON):
         if list(parentFields['labels']) != []:
             fields['labels'] = list(parentFields['labels'])
 
-        jira.issue_create(fields=fields)
+        newIssue = jira.issue_create(fields=fields)
+        newIssueKey = newIssue['key']
+
+        issueFields = {
+            "type": {"name": "Blocks"},
+            "inwardIssue": {"key": newIssueKey},
+            "outwardIssue": {"key": parentIssueKey},
+            "comment": {}
+        }
+
+        jira.create_issue_link(issueFields)
 
 def createStoryFromStory(suggestionsJSON):
     projectKey = suggestionsJSON['projectKey']

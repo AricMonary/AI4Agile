@@ -30,9 +30,11 @@ def parser(sent):
         result = []
         str2 = "".join(sent)
         global str1
+        global dependencyInstalled
         # Uncomment when running for the first tim
         if not dependencyInstalled:
             stanza.download('en')
+            dependencyInstalled = True
         nlp = stanza.Pipeline('en', processors='tokenize,mwt,pos,lemma,depparse')
         count = 0
         counter = 0
@@ -72,9 +74,6 @@ def sentenceBuilder(value, list2,list3):
     if (counted > 1):
         list3.append(value[1])
     return list2,list3
-
-def downloadStanza():
-    stanza.download('en')
 
 if __name__=='__main__':
     print(parser(sent))
