@@ -25,7 +25,6 @@ The backend served two primary purposes: generating suggested issues and populat
 All three processes were implemented using available Python libraries, with the primary interface also written in Python. The interface uses Flask\cite{flask}, a Python web framework, to receive messages sent by AJAX in the frontend. The AI interface component uses atlassian-Python-api\cite{jiraPython}, which simplifies Atlassian Rest API\cite{jira5} calls, to gather necessary information from the Jira issues. When generating suggestions, the description is queried for and passed as a list of individual requirements to the text processor. Suggestions are then passed back through a reply to the original message. Once a user selects, and possibly edits, which issues they would like to have populated in their Jira board, then the original issue is queried again to percolate existing fields, such as assignee, reporter, due date, tags, or sprints, to the newly created child issues. Each newly created issue is given a blocking relationship to the issue they were derived from. For example, all the created stories from an Epic Decomposition will “block” the epic from being completed. Any further tasks created from Task Generation on a story will “block” the story from completion.
 
 \subsubsection{Epic Decomposition}
-%Bob: ??? I thouhgt you said you used Mean shift in the design section. This would need more explanation
 
 The Epic Decomposition process was implemented using k-means clustering over a dynamic clustering technique, such as DBSCAN or Mean shift. Dynamic clustering techniques were unable to be implemented in a manner that yielded consistent meaningful clusters across many epic inputs. This was a result of an inability to filter noises such that the clusters were neither completely disjoint nor entirely overlapping. Thus, K-means, a centroid-based clustering algorithm, was used at the cost of selecting a default number of stories to generate. The default number of stories generated is five, but the user can select between two and ten stories using a newly added slider in the UI for the Epic Decomposition process.
 
@@ -45,6 +44,10 @@ The approach for Task Generation was based off a decomposition approach by Das, 
 \end{figure}
 
 The plugin communicates from Jira to the backend interface via a listener through AJAX calls which are received by Flask. When a web panel is opened for any of the three processes, a message is sent to generate and return the suggestion issues. The Jira panel will function asynchronously with a loading animation appearing until the resulting suggestions are received. Once the results are received, populated in the suggestion box, and the desired suggestions are selected by the user, then a message is sent containing which suggestions to then create within Jira.
+
+\subsection{Hosting}
+
+The AI4Agile Jira Connect App front-end and back-end is hosted as three Azure Web Apps. The front-end is a single Node.js Web App and the back-end is two Python Web Apps. As previously discussed, the front-end uses AJAX and the back-end uses Flask Web Framework for communication. Jira communicates with the front-end Azure Web App to get assets that are to be rendered within Jira. The back-end is separated into two sets of features: dependency visualization and text processing. The dependency visualization back-end accesses the data from Jira, which is used to construct graphs. The text processing back-end contains all three of the primary processes (epic decomposition, story optimization, and task generation). The Jira web page does not directly communicate with back-end. Rather, the Jira web page communicates with the front-end and then the front-end communicates with the back-end.
 
 %\begin{center}
 \begin{table}
