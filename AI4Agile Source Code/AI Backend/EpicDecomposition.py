@@ -1,11 +1,13 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
 from sklearn.metrics import adjusted_rand_score
+import time
+import datetime
 
 #input is a list of text
 def EpicDecomposition (input, numberOfClusters):
     #input = epic
-
+    print(str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')) + ": Starting Epic Decomposition")
     vectorizer = TfidfVectorizer(stop_words='english')
     X = vectorizer.fit_transform(input)
 
@@ -18,6 +20,8 @@ def EpicDecomposition (input, numberOfClusters):
     for i in range(true_k):
         suggestions.append('')
 
+    print(str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')) + ": Preforming Epic Decomposition Predictions")
+
     for sentence in input:
         Y = vectorizer.transform([sentence])
         prediction = model.predict(Y)[0]
@@ -26,6 +30,8 @@ def EpicDecomposition (input, numberOfClusters):
     for i in range(true_k):
         if suggestions[i] == '':
             suggestions.remove('')
+
+    print(str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')) + ": Completed Epic Decomposition")
 
     return suggestions
 

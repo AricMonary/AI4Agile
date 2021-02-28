@@ -76,7 +76,7 @@ function generateSuggestions(processType, issueKey, sliderValue) {
                     }
                     else
                     {
-                        suggestions.list = [];
+                        suggestions.list = ['No Story Optimization Possible'];
                     }
                 }
             });
@@ -120,6 +120,13 @@ function renderSuggestions() {
         checkbox.setAttribute('type', 'checkbox');
         checkbox.setAttribute('name', 'suggestion');
         //checkbox.setAttribute('checked', 'true');
+        
+        if(suggestion == "No Story Optimization Possible")
+        {
+            checkbox.disabled = true;
+            label.setAttribute("contenteditable", "false");
+            checkbox.setAttribute('checked', 'false');
+        }
 
         // add the label element to your div
         newDiv.appendChild(checkbox);
@@ -136,7 +143,6 @@ function renderSuggestions() {
 // For demo button
 function createSuggestions() {
     if (!(document.getElementById('createSuggestions').disabled)) {
-        var suggestions = ["suggestion 1", "suggestion 2", "suggestion 3", "a very very very very very very very very very very very long suggestion", "...", "suggestion x"]; //query script here
 
         var div = document.getElementById('suggestions');
         suggestionsToRender = suggestions;
@@ -153,7 +159,7 @@ function createSuggestions() {
             checkbox.setAttribute('type', 'checkbox');
             checkbox.setAttribute('name', 'suggestion');
             checkbox.setAttribute('class', '')
-            //checkbox.setAttribute('checked', 'true');
+            //checkbox.setAttribute('checked', 'True');
 
             // add the label element to your div
             newDiv.appendChild(checkbox);
@@ -296,7 +302,7 @@ function populateRange() {
         range.setAttribute("id", "slider");
         range.setAttribute("class", "slider");
         range.setAttribute("name", "range");
-        range.setAttribute("min", "1");
+        range.setAttribute("min", "2");
         range.setAttribute("max", "10");
         range.setAttribute("value", "5");
 
@@ -379,5 +385,4 @@ function clearSuggestions() {
 function changeButtonState(state) {
     document.getElementById('selectAll').disabled = state;
     document.getElementById('deselectAll').disabled = state;
-    document.getElementById('createSuggestions').disabled = state;
 }

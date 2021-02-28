@@ -2,6 +2,7 @@ var clusterNetwork = [];
 var treeNetwork = [];
 
 function getAndRenderGraphs() {
+    insertLoader();
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     var setOfIssueKey = {};
@@ -69,4 +70,26 @@ function getAndRenderGraphs() {
             cyCl.fit();
         });
     });
+    removeLoader();
+}
+
+function insertLoader() {
+    var div = document.getElementById('cyTr');
+    
+    var loading = document.createElement("div");
+    loading.setAttribute('id', 'loading'); 
+    loading.setAttribute('class', 'loading');
+    
+    var loader = document.createElement("div");
+    loader.setAttribute('id', 'loader'); 
+    loader.setAttribute('class', 'loader');
+
+    loading.appendChild(loader);
+
+    div.appendChild(loading);
+}
+
+function removeLoader() {
+    var loading = document.getElementById('loading');
+    loading.parentNode.removeChild(loading);
 }
