@@ -69,7 +69,7 @@ function generateSuggestions(processType, issueKey, sliderValue) {
                 contentType: "application/json",
                 success: function (data) {
                     replyData = JSON.parse(data);
-                    if (replyData['suggestions'].length != 1) {
+                    if (replyData['suggestions'].length > 1) {
                         suggestions.list = replyData['suggestions'];
                     }
                     else {
@@ -117,8 +117,9 @@ function renderSuggestions() {
         checkbox.setAttribute('type', 'checkbox');
         checkbox.setAttribute('name', 'suggestion');
         //checkbox.setAttribute('checked', 'true');
-
-        if (suggestion == "No Story Optimization Possible") {
+        
+        console.log(suggestionsToRender)
+        if (suggestion == "No Story Optimization Possible" && suggestionsToRender.length == 1) {
             checkbox.disabled = true;
             label.setAttribute("contenteditable", "false");
         }

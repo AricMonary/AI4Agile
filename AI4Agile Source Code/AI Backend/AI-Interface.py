@@ -142,7 +142,7 @@ def createStoryFromEpic(suggestionsJSON):
             fields['reporter'] = {'id': parentFields['reporter']['accountId']}
         if parentFields['assignee'] != None:
             fields['assignee'] = {'id': parentFields['assignee']['accountId']}
-        # start date
+        #start date
         if parentFields['customfield_10015'] != None:
             fields['customfield_10015'] = parentFields['customfield_10015']
         if parentFields['duedate'] != None:

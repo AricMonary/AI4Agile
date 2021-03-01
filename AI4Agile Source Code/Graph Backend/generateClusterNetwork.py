@@ -7,7 +7,6 @@ jira = Jira(
     url='https://ai4agile.atlassian.net/',
     username='aric.monary@gmail.com',
     password='1DUcQzOBmyhq38npvuC41330')
-)
 
 # Generate network file in javascript
 def generate_cluster_dataset(project):

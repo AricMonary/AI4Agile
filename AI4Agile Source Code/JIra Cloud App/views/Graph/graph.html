@@ -25,14 +25,19 @@
             height: 100%;
             position: absolute;
             left: 0;
-            top: 2;
+            top: 0;
+            overflow: hidden;
+        }
+        .floating {
+            float: left;
+            z-index:1;
         }
     </style>
 </head>
 
 <body>
-    <div class="aui-buttons" class="buttons">
-        <button class="aui-button" id="switchGraphs" onClick="switchGraph()">View Developer Cluster</button>
+    <div class="aui-buttons floating" class="buttons">
+        <button class="aui-button floating" id="switchGraphs" onClick="switchGraph()">View Developer Cluster</button>
     </div>
 
     <!-- Actual Cytoscape.js Instance -->
