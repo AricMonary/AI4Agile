@@ -2,41 +2,25 @@
   AI4Agile
 </h1>
 
-Provides mutation coverage for your Java programs within the Eclipse IDE. Built on [PIT (Pitest)](http://pitest.org) for reliability.
-
 ## What is AI4Agile?
 
-> Faults (or mutations) are automatically seeded into your code, then your tests are run. If your tests fail then the mutation is killed, if your tests pass then the mutation lived.
->
-> The quality of your tests can be gauged from the percentage of mutations killed.
->
-> *Henry Coles, [pitest.org](https://pitest.org)*
+> 
 
 ## Main Features
 
-- **Epic Decomposition**: decompose an epic, a combination of 
-- **Story Optimization**: optimize stories into 
+- **Epic Decomposition**: decompose an epic, a combination of requirements and specifications, into user stories.
+- **Story Optimization**: optimize user stories into smaller stories.
 - **Task Generation**: break stories down into simple tasks.
-- **Dependency Visualization**: see direct and indirect relationships between issues.
+- **Dependency Visualization**: visualize of explicit and implicit relationships between stories, tasks, and epics
 
+## Usage Demonstration
 
-## Usage
+Users interested in trying out the app may visit the deployed app at the [AI4Agile Demo Jira Project](https://id.atlassian.com/login?continue=https%3A%2F%2Fai4agile.atlassian.net%2Flogin%3FredirectCount%3D1%26application%3Djira&application=jira), using the following login credentials:
 
-Once the plug-in is installed (see [Installation](#Installation) below), you can run Pitest:
-- Right-click on a Java project defining unit tests
-- `Run As` > `PIT Mutation Test`
+- **Username:** AI4Agile@gmail.com
+- **Password:** SCORE2021
 
-Wait a few seconds, two views should open to show the results:
-- **PIT Summary**: shows the percentage of mutation coverage
-- **PIT Mutations**: shows the detected mutations and their location in code
-
-It is also possible to run a single JUnit test class. Specific PIT options can be configured from the Launch Configuration window:
-- `Run` > `Run Configurations...`
-- Double-click on `PIT Mutation Test`
-- Specify the options
-- Press `Run`
-
-Preferences also allow to change mutation settings (`Window > Preferences > Pitest`).
+Then select the `AI4Agile Demo project` > `Roadmap` or `Backlog` .
 
 ## Installation
 
