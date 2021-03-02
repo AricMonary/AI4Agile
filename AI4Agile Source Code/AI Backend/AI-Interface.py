@@ -190,7 +190,17 @@ def createStoryFromStory(suggestionsJSON):
         if parentFields['customfield_10020'] != None:
             fields['customfield_10020'] = parentFields['customfield_10020'][0]['id']
 
-        jira.issue_create(fields=fields)
+        newIssue = jira.issue_create(fields=fields)
+        newIssueKey = newIssue['key']
+
+        issueFields = {
+            "type": {"name": "Blocks"},
+            "inwardIssue": {"key": newIssueKey},
+            "outwardIssue": {"key": parentIssueKey},
+            "comment": {}
+        }
+
+        jira.create_issue_link(issueFields)
 
     # Add "Opimized" label to existing story that was optimzed
     labelFields = list((jira.issue_field_value(parentIssueKey, "labels")))
