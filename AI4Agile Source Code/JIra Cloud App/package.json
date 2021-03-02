@@ -33,7 +33,7 @@
     "express": "^4.17.1",
     "express-hbs": "^2.3.4",
     "helmet": "^4.1.1",
-    "jquery": "^2.2.4",
+    "jquery": "^3.5.0",
     "morgan": "^1.10.0",
     "nocache": "^2.1.0",
     "npm-install-missing": "^0.1.4",
