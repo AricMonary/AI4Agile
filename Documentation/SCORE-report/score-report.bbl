@@ -1,0 +1,103 @@
+\begin{thebibliography}{10}
+
+\bibitem{proposal}
+Ai4agile project proposal.
+\newblock \url{https://conf.researchr.org/home/icse-2021/score-2021}.
+
+\bibitem{jira1}
+Atlassain jira marketplace.
+\newblock \url{https://marketplace.atlassian.com/addons/app/jira}.
+
+\bibitem{jira2}
+Atlassain jira software cloud.
+\newblock \url{https://www.atlassian.com/software/jira/whats-new/cloud}.
+
+\bibitem{jiraconnect}
+Atlassian connect express modules.
+\newblock
+  \url{https://bitbucket.org/atlassian/atlassian-connect-express/src/master/}.
+
+\bibitem{jira3}
+Atlassian design guidelines.
+\newblock \url{https://atlassian.design/}.
+
+\bibitem{jiraPython}
+atlassian-python-api.
+\newblock \url{https://github.com/atlassian-api/atlassian-python-api}.
+
+\bibitem{jira5}
+Atlassian rest api.
+\newblock
+  \url{https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/}.
+
+\bibitem{jira4}
+Atlassian user interface.
+\newblock \url{https://aui.atlassian.com/}.
+
+\bibitem{cytoscape}
+Cytoscape.
+\newblock \url{https://cytoscape.org/}.
+
+\bibitem{flask}
+Flask.
+\newblock \url{https://flask.palletsprojects.com/en/1.1.x/}.
+
+\bibitem{googleword2vec}
+Google word2vec.
+\newblock \url{https://code.google.com/archive/p/word2vec/}.
+
+\bibitem{ajax}
+Jquery ajax.
+\newblock \url{https://api.jquery.com/jquery.ajax/}.
+
+\bibitem{nltk}
+Natural language toolkit.
+\newblock
+  \url{https://pythonprogramming.net/tokenizing-words-sentences-nltk-tutorial/}.
+
+\bibitem{scikit}
+scikit-learn.
+\newblock \url{https://scikit-learn.org/stable/}.
+
+\bibitem{cluster}
+scikit-learn clustering.
+\newblock \url{https://scikit-learn.org/stable/modules/clustering.html}.
+
+\bibitem{stanza}
+Stanford nlp stanza.
+\newblock \url{https://stanfordnlp.github.io/stanza/depparse.html}.
+
+\bibitem{dam3}
+Hoa~Khanh Dam.
+\newblock Empowering software engineering with artificial intelligence.
+\newblock {\em Lecture Notes in Business Information Processing}, 367, 2018.
+
+\bibitem{dam2}
+Hoa~Khanh Dam.
+\newblock Artificial intelligence for software engineering.
+\newblock In {\em XRDS: Crossroads}, volume~25, pages 34--37, 2019.
+
+\bibitem{dam1}
+Hoa~Khanh Dam, Truyen Tran, John Grundy, Aditya Ghose, and Yasutaka Kamei.
+\newblock Towards effective ai-powered agile project management.
+\newblock In {\em Proceedings of the 41st International Conference on Software
+  Engineering (ICSE 2019)}. New Ideas and Emerging Results, 2019.
+
+\bibitem{GOAL}
+A.~Dardenne, A.~van Lamsweerde, and S.~Fickas.
+\newblock Goal-directed requirements acquisition.
+\newblock {\em Science of computer programming}, 20:3--50, 1993.
+
+\bibitem{NLP1}
+Bidyut Das, Mukta Majumder, and Santanu Phadikar.
+\newblock A novel system for generating simple sentences from complex and
+  compound sentences.
+\newblock {\em International Journal of Modern Education and Computer
+  Science.}, 1:57--64, 2018.
+
+\bibitem{KAOS}
+Respect-IT.
+\newblock A kaos tutorial.
+\newblock 2007.
+
+\end{thebibliography}
