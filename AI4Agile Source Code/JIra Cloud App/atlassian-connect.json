@@ -1,0 +1,132 @@
+{
+  "key": "AI4Agile",
+  "name": "AI4Agile",
+  "description": "AI4Agile - AI-powered Plugin to Accelerate Agile Development",
+  "baseUrl": "https://ai4agilejiracloudapp.azurewebsites.net",
+  "vendor": {
+         "name": "Team Katara of Washington State University Everett",
+         "url": "https://school.eecs.wsu.edu/academics/undergraduate-program/software-engineering/everett/"
+     },
+  "authentication": {
+    "type": "none"
+  },
+  "scopes": [
+    "WRITE"
+  ],
+  "modules": {
+    "jiraIssueContents": [
+      {
+        "conditions": [
+          {
+            "condition": "jira_expression",
+            "params": {
+              "expression": "issue.issueType.name == 'Epic'"
+            }
+          }
+        ],
+        "weight": 980,
+        "icon": {
+          "width": 24,
+          "height": 24,
+          "url": "/views/Suggestions/icons/decomposition.png"
+        },
+        "target": {
+          "type": "web_panel",
+          "url": "/views/Suggestions/suggestions.html?projectKey={project.key}&parentIssueKey={issue.key}&processType=epicDecomposition"
+        },
+        "tooltip": {
+          "value": "Epic Decomposition"
+        },
+        "name": {
+          "value": "Epic Decomposition"
+        },
+        "key": "epicDecomposition"
+      },
+      {
+        "conditions": [
+          {
+            "condition": "jira_expression",
+            "params": {
+              "expression": "issue.issueType.name == 'Story'"
+            }
+          }
+        ],
+        "weight": 970,
+        "icon": {
+          "width": 24,
+          "height": 24,
+          "url": "/views/Suggestions/icons/optimization.png"
+        },
+        "target": {
+          "type": "web_panel",
+          "url": "/views/Suggestions/suggestions.html?projectKey={project.key}&parentIssueKey={issue.key}&processType=storyOptimization"
+        },
+        "tooltip": {
+          "value": "Story Optimization"
+        },
+        "name": {
+          "value": "Story Optimization"
+        },
+        "key": "storyOptimization"
+      },
+      {
+        "conditions": [
+          {
+            "condition": "jira_expression",
+            "params": {
+              "expression": "issue.issueType.name == 'Story'"
+            }
+          }
+        ],
+        "weight": 980,
+        "icon": {
+          "width": 24,
+          "height": 24,
+          "url": "/views/Suggestions/icons/generation.png"
+        },
+        "target": {
+          "type": "web_panel",
+          "url": "/views/Suggestions/suggestions.html?projectKey={project.key}&parentIssueKey={issue.key}&processType=taskGeneration"
+        },
+        "tooltip": {
+          "value": "Task Generation"
+        },
+        "name": {
+          "value": "Task Generation"
+        },
+        "key": "taskGeneration"
+      },
+      {
+        "conditions": [
+          {
+            "condition": "jira_expression",
+            "params": {
+              "expression": "issue.issueType.name == 'Epic' || issue.issueType.name == 'Story'  || issue.issueType.name == 'Task'"
+            }
+          }
+        ],
+        "weight": 990,
+        "icon": {
+          "width": 24,
+          "height": 24,
+          "url": "/views/Graph/graph.jpg"
+        },
+        "target": {
+          "type": "web_panel",
+          "url": "/views/Graph/graph.html?projectKey={project.key}&parentIssueKey={issue.key}"
+        },
+        "tooltip": {
+          "value": "Dependency Visualization"
+        },
+        "name": {
+          "value": "Dependency Visualization"
+        },
+        "key": "Dependency-Visualization",
+        "layout": {
+          "width": "100%",
+          "height": "400px"
+        }
+      }
+    ]
+  }
+}

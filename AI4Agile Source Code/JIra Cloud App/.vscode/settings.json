@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/15b2dee3-8b1b-4785-8286-e5afa30dc2ea/resourceGroups/nain.galvan_rg_Windows_westeurope/providers/Microsoft.Web/sites/ai4agilefront",
+    "appService.deploySubpath": "."
+}

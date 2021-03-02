@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Decompose Epic</title>
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/@atlassian/aui@9.1/dist/aui/aui-prototyping.css" />
+  <link rel="stylesheet" type="text/css" href="suggestions.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://connect-cdn.atl-paas.net/all.js"></script>
+  <script src="Suggestions.js" defer></script>
+</head>
+
+<body>
+  <div class="aui-buttons button_margin" class="buttons">
+    <button class="aui-button aui-button-compact" id="loadSuggestions" onClick="getsuggestions()">Reload Suggestions</button>
+  </div>
+
+  <div id="range" class='slidecontainer'>
+    <script>
+      $(window).on('load',function(){
+        populateRange();
+      })
+    </script>
+  </div>
+
+  <div style="display:inline; float:right;" class='tooltip'>
+    <button class="aui-button button_Right aui-button-primary button_margin" id="createSelected"
+      onClick="createSelectedSuggestions()">Create Selected</button>
+      <span class="tooltiptext">Refresh browser to see results</span>
+  </div>
+
+  <div class="aui-buttons button_margin" class="buttons">
+    <button class="aui-button" id="selectAll" onClick="selectAll()" disabled="true">Select All</button>
+    <button class="aui-button" id="deselectAll" onClick="deselectAll()" disabled="true">Deselect All</button>
+  </div>
+
+  <div class="suggestions" id="suggestions">
+    <script>
+      $(window).on('load',function(){
+        getsuggestions();
+      })
+    </script>
+  </div>
+</body>
+
+</html>
