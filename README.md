@@ -51,10 +51,12 @@ The app will soon be available in the [Atlassian Marketplace](https://marketplac
 ├── README.md  
   
 ## Authors and Acknowledgements
+### Team Katara  
 Phong Bach  
 Emily Cawlfield  
 Nain Galvan  
 Aric Monary  
+  
 Special thanks to Dr. Hoa Khanh Dam, Dr. Bolong Zeng, Prof. Jeremy Thompson, and Skip Baccus for their support, assistance, and time given to the team and this project.
 
 This project is part of the [ICSE Score 2021 Competition.](https://conf.researchr.org/home/icse-2021/score-2021)
