@@ -44,7 +44,7 @@ def generate_tree_dataset(issueKey):
     nodes.append(selectedNode)
 
     # Get parent, if applicable
-    if "parent" in issueData.get("fields"):
+    if "parent" in issueData.get("fields") and selectedNode.get("data").get("type") != "Story":
         name = str(issueData.get("fields").get("parent").get("key"))
         node = {
             "data": {
