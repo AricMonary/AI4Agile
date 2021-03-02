@@ -1,0 +1,120 @@
+\section{Design}
+\label{design}
+
+\subsection{AI Selection Criteria}
+\label{subsection:criteria}
+Performing an epic breakdown involves the task of 1) clustering related requirements/specifications, and 2) breaking complex information into smaller stories and tasks. Clustering can be performed with either supervised or unsupervised learning. Supervised learning requires the existence of a data set that has been correctly labeled. Although the team might be able to generate a general data set of decomposed epics, we concluded that a typical epic might contain too many subjects, and we would not be able to produce accurately labeled model for training purposes. 
+In addition, for the stated purpose of increasing consistencies, we assumed that the decomposition process would not rely upon historical project information, such as previously completed epics or sprints. As a result, unsupervised clustering techniques were chosen as it could be equally applicable to new and old projects alike.
+
+The final consideration for choosing the text processing approach was that we would not attempt to generate ``new'' information based on given input. This was due to  lack of  specific project domain data that could be used to generate stories and tasks. Table \ref{table:ai} summarizes the rationales regarding the selection of AI techniques.
+
+\begin{table}[!h]
+	\caption{AI design choices}
+	\label{table:ai}
+	\begin{tabularx}{\textwidth}{|p{3cm}|p{3cm}|p{2cm}|X|}
+	\hline
+	Component & Options & Choice & Reasoning\\
+	\hline
+	Epic Decomposition & 
+		\begin{itemize}
+		\item K-means
+		\item Mean shift
+		\item DBSCAN
+		\item OPTICS
+		\end{itemize} &
+	Mean shift & All of the mentioned clustering algorithms, besides K-means, are dynamic as they do not require the number of clusters as input. Mean-shift only requires the size of the region to search through (bandwidth), which can be estimated, where all other options require arbitrary values to create clusters.\\
+	\hline
+	Story Optimization & 
+		\begin{itemize}
+		\item TF-IDF
+		\item SIF
+		\item Word2vec
+		\item Cosine similarity
+		\item Word mover's distance
+		\end{itemize} &
+	\begin{flushleft}
+	SIF with word2vec and Cosine similarity
+	\end{flushleft} & TF-IDF is the most simple for word embedding. SIF with word2vec can achieve a higher accuracy than TF-IDF with the custom word2vec model that is relevant to the subject. WMD is far more expensive to calculate, especially on longer texts. Cosine similarity can give the same performance without losing too much semantic similarity.\\
+	\hline	
+	Task Generation & 	
+		\begin{itemize}
+		\item Sentence classification
+		\end{itemize}
+	& Sentence classification & There is a need to split up the different types of sentences, such as complex and compound, into simple sentences, in order for them to be manipulated into tasks. To do this, sentence classification is the necessary first step.\\
+	\hline	
+	\end{tabularx}
+\end{table}
+
+\subsection{Epic Decomposition}
+Through manual decompositions of epics into stories, we discovered that the process was fundamentally about categorizing requirements and specifications. Each requirement, assumed to be in the form of a complete sentence or distinguishable section, is vectorized and normalized to perform comparisons. Then, text clustering may be performed based upon such vectors. 
+
+After a series of tests on a simpler text clustering problem, K-means, a non-deterministic centroid-based clustering technique, yielded the best results for creating consistent clusters of requirements. The downside to K-means is that it requires the number of clusters to be identified, forcing a user to provide an input or an estimation. Since we want the process to be useful for large epics with many subjects, we also investigated dynamic clustering techniques such as DBSCAN, OPTICS, and Mean shift \cite{cluster}. Such techniques do not require the number of clusters to be specified. DBSCAN/OPTICS are density-based and Mean shift is a centroid-based clustering technique. Ultimately, we chose Mean shift as the implementation included an estimation of cluster sizes, thus requiring no external input. Upon implementation, it was discovered that Mean shift could not sufficiently filter out noise and it was decided that k-means would be used since it allowed the user to select the number of stories created from an epic.
+
+\subsection{Story Optimization}
+
+Story optimization further refines stories that might contain more than one story or software feature. Our tool uses sentence similarity to power the optimization process. We used Google's pre-trained Word2Vec model\cite{googleword2vec} to extract features out of sentences. We applied a sentence embedding technique called SIF embeddings (Smooth Inverse Frequency) to compute the sentence embeddings as a weighted average of word vectors. Using the features, we can deicde how similar two sentences are by calculating the cosine similarity. 
+The result is the similarity coefficient between sentences and it is then used as a basis to group sentences together. A function decision is used to correctly group sentences from the similarity coefficient using a specified threshold level. 
+
+\subsection{Task Generation}
+
+Task generation is the process of breaking down a requirement into its simplest form. Based on the criterion laid out in Section \ref{subsection:criteria}, simplifying existing input of requirements can be completed by deconstructing complex sentences into simple sentences. 
+The first step to break down sentences was to use part-of-speech tagging to remove unnecessary stop words from the sentence so that each simple sentence contains only one subject and predicate. By ensuring so, it is possible to create a complete simple sentence. Every time a new subject is found, a new sentence is created. Each simple sentence generated from the stories is then suggested as a task.
+
+\subsection{Process Flow}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth,keepaspectratio]{./figure/ExampleDataFlowDiagram.png}
+\caption{Simplified Data Flow diagram outlining the flow of the decomposition processes}
+\label{fig:ExampleDataFlowDiagram}
+\end{figure}\
+
+Fig. \ref{fig:ExampleDataFlowDiagram} models the overall flow of AI4Agile’s main processing. A relationship graph may be generated at any point and is independent of the processes in Fig. \ref{fig:ExampleDataFlowDiagram}.  The starting point in the flow may also vary between uses. For example, a user may have manually entered all their overarching user stories for their epic, skipping the Epic Decomposition process entirely, and go directly to perform either story optimization or task generation.
+
+\subsection{Relationship Visualization}
+The purpose of the relationship graph is to give users a visual representation of the dependencies between a selected issue in Jira and the relevant issues. This graph provides a way to view those relationships in one place at a glance, for ease of understanding. Having such a view can assist users in agile processes such as grouping tasks for sprints, or assigning tasks to developers. The usefulness comes by showing which tasks depend on other issues and need to be finished in series, and which tasks have already been assigned to certain developers, or which developers already have a large task load and shouldn't be the first pick for additional assignments. 
+
+\subsection{User Interface and Experience}
+For the user interface and experience, a combination of prototyping and stakeholder meetings went into the decisions displayed in Table \ref{tab:UIUXDesignChoices}. The highest priority was to make the interface as intuitive and easy to use as possible, to fall in line with the larger project goal of saving users time throughout the agile development process.
+\begin{table}[!h]
+	\caption{UI and UX Design Choices}
+	\begin{tabularx}{\textwidth}{|p{3cm}|p{3cm}|X|}
+	\hline
+	Options & Choice & Reasoning\\
+	\hline
+	\begin{itemize}
+		\item Suggestion Format
+		\item Chatbot
+	\end{itemize} &
+	Suggestion format & A conversation element can slow down the process and ease of use. A suggestion format was chosen to avoid the case where using the plugin as one who is familiar with the project and decomposition methods would slow down a decomposition process instead of accelerating it.\\
+	\hline
+	\begin{itemize}
+		\item Templated epic input
+		\item Unrestricted epic input
+		\item Semi-structured epic input via guidelines
+	\end{itemize} &
+	Semi-structured epic input via guidelines & A template was deemed too restrictive and time consuming for the user, but unrestricted input was infeasible for AI processing. Thus, the choice was to present the user with guidelines in the user manual for what the optimal structure of an epic would be for use with this plugin.\\
+	\hline	
+	\begin{itemize}
+		\item External database use
+		\item Strictly Jira database use
+	\end{itemize} & 
+	Strictly Jira database use & For the scope of the initial release, it was determined that a database would only add an unnecessary level of complexity. For later features that may include the use of historical project data, this will be reassessed.\\
+	\hline
+	\begin{itemize}
+		\item Relationship Graph as tree
+		\item Relationship graph as clusters
+		\item Relationship graph as tree and clusters
+	\end{itemize} & 
+	Relationship graph as tree and clusters & While the original concept had the relationships as clusters, it was determined from stakeholder input that a tree format would likely be more intuitive to the user base. At the same time, if the relationships to be shown are only developer assignments, the lack of parent-child relationships suggested clustering was still the sensible choice.\\
+	\hline
+	\begin{itemize}
+		\item Undo functionality for story/task creation
+		\item Preview button for story/task creation
+		\item Iterative creation process
+	\end{itemize} & 
+	Iterative creation process & With undo functionality, there were issues such as where it would make sense to have such a thing, how far after the action it should be able to be undone, and how much additional effort would be needed to implement it. The reasoning behind this feature was for new users to be able to experiment with the plugin without fear of unintended consequences such as data losses. It was determined that switching to an iterative process, where users can create one story or task at a time from the suggestions, would serve this same purpose to lessen potential consequences and still allow users to experiment. As a result of the iterative creation process, the need for a preview system was eliminated.\\
+	\hline
+	\end{tabularx}
+\label{tab:UIUXDesignChoices}
+\end{table}

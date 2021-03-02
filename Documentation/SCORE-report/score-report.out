@@ -1,0 +1,33 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Background and Process}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Project Scope}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Teams and Stakeholders}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Team Process}{section.2}% 5
+\BOOKMARK [1][-]{section.3}{Requirements}{}% 6
+\BOOKMARK [2][-]{subsection.3.1}{Preliminary Analysis}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.2}{Requirement Modeling with KAOS}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.3}{Requirements Summary}{section.3}% 9
+\BOOKMARK [1][-]{section.4}{Design}{}% 10
+\BOOKMARK [2][-]{subsection.4.1}{AI Selection Criteria}{section.4}% 11
+\BOOKMARK [2][-]{subsection.4.2}{Epic Decomposition}{section.4}% 12
+\BOOKMARK [2][-]{subsection.4.3}{Story Optimization}{section.4}% 13
+\BOOKMARK [2][-]{subsection.4.4}{Task Generation}{section.4}% 14
+\BOOKMARK [2][-]{subsection.4.5}{Process Flow}{section.4}% 15
+\BOOKMARK [2][-]{subsection.4.6}{Relationship Visualization}{section.4}% 16
+\BOOKMARK [2][-]{subsection.4.7}{User Interface and Experience}{section.4}% 17
+\BOOKMARK [1][-]{section.5}{Implementation}{}% 18
+\BOOKMARK [2][-]{subsection.5.1}{Frontend}{section.5}% 19
+\BOOKMARK [2][-]{subsection.5.2}{Backend}{section.5}% 20
+\BOOKMARK [3][-]{subsubsection.5.2.1}{Epic Decomposition}{subsection.5.2}% 21
+\BOOKMARK [3][-]{subsubsection.5.2.2}{Story Optimization}{subsection.5.2}% 22
+\BOOKMARK [3][-]{subsubsection.5.2.3}{Task Generation}{subsection.5.2}% 23
+\BOOKMARK [2][-]{subsection.5.3}{Communication}{section.5}% 24
+\BOOKMARK [2][-]{subsection.5.4}{Hosting}{section.5}% 25
+\BOOKMARK [1][-]{section.6}{Demonstration and Testing}{}% 26
+\BOOKMARK [2][-]{subsection.6.1}{User Story Walkthrough}{section.6}% 27
+\BOOKMARK [3][-]{figure.caption.16}{Complete Decomposition Use Case}{subsection.6.1}% 28
+\BOOKMARK [3][-]{figure.caption.20}{Relationship Visualization Use Case}{subsection.6.1}% 29
+\BOOKMARK [2][-]{subsection.6.2}{Testing}{section.6}% 30
+\BOOKMARK [2][-]{subsection.6.3}{Deployment, Demo, and Source Code}{section.6}% 31
+\BOOKMARK [1][-]{section.7}{Future Works and Conclusion}{}% 32
+\BOOKMARK [1][-]{section*.22}{References}{}% 33
