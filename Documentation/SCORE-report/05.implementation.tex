@@ -83,5 +83,11 @@ The plugin communicates from Jira to the backend interface via a listener throug
 \subsection{Hosting}
 \label{hosting}
 
-The AI4Agile Jira Connect App frontend and backend is hosted as three Azure Web Apps. The frontend is a single Node.js Web App and the backend consists of two Python Web Apps. As previously discussed, the frontend uses AJAX and the backend uses Flask Web Framework for communication. Jira communicates with the frontend Azure Web App to get assets that are to be rendered within Jira. The backend is separated into two sets of features: dependency visualization and text processing. The dependency visualization backend accesses the data from Jira, which is used to construct graphs. The text processing backend contains all three of the primary processes (epic decomposition, story optimization, and task generation). The Jira web page does not directly communicate with the backend. Rather, the Jira web page communicates with the frontend and then the front-end communicates with the backend. \textcolor{red}{add a diagram, and a sentence referencing that "the architecture" is shown in Figure \\ref something}
+The AI4Agile Jira Connect App frontend and backend is hosted as three Azure Web Apps. The frontend is a single Node.js Web App and the backend consists of two Python Web Apps. As previously discussed, the frontend uses AJAX and the backend uses Flask Web Framework for communication. Jira communicates with the frontend Azure Web App to get assets that are to be rendered within Jira. The backend is separated into two sets of features: dependency visualization and text processing. The dependency visualization backend accesses the data from Jira, which is used to construct graphs. The text processing backend contains all three of the primary processes (epic decomposition, story optimization, and task generation). The Jira web page does not directly communicate with the backend. Rather, the Jira web page communicates with the frontend and then the frontend communicates with the backend. The flow of communication between AI4Agile's frontend and backend web apps, along with the Jira web page is  shown in Fig. \ref{fig:hostingRelationship}
 
+\begin{figure}
+\centering
+\includegraphics[width=0.75\textwidth,keepaspectratio]{./figure/hostingRelationship.png}
+\caption{Relationship between AI4Agile Web Apps and Jira}
+\label{fig:hostingRelationship}
+\end{figure}
