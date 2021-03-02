@@ -1,7 +1,40 @@
 \section{Implementation}
 \label{implementation}
 
-The AI4Agile app was implemented within Jira Cloud as an app and connected to a Python-based backend.
+The AI4Agile app was implemented within Jira Cloud as an app and connected to a Python-based backend. Table \ref{tab:tools} shows a summary of the tools we have investigated and/or adopted to implement the various components and subcomponents in the system. A further detailed breakdown of the implementation follows in the subsections below.
+
+%\begin{center}
+\begin{table}
+\centering
+\caption{Components, subcomponents, and sources used for implementation of subcomponents}
+\label{tab:tools}
+\begin{tabular}{ |c|c|c| } 
+\hline
+\multicolumn{1}{|c|}{\textbf{Component}} & \multicolumn{1}{c|}{\textbf{Subcomponent}} & \multicolumn{1}{c|}{\textbf{Source}} \\
+\hline
+Epic Decomposition & K-means clustering & scikit-learn: machine learning in Python \cite{scikit} \\
+\hline
+\multirow{4}{*}{Story Optimization} & Word embedding & scikit-learn: machine learning in Python \cite{scikit} \\ 
+\cline{2-3}
+& Feature Extraction & scikit-learn: machine learning in Python \cite{scikit} \\ 
+\cline{2-3}
+& Cosine similarity & scikit-learn: machine learning in Python \cite{scikit} \\
+\cline{2-3}
+& Function decision & N/A \\ 
+\hline
+\multirow{2}{*}{Task Generation} & Sentence classification & Stanford CoreNLP \cite{NLP1, stanza} \\ 
+\cline{2-3}
+& Part of speech tagging & Natural Language ToolKit \cite{nltk} \\ 
+\hline
+\multirow{3}{*}{UI} & Tree relationship graph & Cytoscape \cite{cytoscape} \\ 
+\cline{2-3}
+& Clustered relationship graph & Cytoscape \cite{cytoscape} \\ 
+\cline{2-3}
+& Jira Cloud frontend & Atlassian Connect Express Modules \cite{jiraconnect}\\ 
+\hline
+\end{tabular}
+\end{table}
+%\end{center}
 
 \subsection{Frontend}
 
@@ -36,7 +69,7 @@ Initially, the degree of connectivity between sentences was specified by choosin
 The user can choose to increase or decrease the degree of connectivity between sentences. The slider displays options from 0 to 10, which maps to values from 0.65 to 0.75 as threshold values on the backend. The slider integration was a feature that was added based on mentor feedback. A parameter is exposed to give the user more control of the output. The exposed parameter is the degree of connectivity between the sentences. It was determined after impact analysis that it is better to implement it this way because it generates more meaningful results tailored to each user. This also eliminates the need for having a fixed threshold number, since the optimal threshold number can vary between inputs.
 
 \subsubsection{Task Generation}
-The approach for Task Generation was based off a decomposition approach by Das, Majumder, and Phadikar in 2018\cite{NLP1}. Initially the natural language toolkit (NLTK) library was selected for implementing task generation, but it lacked the need for parts-of-speech tagging. The main feature that NLTK lacked was word dependency. Word dependency is important to this process, since this was the main feature used to create simple sentences. Word dependency returns a pair of words, identifying the dependency between the two. The new Python library being used is Stanza. This library allows for parts-of-speech tagging, word dependency, and tree parsing. By having part-of-speech tagging and word dependency, the creation of simple sentences from complex and compound sentences was easier to implement.
+The approach for Task Generation was based off a decomposition approach by Das, Majumder, and Phadikar in 2018 \cite{NLP1}. We initially selected the natural language toolkit (NLTK) library \cite{nltk} to implement the task generation function, but it did not satisfy our need for parts-of-speech tagging as the library lacked the word dependency feature. Word dependency is necessary to our process for generating simple sentences by returning a pair of words while identifying the dependency between them. Hence we switched to a new Python NLP library Stanza \cite{stanza} derived as part of the research presented in \cite{NLP1}. This library allows for parts-of-speech tagging, word dependency, and tree parsing. By having part-of-speech tagging and word dependency, the creation of simple sentences from complex and compound sentences was easier to implement.
 
 \subsection{Communication}
 \begin{figure}
@@ -50,36 +83,5 @@ The plugin communicates from Jira to the backend interface via a listener throug
 \subsection{Hosting}
 \label{hosting}
 
-The AI4Agile Jira Connect App front-end and back-end is hosted as three Azure Web Apps. The front-end is a single Node.js Web App and the back-end is two Python Web Apps. As previously discussed, the front-end uses AJAX and the back-end uses Flask Web Framework for communication. Jira communicates with the front-end Azure Web App to get assets that are to be rendered within Jira. The back-end is separated into two sets of features: dependency visualization and text processing. The dependency visualization back-end accesses the data from Jira, which is used to construct graphs. The text processing back-end contains all three of the primary processes (epic decomposition, story optimization, and task generation). The Jira web page does not directly communicate with back-end. Rather, the Jira web page communicates with the front-end and then the front-end communicates with the back-end.
+The AI4Agile Jira Connect App frontend and backend is hosted as three Azure Web Apps. The frontend is a single Node.js Web App and the backend consists of two Python Web Apps. As previously discussed, the frontend uses AJAX and the backend uses Flask Web Framework for communication. Jira communicates with the frontend Azure Web App to get assets that are to be rendered within Jira. The backend is separated into two sets of features: dependency visualization and text processing. The dependency visualization backend accesses the data from Jira, which is used to construct graphs. The text processing backend contains all three of the primary processes (epic decomposition, story optimization, and task generation). The Jira web page does not directly communicate with the backend. Rather, the Jira web page communicates with the frontend and then the front-end communicates with the backend. \textcolor{red}{add a diagram, and a sentence referencing that "the architecture" is shown in Figure \\ref something}
 
-%\begin{center}
-\begin{table}
-\centering
-\caption{Components, subcomponents, and sources used for implementation of subcomponents}
-\begin{tabular}{ |c|c|c| } 
-\hline
-\multicolumn{1}{|c|}{\textbf{Component}} & \multicolumn{1}{c|}{\textbf{Subcomponent}} & \multicolumn{1}{c|}{\textbf{Source}} \\
-\hline
-Epic Decomposition & K-means clustering & scikit-learn: machine learning in Python \cite{scikit} \\
-\hline
-\multirow{4}{*}{Story Optimization} & Word embedding & scikit-learn: machine learning in Python \cite{scikit} \\ 
-\cline{2-3}
-& Feature Extraction & scikit-learn: machine learning in Python \cite{scikit} \\ 
-\cline{2-3}
-& Cosine similarity & scikit-learn: machine learning in Python \cite{scikit} \\
-\cline{2-3}
-& Function decision & N/A \\ 
-\hline
-\multirow{2}{*}{Task Generation} & Sentence classification & Stanford CoreNLP \cite{NLP1} \\ 
-\cline{2-3}
-& Part of speech tagging & Natural Language ToolKit \cite{nltk} \\ 
-\hline
-\multirow{3}{*}{UI} & Tree relationship graph & Cytoscape \cite{cytoscape} \\ 
-\cline{2-3}
-& Clustered relationship graph & Cytoscape \cite{cytoscape} \\ 
-\cline{2-3}
-& Jira Cloud frontend & Atlassian Connect Express Modules \cite{jiraconnect}\\ 
-\hline
-\end{tabular}
-\end{table}
-%\end{center}
