@@ -30,7 +30,7 @@
     "cookie-parser": "^1.4.5",
     "errorhandler": "^1.5.1",
     "esm": "^3.2.25",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-hbs": "^2.3.4",
     "helmet": "^4.1.1",
     "jquery": "^2.2.4",
